@@ -101,3 +101,14 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+.hero-person::after {
+  position: absolute;
+  content: '';
+  right: 320px;
+  bottom: -130px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(91, 57, 187, 0.2) 15%, rgba(91, 57, 187, 0) 70%);
+  z-index: 10;
+}
