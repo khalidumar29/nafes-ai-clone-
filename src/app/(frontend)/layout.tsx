@@ -10,6 +10,8 @@ import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
+import Footer from '@/components/shared/Footer'
+import Navbar from '@/components/shared/Navbar'
 import { getServerSideURL } from '@/utilities/getURL'
 import 'swiper/css'
 import 'swiper/css/bundle'
@@ -33,8 +35,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           /> */}
 
           {/* <Header /> */}
+          <Navbar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </Providers>
       </body>
     </html>
