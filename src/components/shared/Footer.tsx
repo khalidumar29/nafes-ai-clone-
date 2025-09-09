@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import img from '../../../../../public/images/image.png'
+import img from '../../../public/images/image.png'
 import FooterImage from './FooterImage'
 const Footer = () => {
   return (
