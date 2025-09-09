@@ -31,7 +31,7 @@ const FAQ = () => {
                 <AccordionContent className="text-gray-600 pb-6">
                   Getting started with Nafes AI is quick and easy. You can begin using our platform
                   within minutes of signing up. Our onboarding process guides you through the
-                  initial setup, and you'll be analyzing tenders and opportunities right away.
+                  initial setup, and you&apos;ll be analyzing tenders and opportunities right away.
                 </AccordionContent>
               </AccordionItem>
 
@@ -41,7 +41,7 @@ const FAQ = () => {
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 pb-6">
                   Nafes AI is designed for businesses, contractors, and organizations that
-                  participate in government and private sector tenders. Whether you're a small
+                  participate in government and private sector tenders. Whether you&apos;re a small
                   business or a large enterprise, our platform helps you identify relevant
                   opportunities and improve your success rate.
                 </AccordionContent>

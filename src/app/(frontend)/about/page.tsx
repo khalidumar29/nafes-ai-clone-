@@ -71,8 +71,8 @@ const About = () => {
           <div className="flex items-center justify-center">
             <p className="text-[rgb(55, 65, 81)] text-center w-1/2 mt-[30px] mb-[60px]">
               Nafes enables passionate employees and business owners to boost performance
-              effortlessly. We champion Saudi SMEs' vital market role, helping them secure golden
-              opportunities for higher revenue.
+              effortlessly. We champion Saudi SMEs&apos; vital market role, helping them secure
+              golden opportunities for higher revenue.
             </p>
           </div>
           <div className="bg-[url('/images/bg.png')] bg-no-repeat bg-cover bg-[center_bottom] h-fit">
@@ -178,7 +178,7 @@ const About = () => {
           <div className="max-w-4xl mx-auto text-center">
             {/* Main Heading */}
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
-              Let's Win Together
+              Let&apos;s Win Together
             </h2>
 
             {/* Description Text */}
