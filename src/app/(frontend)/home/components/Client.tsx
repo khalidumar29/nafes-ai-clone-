@@ -85,8 +85,8 @@ const Client = () => {
 
             {/* Testimonial Text */}
             <p className="text-gray-600 text-center leading-relaxed mb-8">
-              Nafes wasn't just a platform... it was a complete transformation in how we approach
-              tenders. Instead of wasting time searching and analyzin...
+              Nafes wasn&apos;t just a platform... it was a complete transformation in how we
+              approach tenders. Instead of wasting time searching and analyzin...
             </p>
 
             {/* User Icon */}
