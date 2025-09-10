@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -34,10 +35,12 @@ const Blogs = () => {
               <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 h-full">
                 {/* Blog Image */}
                 <div className="relative h-80 overflow-hidden">
-                  <img
+                  <Image
                     src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800"
                     alt="AI Technology"
                     className="w-full h-full object-cover"
+                    width={800}
+                    height={800}
                   />
                 </div>
 
@@ -79,10 +82,12 @@ const Blogs = () => {
               <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 h-full">
                 {/* Blog Image */}
                 <div className="relative h-80 overflow-hidden">
-                  <img
+                  <Image
                     src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
                     alt="Business Meeting"
                     className="w-full h-full object-cover"
+                    width={800}
+                    height={800}
                   />
                 </div>
 
@@ -123,10 +128,12 @@ const Blogs = () => {
               <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 h-full">
                 {/* Blog Image */}
                 <div className="relative h-80 overflow-hidden">
-                  <img
+                  <Image
                     src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800"
                     alt="Digital Analytics"
                     className="w-full h-full object-cover"
+                    width={800}
+                    height={800}
                   />
                 </div>
 
@@ -167,10 +174,12 @@ const Blogs = () => {
               <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 h-full">
                 {/* Blog Image */}
                 <div className="relative h-80 overflow-hidden">
-                  <img
+                  <Image
                     src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800"
                     alt="Strategy Planning"
                     className="w-full h-full object-cover"
+                    width={800}
+                    height={800}
                   />
                 </div>
 
