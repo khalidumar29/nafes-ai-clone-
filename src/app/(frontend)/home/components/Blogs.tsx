@@ -1,6 +1,8 @@
 'use client'
 
 import BlogCard from '@/components/shared/BlogCard'
+import { Button } from '@/components/ui/button'
+import { MoveRight } from 'lucide-react'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -25,7 +27,7 @@ const Blogs = () => {
                 slidesPerView: 1.5,
               },
               1024: {
-                slidesPerView: 2,
+                slidesPerView: 2.2,
               },
             }}
             // className="pb-16"
@@ -41,6 +43,9 @@ const Blogs = () => {
           {/* Custom Pagination */}
           <div className="blog-pagination flex justify-center space-x-3 mt-8"></div>
         </div>
+        <Button className="w-fit text-[#0daca3]">
+          Read More <MoveRight className="ml-2" />
+        </Button>
       </div>
     </div>
   )

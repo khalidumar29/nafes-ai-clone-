@@ -13,7 +13,7 @@ const Assenting = () => {
               assistant
             </span>
           </h3>
-          <Button size={'lg'} className="w-fit text-[#0daca3]">
+          <Button className="w-fit text-[#0daca3]">
             Book Your Session <MoveRight className="ml-2" />
           </Button>
         </div>
