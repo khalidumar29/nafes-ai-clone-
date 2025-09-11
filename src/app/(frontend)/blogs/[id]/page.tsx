@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <section className="container">
       <div className="mt-20 grid grid-cols-3 gap-[30px] mb-[10em]">
-        <div className="col-span-2">
+        <div className="sm:col-span-2 col-span-3">
           <div className="bg-[#5b39bb] w-fit font-bold text-[14px] text-white px-[24px] py-[8px] rounded-full">
             المنافسات
           </div>
@@ -70,7 +70,7 @@ const Page = () => {
             </p>
           </div>
         </div>
-        <div>
+        <div className="col-span-3 sm:col-span-1 mt-20 sm:mt-0">
           <Input />
           <h1 className="font-bold text-[36px] my-8">مقالات أخرى</h1>
           <div>

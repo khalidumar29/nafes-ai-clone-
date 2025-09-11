@@ -33,19 +33,19 @@ const About = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="text-[72px] font-bold leading-[1.3] mt-[1em]">
+        <h1 className="sm:text-[72px] text-[40px] font-bold leading-[1.3] mt-[1em]">
           Empowering Businesses <br></br>with{' '}
           <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
             Smart Tender
           </span>
           <br></br> Analytics
         </h1>
-        <div className="pt-[93px]">
+        <div className="sm:pt-[93px] pt-[50px]">
           <CompanySlider />
         </div>
-        <div className="grid grid-cols-2">
+        <div className="grid sm:grid-cols-2 grid-cols-1">
           <div className="flex flex-col gap-[25px] justify-center">
-            <h1 className="text-[62px] font-bold leading-[1.3]">
+            <h1 className="sm:text-[62px] text-[40px] font-bold leading-[1.3]">
               Helping You Win More, Stress Less
             </h1>
             <p className="text-[#374151]">
@@ -59,24 +59,24 @@ const About = () => {
             </Button>
           </div>
           <div>
-            <Image src={img} className="ml-10" alt="img" width={800} height={800}></Image>
+            <Image src={img} className="sm:ml-10" alt="img" width={800} height={800}></Image>
           </div>
         </div>
       </div>
       <section className="bg-[linear-gradient(to_bottom,#fff_0%,#e6f7f6_27.88%,#e6f7f6_82.69%,#fff_100%)]">
         <div className="container">
-          <h1 className=" text-[64px] font-bold text-center leading-[1.3]">
+          <h1 className=" sm:text-[64px] text-[40px] font-bold text-center leading-[1.3]">
             No More Guesswork –<br></br> Just Data-Driven Wins!
           </h1>
-          <div className="flex items-center justify-center">
-            <p className="text-[rgb(55, 65, 81)] text-center w-1/2 mt-[30px] mb-[60px]">
+          <div className="flex items-center justify-center w-full">
+            <p className="text-[rgb(55, 65, 81)] text-center w-1/2 mt-[30px] mb-[60px] w-full">
               Nafes enables passionate employees and business owners to boost performance
               effortlessly. We champion Saudi SMEs&apos; vital market role, helping them secure
               golden opportunities for higher revenue.
             </p>
           </div>
           <div className="bg-[url('/images/bg.png')] bg-no-repeat bg-cover bg-[center_bottom] h-fit">
-            <Image src={ff} alt="ff" className="w-full h-[300px]"></Image>
+            <Image src={ff} alt="ff" className="w-full sm:h-[300px]"></Image>
             <div className="mt-[65px] px-6 ">
               <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -118,19 +118,19 @@ const About = () => {
       </section>
       <section className="my-[100px]">
         <div className="container">
-          <h1 className=" text-[64px] font-bold text-start leading-[1.3]">
+          <h1 className=" sm:text-[64px] text-[40px] font-bold text-start leading-[1.3]">
             Why choose{' '}
             <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
               Nafes
             </span>
             ?
           </h1>
-          <p className="w-[50%] mt-[30px] mb-[40px]">
+          <p className="sm:w-[50%] mt-[30px] mb-[40px]">
             Nafes is a key pillar in strengthening the Saudi economy and delivering top bids to
             organizations across the Kingdom. It will continuously enhance its efficiency and expand
             its services, aligning with Vision 2030 through technological and economic integration.
           </p>
-          <div className="grid grid-cols-3 gap-5 ">
+          <div className="grid sm:grid-cols-3 grid-cols-1 gap-5 ">
             {cards?.map((item) => (
               <div
                 key={item.id}
@@ -153,7 +153,7 @@ const About = () => {
         </div>
       </section>
       <section className="container">
-        <div className="flex justify-between items-center m-0 mx-auto py-[40px] px-[20px] bg-[linear-gradient(92.16deg,#0daca3_43.64%,#250f8d_134.77%)] rounded-[12px] text-white text-center [direction:rtl]">
+        <div className="flex sm:flex-row flex-col justify-between items-center m-0 mx-auto py-[40px] px-[20px] bg-[linear-gradient(92.16deg,#0daca3_43.64%,#250f8d_134.77%)] rounded-[12px] text-white text-center [direction:rtl]">
           <div className="">
             <h2 className="text-[50px] font-bold m-0 mb-[8px]">+2K</h2>
             <p className="text-[18px] m-0 opacity-50">Completed Projects</p>
@@ -174,7 +174,7 @@ const About = () => {
         <Client />
       </section>
       <section>
-        <div className="py-20 px-6 bg-gray-50">
+        <div className="sm:py-20 px-6 py-10 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center">
             {/* Main Heading */}
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">

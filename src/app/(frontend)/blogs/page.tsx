@@ -11,9 +11,9 @@ const Page = () => {
   return (
     <section>
       <section className="container mt-10">
-        <div className="grid grid-cols-2 gap-5">
-          <div className="my-[60px]">
-            <h1 className="text-[62px] font-bold leading-[1.3] mt-[1em]">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-5">
+          <div className="sm:my-[60px] my-[0px]">
+            <h1 className="sm:text-[62px] text-[40px] font-bold leading-[1.3] mt-[1em]">
               Recent Articles from Our Blog
             </h1>
             <p className="text-[18px] leading-[1.7] text-[#374151] mt-[25px]">
@@ -28,7 +28,7 @@ const Page = () => {
             <Image src={bp} alt="bp" width={800} height={800}></Image>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-10">
           <div className="max-h-[340px]">
             <Image src={banner} alt="banner" className="w-full object-cover max-h-[340px]"></Image>
           </div>
@@ -47,9 +47,9 @@ const Page = () => {
             </Link>
           </div>
         </div>
-        <section className="mt-[175px]">
-          <div className="flex items-center justify-between">
-            <h3 className="text-[53px] font-semibold">More Articles</h3>
+        <section className="sm:mt-[175px] mt-[100px]">
+          <div className="flex flex-col sm:flex-row items-center justify-between">
+            <h3 className="sm:text-[53px] text-[35px] font-semibold">More Articles</h3>
             <div className="flex gap-5">
               <Input placeholder="Search for an Artical" />
               <Popover>
@@ -61,9 +61,9 @@ const Page = () => {
             </div>
           </div>
           <div className="mt-[130px] mb-[100px]">
-            <div className="grid grid-cols-2 gap-[55px]">
+            <div className="grid sm:grid-cols-2 grid-cols-1 gap-[55px]">
               {Array.from({ length: 5 }, (_, i) => (
-                <BlogCard key={i} className={i % 2 === 0 ? '-mt-[80px]' : ''} />
+                <BlogCard key={i} className={i % 2 === 0 ? 'sm:-mt-[80px]' : ''} />
               ))}
             </div>
           </div>
