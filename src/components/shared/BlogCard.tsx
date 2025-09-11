@@ -2,7 +2,7 @@ import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import Link from 'next/link'
 import banner from '../../../public/images/banner.svg'
-const BlogCard = ({ className }) => {
+const BlogCard = ({ className }: { className?: string }) => {
   return (
     <div className={cn(className)}>
       <div className="max-h-[320px]">
