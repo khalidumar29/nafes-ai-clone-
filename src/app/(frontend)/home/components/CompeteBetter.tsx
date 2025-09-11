@@ -34,19 +34,21 @@ const CompeteBetter = () => {
   return (
     <div className="container">
       <div className="grid grid-cols-12 mb-[60px]">
-        <h1 className="col-span-5 font-bold text-[64px]">Stay ahead and compete better</h1>
+        <h1 className="sm:col-span-5 col-span-10 font-bold text-[64px]">
+          Stay ahead and compete better
+        </h1>
       </div>
       <div className="grid grid-cols-12 mb-[60px]">
-        <div className="col-span-5 relative px-[10px]">
-          <div className="pr-[40px] after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-full after:bg-[linear-gradient(0deg,#fff_0%,hsla(0,0%,100%,.7)_20%,hsla(0,0%,100%,0)_100%)] after:pointer-events-none">
+        <div className="sm:col-span-5 col-span-12 relative px-[10px]">
+          <div className="sm:pr-[40px] after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-full after:bg-[linear-gradient(0deg,#fff_0%,hsla(0,0%,100%,.7)_20%,hsla(0,0%,100%,0)_100%)] after:pointer-events-none">
             <Image src={dashboard} alt="dashboard" className="w-full "></Image>
           </div>
-          <div className="bg-black text-white p-2 text-center w-[240px] absolute rounded-[24px] text-sm bottom-[8em] -left-8">
+          <div className="bg-black text-white p-2 text-center w-[240px] absolute rounded-[24px] text-sm bottom-[8em] sm:-left-8">
             Explore our innovative features for an easy, enjoyable browsing experience with a simple
             interface and a wide range of services at your fingertips
           </div>
         </div>
-        <div className="col-span-7 ">
+        <div className="sm:col-span-7 col-span-12 ">
           <div className="grid grid-cols-2 gap-5 ">
             {cards?.map((item) => (
               <div key={item.id}>
