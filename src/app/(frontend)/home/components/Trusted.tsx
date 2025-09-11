@@ -46,7 +46,7 @@ const Trusted = () => {
                     <Image
                       src={item.image}
                       alt="bar"
-                      className=" w-[320px] h-[320px] z-10 shadow-[0_0_20px_0_rgba(0,0,0,0.15)] rounded-[24px]"
+                      className=" w-[320px] sm:h-[320px] z-10 shadow-[0_0_20px_0_rgba(0,0,0,0.15)] rounded-[24px]"
                     ></Image>
                   </div>
                 </div>
@@ -76,7 +76,7 @@ const Trusted = () => {
                     <Image
                       src={item.image}
                       alt="bar"
-                      className=" w-[320px] h-[320px] z-10 shadow-[0_0_20px_0_rgba(0,0,0,0.15)] rounded-[24px]"
+                      className=" w-[320px] sm:h-[320px] z-10 shadow-[0_0_20px_0_rgba(0,0,0,0.15)] rounded-[24px]"
                     ></Image>
                   </div>
                 </div>

@@ -1,11 +1,12 @@
+import BlogCard from '@/components/shared/BlogCard'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover'
 import { SlidersVertical } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import banner from '../../../../public/images/banner.svg'
 import bp from '../../../../public/images/bp.webp'
-import Link from 'next/link'
 const Page = () => {
   return (
     <section>
@@ -62,33 +63,7 @@ const Page = () => {
           <div className="mt-[130px] mb-[100px]">
             <div className="grid grid-cols-2 gap-[55px]">
               {Array.from({ length: 5 }, (_, i) => (
-                <div key={i} className={i % 2 === 0 ? '-mt-[80px]' : ''}>
-                  <div className="max-h-[320px]">
-                    <Image
-                      src={banner}
-                      alt="banner "
-                      className="max-h-[320px] h-full w-full object-cover"
-                    ></Image>
-                  </div>
-                  <div className="flex justify-between my-5">
-                    <div className="bg-[#5b39bb] font-bold text-[14px] text-white px-[24px] py-[8px] rounded-full">
-                      المنافسات
-                    </div>
-                  </div>
-                  <div>
-                    <Link
-                      href="/blogs/1"
-                      className="font-bold text-[30px] my-[25px] hover:underline hover:text-[#5b39bb] transition-colors"
-                    >
-                      كل ما تريد معرفته حول نظام المزايدات في المنافسات التجارية مع نافس
-                    </Link>
-                    <p className="text-sm">
-                      هل تتنافس في مزاد علني للفوز بفرصة؟ تعرف على كل شيء حول نظام المزايدات والتعرف
-                      على أنواع المزايدات الإلكترونية، وكيفية تطوير استراتيجية رابحة مع دليل نافِس
-                      الشامل.{' '}
-                    </p>
-                  </div>
-                </div>
+                <BlogCard key={i} className={i % 2 === 0 ? '-mt-[80px]' : ''} />
               ))}
             </div>
           </div>

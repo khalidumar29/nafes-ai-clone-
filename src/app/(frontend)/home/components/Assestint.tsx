@@ -5,9 +5,9 @@ import img from '../../../../../public/images/h.webp'
 const Assenting = () => {
   return (
     <div className="container ">
-      <div className="py-[40px] px-[80px] bg-[#E6F6F6] grid grid-cols-2 rounded-[24px]">
-        <div className="flex flex-col justify-center gap-[60px]">
-          <h3 className="text-[64px] leading-[65px] font-bold">
+      <div className="sm:py-[40px] sm:px-[80px] py-[20px] px-[40px] bg-[#E6F6F6] grid sm:grid-cols-2 grid-cols-1 rounded-[24px]">
+        <div className="flex flex-col justify-center sm:gap-[60px] gap-[20px]">
+          <h3 className="sm:text-[64px] text-[40px] sm:leading-[65px] leading-[40px] font-bold">
             Nafes<br></br> interactive<br></br>
             <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
               assistant

@@ -34,7 +34,7 @@ const CompeteBetter = () => {
   return (
     <div className="container">
       <div className="grid grid-cols-12 mb-[60px]">
-        <h1 className="sm:col-span-5 col-span-10 font-bold text-[64px]">
+        <h1 className="sm:col-span-5 col-span-12 font-bold text-[64px]">
           Stay ahead and compete better
         </h1>
       </div>

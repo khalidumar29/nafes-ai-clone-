@@ -11,7 +11,7 @@ const WorkFlow = () => {
   ]
   return (
     <div className="container">
-      <div className="w-1/2">
+      <div className="sm:w-1/2">
         <h1 className="font-bold text-[64px] mb-[45px]">
           Nafes Workflow <br></br>{' '}
           <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
@@ -24,8 +24,8 @@ const WorkFlow = () => {
           to final bid submission.
         </p>
       </div>
-      <div className="w-full grid grid-cols-2 ">
-        <div className=" w-[488px] flex flex-col gap-[30px] justify-center items-center">
+      <div className="w-full grid sm:grid-cols-2 grid-cols-1 ">
+        <div className=" mt-10 sm:mt-0 sm:w-[488px] w-full flex flex-col gap-[30px] justify-center items-center">
           <p>
             Built specifically for teams working on government and enterprise tenders, the Workflow
             Manager enables you to:
@@ -40,7 +40,13 @@ const WorkFlow = () => {
           </div>
         </div>
         <div>
-          <Image src={tt} alt="tt" width={400} height={400} className="w-[90%] h-[600px]"></Image>
+          <Image
+            src={tt}
+            alt="tt"
+            width={400}
+            height={400}
+            className="sm:w-[90%] w-full sm:h-[600px]"
+          ></Image>
         </div>
       </div>
     </div>
