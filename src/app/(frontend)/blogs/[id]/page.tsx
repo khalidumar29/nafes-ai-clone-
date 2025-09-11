@@ -1,4 +1,4 @@
-import { Input } from '@/components/ui/input'
+import SearchInput from '@/components/shared/SearchInput'
 import Image from 'next/image'
 import Link from 'next/link'
 import img from '../../../../../public/images/banner.svg'
@@ -70,8 +70,8 @@ const Page = () => {
             </p>
           </div>
         </div>
-        <div className="col-span-3 sm:col-span-1 mt-20 sm:mt-0">
-          <Input />
+        <div className="col-span-3 sm:col-span-1 mt-20 sm:mt-0 ">
+          <SearchInput />
           <h1 className="font-bold text-[36px] my-8">مقالات أخرى</h1>
           <div>
             {Array.from({ length: 5 }).map((_, i) => (

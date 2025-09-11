@@ -1,6 +1,8 @@
 import BlogCard from '@/components/shared/BlogCard'
+import SearchInput from '@/components/shared/SearchInput'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Label } from '@/components/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover'
 import { SlidersVertical } from 'lucide-react'
 import Image from 'next/image'
@@ -51,12 +53,39 @@ const Page = () => {
           <div className="flex flex-col sm:flex-row items-center justify-between">
             <h3 className="sm:text-[53px] text-[35px] font-semibold">More Articles</h3>
             <div className="flex gap-5">
-              <Input placeholder="Search for an Artical" />
+              <SearchInput />
               <Popover>
-                <PopoverTrigger>
+                <PopoverTrigger className="hover:bg-teal-500 hover:border-none border border-black px-4 py-1 rounded">
                   <SlidersVertical />
                 </PopoverTrigger>
-                <PopoverContent>Place content for the popover here.</PopoverContent>
+                <PopoverContent className="mr-10 rounded">
+                  <p className="font-bold">Sorted by</p>
+                  <div className="my-5 space-y-5">
+                    <div className="flex items-center gap-3">
+                      <Checkbox id="terms" />
+                      <Label htmlFor="terms">Newest First</Label>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Checkbox id="a" />
+                      <Label htmlFor="a">Last First</Label>
+                    </div>
+                  </div>
+                  <p className="font-bold">Categories</p>
+                  <div className="my-5 space-y-5">
+                    <div className="flex items-center gap-3">
+                      <Checkbox id="n" />
+                      <Label
+                        className="bg-[#f59e0b] rounded-full px-6 py-2 font-bold text-white"
+                        htmlFor="n"
+                      >
+                        المزايدات{' '}
+                      </Label>
+                    </div>
+                  </div>
+                  <div>
+                    <Button className="w-full text-teal-500">Save</Button>
+                  </div>
+                </PopoverContent>
               </Popover>
             </div>
           </div>
