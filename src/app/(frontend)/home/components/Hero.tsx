@@ -69,7 +69,7 @@ const Hero = () => {
             className="absolute  bottom-0 right-28 w-[7em] sm:w-[218px] sm:right-[29em]  shadow-[0_0_20px_0_rgba(0,0,0,0.15)] sm:rounded-[24px] rounded-[15px] z-20"
           ></Image>
         </div>
-        <div className="w-48 absolute right-[30em] -bottom-[7em] ">
+        <div className="w-48 absolute sm:right-[30em] right-10 -bottom-[7em]  ">
           <p className="text-sm">
             a simple interface and a wide range of services at your fingertips
           </p>

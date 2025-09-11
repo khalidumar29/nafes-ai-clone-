@@ -16,6 +16,17 @@ const CompanySlider = () => {
         loop={true}
         speed={3000}
         modules={[Autoplay]}
+        breakpoints={{
+          320: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 4,
+          },
+          1024: {
+            slidesPerView: 9,
+          },
+        }}
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
       >

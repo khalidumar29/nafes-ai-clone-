@@ -27,21 +27,21 @@ const Trusted = () => {
   ]
   return (
     <div className="bg-[#e6f7f6] mb-[100px]">
-      <div className="container py-[100px]">
+      <div className="container sm:py-[100px] py-[50px]">
         <p className="text-sm text-center mb-[40px]">Trusted by the top organizations</p>
         <div>
           <CompanySlider />
         </div>
       </div>
-      <div className="container pt-[70px]">
+      <div className="container sm:pt-[70px] pt-[40px]">
         <div className="mb-[90px]">
           <h4 className="text-[35px] text-center">Let AI help you outpace your competitors</h4>
         </div>
         {data.map((item, index) => (
-          <div key={item.id} className="grid grid-cols-2 gap-10 mt-[28px]">
+          <div key={item.id} className="grid sm:grid-cols-2 grid-cols-1 gap-10 mt-[28px]">
             {index % 2 === 0 ? (
               <>
-                <div className="w-full flex justify-end">
+                <div className="w-full flex justify-center sm:justify-end">
                   <div className="flex w-3/4 justify-center items-center">
                     <Image
                       src={item.image}
@@ -71,7 +71,7 @@ const Trusted = () => {
                     <p className="text-[#6b7280] leading-7">{item.text}</p>
                   </div>
                 </div>
-                <div className="w-full flex ">
+                <div className="w-full flex justify-center sm:justify-start ">
                   <div className="flex w-3/4 justify-center items-center">
                     <Image
                       src={item.image}
