@@ -1,31 +1,32 @@
 import { Globe } from 'lucide-react'
 import { Button } from '../ui/button'
+import Link from 'next/link'
 
 const Navbar = () => {
   return (
     <div className="border-b">
       <nav className="flex items-center justify-between px-6 py-3  mx-auto container ">
         {/* Logo */}
-        <div className="flex items-center">
+        <Link href="/home" className="flex items-center">
           <div className="text-2xl font-bold text-teal-500">
             نوالي
             <br />
             Nafes
           </div>
-        </div>
+        </Link>
 
         <div className="flex gap-20">
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-800 hover:text-teal-500 transition-colors">
+            <Link href="/home" className="text-gray-800 hover:text-teal-500 transition-colors">
               Home
-            </a>
-            <a href="#" className="text-gray-800 hover:text-teal-500 transition-colors">
+            </Link>
+            <Link href="/about" className="text-gray-800 hover:text-teal-500 transition-colors">
               About Nafes
-            </a>
-            <a href="#" className="text-gray-800 hover:text-teal-500 transition-colors">
+            </Link>
+            <Link href="/blogs" className="text-gray-800 hover:text-teal-500 transition-colors">
               Blogs
-            </a>
+            </Link>
           </div>
 
           {/* Right Side Buttons */}

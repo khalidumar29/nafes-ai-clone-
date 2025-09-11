@@ -5,6 +5,7 @@ import { SlidersVertical } from 'lucide-react'
 import Image from 'next/image'
 import banner from '../../../../public/images/banner.svg'
 import bp from '../../../../public/images/bp.webp'
+import Link from 'next/link'
 const Page = () => {
   return (
     <section>
@@ -39,7 +40,10 @@ const Page = () => {
               هل تتنافس في مزاد علني للفوز بفرصة؟ تعرف على كل شيء حول نظام المزايدات والتعرف على
               أنواع المزايدات الإلكترونية، وكيفية تطوير استراتيجية رابحة مع دليل نافِس الشامل.
             </p>
-            <Button variant="outline">Continue Reading</Button>
+            <Link href="/blogs/1">
+              {' '}
+              <Button variant="outline">Continue Reading</Button>
+            </Link>
           </div>
         </div>
         <section className="mt-[175px]">
@@ -72,9 +76,12 @@ const Page = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-bold text-[30px] my-[25px]">
+                    <Link
+                      href="/blogs/1"
+                      className="font-bold text-[30px] my-[25px] hover:underline hover:text-[#5b39bb] transition-colors"
+                    >
                       كل ما تريد معرفته حول نظام المزايدات في المنافسات التجارية مع نافس
-                    </h4>
+                    </Link>
                     <p className="text-sm">
                       هل تتنافس في مزاد علني للفوز بفرصة؟ تعرف على كل شيء حول نظام المزايدات والتعرف
                       على أنواع المزايدات الإلكترونية، وكيفية تطوير استراتيجية رابحة مع دليل نافِس
