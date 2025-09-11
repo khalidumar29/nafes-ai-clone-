@@ -6,9 +6,9 @@ const Page = () => {
       <br />
       <p>Introduction</p>
       <p>
-        This privacy policy ("Policy") outlines how Nafes ("the company", "we", "our", or "us")
-        collects, uses, and discloses your personal information when you use our service platform
-        ("Services").
+        This privacy policy (&quot;Policy&quot;) outlines how Nafes (&quot;the company&quot;,
+        &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) collects, uses, and discloses your
+        personal information when you use our service platform (&quot;Services&quot;).
       </p>
       <br />
       <p>Information We Collect</p>
@@ -16,9 +16,10 @@ const Page = () => {
         Based on our terms of service, we collect the following information from authorized users
         accessing our Services: Account Information: When creating a user account, we may collect
         the username, password, full name, email address, and other relevant information about the
-        user's company ("Account Information"). Usage Data: We may collect information about how
-        users interact with our Services, including the type of device they use, the duration of
-        their usage, the pages they visit, and the information they search for ("Usage Data").
+        user&apos;s company (&quot;Account Information&quot;). Usage Data: We may collect
+        information about how users interact with our Services, including the type of device they
+        use, the duration of their usage, the pages they visit, and the information they search for
+        (&quot;Usage Data&quot;).
       </p>
       <br />
       <p>How We Use Your Information</p>
@@ -55,9 +56,9 @@ const Page = () => {
       <p>
         Update Account Information: You can update your account information at any time through your
         account settings. User Deactivation: The subscriber is responsible for notifying the company
-        when a user leaves the company or no longer needs access to the Services ("User
-        Deactivation"). Account Deletion: Upon the subscriber’s request, the company can delete the
-        account information of the authorized user who no longer needs access to the Services.
+        when a user leaves the company or no longer needs access to the Services (&quot;User
+        Deactivation&quot;). Account Deletion: Upon the subscriber’s request, the company can delete
+        the account information of the authorized user who no longer needs access to the Services.
       </p>
       <br />
       <p>Data Security</p>
