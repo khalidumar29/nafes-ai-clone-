@@ -1,3 +1,4 @@
+import { Footer } from '@/Footer/Component'
 import Articles from './components/Articals'
 import Assenting from './components/Assestint'
 import Client from './components/Client'
@@ -20,7 +21,6 @@ const Home = () => {
       <Articles />
       <Assenting />
       <FAQ />
-      {/* <Footer /> */}
     </div>
   )
 }
