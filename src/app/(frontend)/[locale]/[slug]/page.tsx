@@ -1,17 +1,25 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
-import PageClient from '../components/PageClient'
+// import PageClient from '../components/PageClient'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { localeLang } from '@/utilities/locale'
 
-interface PageProps {
-  params: { locale: string; slug: string }
-}
+// interface PageProps {
+//   params: {
+//     locale: string
+//     slug: string
+//   }
+// }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}) {
   const { locale, slug } = await params
+  console.log('Locale:', locale, 'Slug:', slug)
   const { isEnabled: isDraftMode } = await draftMode()
   console.log('Draft mode is enabled:', isDraftMode)
   const supportedLocale = localeLang.find((lang) => lang.code === locale)
