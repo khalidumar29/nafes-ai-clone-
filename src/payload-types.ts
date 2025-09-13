@@ -271,6 +271,53 @@ export interface Page {
             blockName?: string | null;
             blockType: 'aboutHero';
           }
+        | {
+            title: string;
+            description?: string | null;
+            image?: (string | null) | Media;
+            items?:
+              | {
+                  heading: string;
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'aboutSection';
+          }
+        | {
+            title: string;
+            highlightText?: string | null;
+            description?: string | null;
+            cards?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  img: string | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            ctaText?: string | null;
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'whyChooseSection';
+          }
+        | {
+            stats?:
+              | {
+                  number: string;
+                  label?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            textColor?: string | null;
+            direction?: ('ltr' | 'rtl') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsSection';
+          }
       )[]
     | null;
   /**
@@ -1042,6 +1089,56 @@ export interface PagesSelect<T extends boolean = true> {
               ctaText?: T;
               ctaLink?: T;
               image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        aboutSection?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              items?:
+                | T
+                | {
+                    heading?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        whyChooseSection?:
+          | T
+          | {
+              title?: T;
+              highlightText?: T;
+              description?: T;
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    img?: T;
+                    id?: T;
+                  };
+              ctaText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        statsSection?:
+          | T
+          | {
+              stats?:
+                | T
+                | {
+                    number?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              textColor?: T;
+              direction?: T;
               id?: T;
               blockName?: T;
             };
