@@ -1,7 +1,7 @@
 import { Block } from 'payload'
 
 export const FAQ: Block = {
-  slug: 'faqBlock',
+  slug: 'faq',
   labels: {
     singular: 'FAQ Section',
     plural: 'FAQ Sections',

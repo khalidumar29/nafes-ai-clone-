@@ -220,7 +220,7 @@ export interface Page {
             }[];
             id?: string | null;
             blockName?: string | null;
-            blockType: 'clientTestimonials';
+            blockType: 'client';
           }
         | {
             titleLines: {
@@ -232,7 +232,7 @@ export interface Page {
             image: string | Media;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'assistingBlock';
+            blockType: 'assisting';
           }
         | {
             titleLines: {
@@ -248,7 +248,7 @@ export interface Page {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'faqBlock';
+            blockType: 'faq';
           }
       )[]
     | null;
@@ -949,7 +949,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        clientTestimonials?:
+        client?:
           | T
           | {
               title?: T;
@@ -966,7 +966,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        assistingBlock?:
+        assisting?:
           | T
           | {
               titleLines?:
@@ -981,7 +981,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        faqBlock?:
+        faq?:
           | T
           | {
               titleLines?:

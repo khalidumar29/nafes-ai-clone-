@@ -36,8 +36,7 @@ export default async function Page({ params }: PageProps) {
       <RenderBlocks blocks={page.layout || []} />
       {/*
       <Articles />
-      
-      <FAQ /> */}
+ */}
       {isDraftMode && <PageClient page={page} />}
     </main>
   )

@@ -21,7 +21,7 @@ type FAQBlockProps = {
   faqs: FAQItem[]
 }
 
-export const FAQ: React.FC<FAQBlockProps> = ({ titleLines, faqs }) => {
+const FAQ: React.FC<FAQBlockProps> = ({ titleLines, faqs }) => {
   return (
     <div className="py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -60,3 +60,5 @@ export const FAQ: React.FC<FAQBlockProps> = ({ titleLines, faqs }) => {
     </div>
   )
 }
+
+export default FAQ

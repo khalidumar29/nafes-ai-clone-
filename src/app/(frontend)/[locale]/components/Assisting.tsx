@@ -16,12 +16,9 @@ type AssistingBlockProps = {
   image: Media
 }
 
-const Assisting: React.FC<AssistingBlockProps> = ({
-  titleLines,
-  highlightText,
-  buttonText,
-  image,
-}) => {
+const Assisting = ({ titleLines, highlightText, buttonText, image }: AssistingBlockProps) => {
+  console.log('image', image)
+
   return (
     <div className="container">
       <div className="sm:py-[40px] sm:px-[80px] py-[20px] px-[40px] bg-[#E6F6F6] grid sm:grid-cols-2 grid-cols-1 rounded-[24px]">

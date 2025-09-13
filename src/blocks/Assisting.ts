@@ -1,7 +1,7 @@
 import { Block } from 'payload'
 
 export const Assisting: Block = {
-  slug: 'assistingBlock',
+  slug: 'assisting',
   labels: {
     singular: 'Assisting Section',
     plural: 'Assisting Sections',
