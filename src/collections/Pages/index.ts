@@ -13,7 +13,10 @@ import { Client } from '@/blocks/Home/Client'
 import { Assisting } from '@/blocks/Home/Assisting'
 import { FAQ } from '@/blocks/Home/FAQ'
 import { AboutHero } from '@/blocks/about/Hero'
-
+import { AboutSection } from '@/blocks/about/AboutSection'
+import { WhyChoose } from '@/blocks/about/WhyChoose'
+import { Stats } from '@/blocks/about/Stats'
+import LetsWinTogether from '@/app/(frontend)/[locale]/components/about/LetsWinTogether'
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
@@ -58,7 +61,19 @@ export const Pages: CollectionConfig<'pages'> = {
     {
       name: 'layout',
       type: 'blocks',
-      blocks: [Hero, Trusted, CompeteBetter, WorkFlow, Client, Assisting, FAQ, AboutHero],
+      blocks: [
+        Hero,
+        Trusted,
+        CompeteBetter,
+        WorkFlow,
+        Client,
+        Assisting,
+        FAQ,
+        AboutHero,
+        AboutSection,
+        WhyChoose,
+        Stats,
+      ],
       localized: true,
     },
     {

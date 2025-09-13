@@ -10,6 +10,9 @@ import Client from '@/app/(frontend)/[locale]/components/home/Client'
 import Assisting from '@/app/(frontend)/[locale]/components/home/Assisting'
 import FAQ from '@/app/(frontend)/[locale]/components/home/FAQ'
 import { AboutHero } from '@/app/(frontend)/[locale]/components/about/Hero'
+import AboutSection from '@/app/(frontend)/[locale]/components/about/AboutSection'
+import WhyChooseSection from '@/app/(frontend)/[locale]/components/about/WhyChooseSection'
+import StatsSection from '@/app/(frontend)/[locale]/components/about/StatsSection'
 
 const blockComponents: Record<string, React.FC<any>> = {
   hero: Hero,
@@ -20,6 +23,9 @@ const blockComponents: Record<string, React.FC<any>> = {
   assisting: Assisting,
   faq: FAQ,
   aboutHero: AboutHero,
+  aboutSection: AboutSection,
+  whyChooseSection: WhyChooseSection,
+  statsSection: StatsSection,
 }
 
 export const RenderBlocks: React.FC<{
