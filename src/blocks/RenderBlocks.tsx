@@ -2,13 +2,13 @@ import React, { Fragment } from 'react'
 import type { Page } from '@/payload-types'
 
 // import all block components you support
-import Hero from '@/app/(frontend)/[locale]/components/Hero'
-import Trusted from '@/app/(frontend)/[locale]/components/Trusted'
-import CompeteBetter from '@/app/(frontend)/[locale]/components/CompeteBetter'
-import WorkFlow from '@/app/(frontend)/[locale]/components/WorkFlow'
-import Client from '@/app/(frontend)/[locale]/components/Client'
-import Assisting from '@/app/(frontend)/[locale]/components/Assisting'
-import FAQ from '@/app/(frontend)/[locale]/components/FAQ'
+import Hero from '@/app/(frontend)/[locale]/components/home/Hero'
+import Trusted from '@/app/(frontend)/[locale]/components/home/Trusted'
+import CompeteBetter from '@/app/(frontend)/[locale]/components/home/CompeteBetter'
+import WorkFlow from '@/app/(frontend)/[locale]/components/home/WorkFlow'
+import Client from '@/app/(frontend)/[locale]/components/home/Client'
+import Assisting from '@/app/(frontend)/[locale]/components/home/Assisting'
+import FAQ from '@/app/(frontend)/[locale]/components/home/FAQ'
 const blockComponents: Record<string, React.FC<any>> = {
   hero: Hero,
   trusted: Trusted,

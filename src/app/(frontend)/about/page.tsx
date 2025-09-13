@@ -7,8 +7,8 @@ import ff from '../../../../public/images/ff.webp'
 import ChartLine from '../../../../public/icons/ChartLine.svg'
 import Sparkle from '../../../../public/icons/Sparkle.svg'
 import Speedometer from '../../../../public/icons/Speedometer.svg'
-import Client from '../[locale]/components/Client'
-import CompanySlider from '../[locale]/components/CompanySlider'
+import Client from '../[locale]/components/home/Client'
+import CompanySlider from '../[locale]/components/home/CompanySlider'
 const About = () => {
   const cards = [
     {
@@ -170,9 +170,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      <section className="mt-20">
-        <Client />
-      </section>
+      <section className="mt-20">{/* <Client /> */}</section>
       <section>
         <div className="sm:py-20 px-6 py-10 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center">
