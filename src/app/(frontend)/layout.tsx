@@ -13,12 +13,16 @@ import { draftMode } from 'next/headers'
 import Footer from '@/components/shared/Footer'
 import Navbar from '@/components/shared/Navbar'
 import { getServerSideURL } from '@/utilities/getURL'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 import 'swiper/css'
 import 'swiper/css/bundle'
 import './globals.css'
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  // const { isEnabled } = await draftMode()
+  const payload = await getPayload({ config })
 
+  const navbar = await payload.findGlobal({ slug: 'navbar' as any })
+  const footer = await payload.findGlobal({ slug: 'footer' })
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
       <head>
@@ -35,9 +39,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           /> */}
 
           {/* <Header /> */}
-          <Navbar />
+          <Navbar navbar={navbar} />
           {children}
-          <Footer />
+          <Footer footer={footer} />
         </Providers>
       </body>
     </html>

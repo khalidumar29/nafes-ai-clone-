@@ -101,11 +101,11 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
-    header: Header;
+    navbar: Navbar;
     footer: Footer;
   };
   globalsSelect: {
-    header: HeaderSelect<false> | HeaderSelect<true>;
+    navbar: NavbarSelect<false> | NavbarSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: 'en' | 'ar';
@@ -1756,27 +1756,26 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
+ * via the `definition` "navbar".
  */
-export interface Header {
+export interface Navbar {
   id: string;
-  navItems?:
+  logo: {
+    line1: string;
+    line2: string;
+  };
+  navLinks?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
+        label: string;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  buttons?:
+    | {
+        label: string;
+        href: string;
+        variant?: ('primary' | 'outline') | null;
         id?: string | null;
       }[]
     | null;
@@ -1789,46 +1788,55 @@ export interface Header {
  */
 export interface Footer {
   id: string;
-  navItems?:
+  links?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
+        label: string;
+        url: string;
         id?: string | null;
       }[]
     | null;
+  socials?:
+    | {
+        platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'email' | 'phone';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  legalLinks?:
+    | {
+        label: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  footerNote?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header_select".
+ * via the `definition` "navbar_select".
  */
-export interface HeaderSelect<T extends boolean = true> {
-  navItems?:
+export interface NavbarSelect<T extends boolean = true> {
+  logo?:
     | T
     | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
+        line1?: T;
+        line2?: T;
+      };
+  navLinks?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        id?: T;
+      };
+  buttons?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        variant?: T;
         id?: T;
       };
   updatedAt?: T;
@@ -1840,20 +1848,28 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  links?:
     | T
     | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
+        label?: T;
+        url?: T;
         id?: T;
       };
+  socials?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  legalLinks?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        id?: T;
+      };
+  footerNote?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
