@@ -7,8 +7,8 @@ import ff from '../../../../public/images/ff.webp'
 import ChartLine from '../../../../public/icons/ChartLine.svg'
 import Sparkle from '../../../../public/icons/Sparkle.svg'
 import Speedometer from '../../../../public/icons/Speedometer.svg'
-import Client from '../home/components/Client'
-import CompanySlider from '../home/components/CompanySlider'
+import Client from '../[locale]/components/Client'
+import CompanySlider from '../[locale]/components/CompanySlider'
 const About = () => {
   const cards = [
     {
