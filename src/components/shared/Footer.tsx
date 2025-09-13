@@ -1,15 +1,22 @@
 import Image from 'next/image'
 import img from '../../../public/images/image.png'
 import FooterImage from './FooterImage'
+import Link from 'next/link'
 const Footer = () => {
   return (
     <footer className="relative bg-[linear-gradient(270deg,rgba(91,57,187,.1),rgba(13,172,163,.08),hsla(0,0%,100%,.1))] border-t border-solid border-[#d7dae2] pt-[50px]">
       <div className="container">
         <div className="flex items-center justify-between mb-5">
           <ul className="flex flex-col gap-5">
-            <li>Request a demo</li>
-            <li>About Nafes</li>
-            <li>Blogs</li>
+            <Link href="#">
+              <li>Request a demo</li>
+            </Link>
+            <Link href="/about">
+              <li>About Nafes</li>
+            </Link>
+            <Link href="/blog">
+              <li>Blogs</li>
+            </Link>
           </ul>
           <Image src={img} className="w-[10em]" alt="img"></Image>
         </div>
@@ -97,8 +104,8 @@ const Footer = () => {
           </div>
           <div className="flex justify-between">
             <div className="flex gap-5">
-              <p>Privacy Police</p>
-              <p>Terms and conditions</p>
+              <Link href={'/privacy-policy'}>Privacy Policy</Link>
+              <Link href={'/terms-and-conditions'}>Terms and conditions</Link>
             </div>
             <div>
               <p>Nafes 2025 ©</p>
