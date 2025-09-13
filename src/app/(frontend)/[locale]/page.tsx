@@ -1,7 +1,6 @@
-import { localeLang } from '@/utilities/locale'
 import config from '@/payload.config'
+import { localeLang } from '@/utilities/locale'
 import { notFound } from 'next/navigation'
-import React from 'react'
 import { getPayload } from 'payload'
 import PageClient from './components/PageClient'
 
