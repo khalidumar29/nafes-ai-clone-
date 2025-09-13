@@ -37,7 +37,6 @@ export default async function Page({ params }: PageProps) {
       {/*
       <Articles />
  */}
-      {isDraftMode && <PageClient page={page} />}
     </main>
   )
 }

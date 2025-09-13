@@ -11,9 +11,5 @@ export default function PageClient({ page: initialPage }: { page: PageType }) {
     depth: 2,
   })
 
-  return (
-    <div className="prose mx-auto max-w-4xl p-4 lg:p-8">
-      {data.layout && <RenderBlocks blocks={data.layout} />}
-    </div>
-  )
+  return <div className="">{data.layout && <RenderBlocks blocks={data.layout} />}</div>
 }
