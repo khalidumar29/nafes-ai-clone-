@@ -251,7 +251,7 @@ export interface Page {
             blockType: 'faq';
           }
         | {
-            titleLines: {
+            mainTitleLines: {
               text: string;
               isGradient?: boolean | null;
               id?: string | null;
@@ -262,6 +262,11 @@ export interface Page {
                   id?: string | null;
                 }[]
               | null;
+            secondaryTitle: string;
+            description: string;
+            ctaText?: string | null;
+            ctaLink?: string | null;
+            image: string | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'aboutHero';
@@ -1019,7 +1024,7 @@ export interface PagesSelect<T extends boolean = true> {
         aboutHero?:
           | T
           | {
-              titleLines?:
+              mainTitleLines?:
                 | T
                 | {
                     text?: T;
@@ -1032,6 +1037,11 @@ export interface PagesSelect<T extends boolean = true> {
                     logo?: T;
                     id?: T;
                   };
+              secondaryTitle?: T;
+              description?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              image?: T;
               id?: T;
               blockName?: T;
             };

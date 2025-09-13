@@ -30,7 +30,7 @@ export default async function Page({ params }: PageProps) {
   const page = docs?.[0]
 
   if (!page) return notFound()
-
+  console.log(page.layout)
   return (
     <main>
       <RenderBlocks blocks={page.layout || []} />

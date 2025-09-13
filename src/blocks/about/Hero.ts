@@ -3,14 +3,14 @@ import { Block } from 'payload'
 export const AboutHero: Block = {
   slug: 'aboutHero',
   labels: {
-    singular: 'About Hero',
-    plural: 'About Heroes',
+    singular: 'Hero Section',
+    plural: 'Hero Sections',
   },
   fields: [
     {
-      name: 'titleLines',
+      name: 'mainTitleLines',
       type: 'array',
-      label: 'Title Lines',
+      label: 'Main Title Lines',
       required: true,
       minRows: 1,
       maxRows: 5,
@@ -40,6 +40,37 @@ export const AboutHero: Block = {
           required: true,
         },
       ],
+    },
+    {
+      name: 'secondaryTitle',
+      type: 'text',
+      label: 'Secondary Title',
+      required: true,
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Description',
+      required: true,
+    },
+    {
+      name: 'ctaText',
+      type: 'text',
+      label: 'Button Text',
+      defaultValue: 'Start Now',
+    },
+    {
+      name: 'ctaLink',
+      type: 'text',
+      label: 'Button Link',
+      required: false,
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Right Side Image',
+      required: true,
     },
   ],
 }
