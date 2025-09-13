@@ -318,6 +318,21 @@ export interface Page {
             blockName?: string | null;
             blockType: 'statsSection';
           }
+        | {
+            /**
+             * The main headline for the section.
+             */
+            mainHeading: string;
+            description: string;
+            ctaText: string;
+            /**
+             * The URL the button should link to. (e.g., /contact)
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaSection';
+          }
       )[]
     | null;
   /**
@@ -1139,6 +1154,16 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               textColor?: T;
               direction?: T;
+              id?: T;
+              blockName?: T;
+            };
+        ctaSection?:
+          | T
+          | {
+              mainHeading?: T;
+              description?: T;
+              ctaText?: T;
+              ctaLink?: T;
               id?: T;
               blockName?: T;
             };

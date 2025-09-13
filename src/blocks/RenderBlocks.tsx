@@ -13,6 +13,7 @@ import { AboutHero } from '@/app/(frontend)/[locale]/components/about/Hero'
 import AboutSection from '@/app/(frontend)/[locale]/components/about/AboutSection'
 import WhyChooseSection from '@/app/(frontend)/[locale]/components/about/WhyChooseSection'
 import StatsSection from '@/app/(frontend)/[locale]/components/about/StatsSection'
+import { CtaSection } from '@/app/(frontend)/[locale]/components/about/CtaSection'
 
 const blockComponents: Record<string, React.FC<any>> = {
   hero: Hero,
@@ -26,6 +27,7 @@ const blockComponents: Record<string, React.FC<any>> = {
   aboutSection: AboutSection,
   whyChooseSection: WhyChooseSection,
   statsSection: StatsSection,
+  ctaSection: CtaSection,
 }
 
 export const RenderBlocks: React.FC<{

@@ -16,7 +16,7 @@ import { AboutHero } from '@/blocks/about/Hero'
 import { AboutSection } from '@/blocks/about/AboutSection'
 import { WhyChoose } from '@/blocks/about/WhyChoose'
 import { Stats } from '@/blocks/about/Stats'
-import LetsWinTogether from '@/app/(frontend)/[locale]/components/about/LetsWinTogether'
+import { CtaSection } from '@/blocks/about/Cta'
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
@@ -73,6 +73,7 @@ export const Pages: CollectionConfig<'pages'> = {
         AboutSection,
         WhyChoose,
         Stats,
+        CtaSection,
       ],
       localized: true,
     },
