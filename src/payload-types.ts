@@ -250,6 +250,22 @@ export interface Page {
             blockName?: string | null;
             blockType: 'faq';
           }
+        | {
+            titleLines: {
+              text: string;
+              isGradient?: boolean | null;
+              id?: string | null;
+            }[];
+            companies?:
+              | {
+                  logo: string | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'aboutHero';
+          }
       )[]
     | null;
   /**
@@ -995,6 +1011,25 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     question?: T;
                     answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        aboutHero?:
+          | T
+          | {
+              titleLines?:
+                | T
+                | {
+                    text?: T;
+                    isGradient?: T;
+                    id?: T;
+                  };
+              companies?:
+                | T
+                | {
+                    logo?: T;
                     id?: T;
                   };
               id?: T;

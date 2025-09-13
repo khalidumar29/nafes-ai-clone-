@@ -9,6 +9,7 @@ import WorkFlow from '@/app/(frontend)/[locale]/components/home/WorkFlow'
 import Client from '@/app/(frontend)/[locale]/components/home/Client'
 import Assisting from '@/app/(frontend)/[locale]/components/home/Assisting'
 import FAQ from '@/app/(frontend)/[locale]/components/home/FAQ'
+import AboutHero from '@/app/(frontend)/[locale]/components/about/Hero'
 const blockComponents: Record<string, React.FC<any>> = {
   hero: Hero,
   trusted: Trusted,
@@ -17,6 +18,7 @@ const blockComponents: Record<string, React.FC<any>> = {
   client: Client,
   assisting: Assisting,
   faq: FAQ,
+  aboutHero: AboutHero,
 }
 
 export const RenderBlocks: React.FC<{
