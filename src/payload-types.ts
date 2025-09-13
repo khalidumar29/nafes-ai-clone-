@@ -1799,6 +1799,7 @@ export interface Footer {
     | {
         platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'email' | 'phone';
         url: string;
+        icon: string | Media;
         id?: string | null;
       }[]
     | null;
@@ -1860,6 +1861,7 @@ export interface FooterSelect<T extends boolean = true> {
     | {
         platform?: T;
         url?: T;
+        icon?: T;
         id?: T;
       };
   legalLinks?:

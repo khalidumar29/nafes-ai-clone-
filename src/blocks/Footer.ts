@@ -32,12 +32,26 @@ const Footer: GlobalConfig = {
         {
           name: 'platform',
           type: 'select',
-          options: ['facebook', 'instagram', 'twitter', 'linkedin', 'email', 'phone'],
+          options: [
+            { label: 'Facebook', value: 'facebook' },
+            { label: 'Instagram', value: 'instagram' },
+            { label: 'Twitter', value: 'twitter' },
+            { label: 'LinkedIn', value: 'linkedin' },
+            { label: 'Email', value: 'email' },
+            { label: 'Phone', value: 'phone' },
+          ],
           required: true,
         },
         {
           name: 'url',
           type: 'text',
+          required: true,
+        },
+        {
+          name: 'icon',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Social Icon',
           required: true,
         },
       ],

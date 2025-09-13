@@ -24,12 +24,19 @@ export default async function Footer({ footer }: { footer: any }) {
             <a
               key={i}
               href={s.url}
-              className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded hover:opacity-80 transition"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {/* you can map platform → svg here */}
-              {s.platform}
+              {s.icon && typeof s.icon !== 'string' && (
+                <Image
+                  src={s.icon.url}
+                  alt={`${s.platform} icon`}
+                  width={32}
+                  height={32}
+                  className="object-contain"
+                />
+              )}
             </a>
           ))}
         </div>
