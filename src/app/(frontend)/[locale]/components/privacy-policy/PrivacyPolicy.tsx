@@ -1,12 +1,8 @@
 'use client'
 
-// A component to render Payload's rich text field output.
 const RichTextRenderer = ({ content }: { content: any }) => {
-  // Payload's rich text field returns an object with a 'root' property.
-  // The actual content nodes are in root.children.
   const nodes = content?.root?.children
 
-  // Check if nodes is a valid array before attempting to map over it.
   if (!Array.isArray(nodes)) {
     return null
   }
@@ -14,19 +10,15 @@ const RichTextRenderer = ({ content }: { content: any }) => {
   return (
     <>
       {nodes.map((node, i) => {
-        // The type for a paragraph in Payload's editor is 'paragraph'.
         if (node.type === 'paragraph' && node.children) {
           return (
             <p key={i} className="mb-4 text-gray-700">
-              {/* Map over the children of the paragraph to render text nodes */}
               {node.children.map((child: any, j: number) => {
-                // TODO: Add checks for bold, italic, etc. using child.format
                 return <span key={j}>{child.text}</span>
               })}
             </p>
           )
         }
-        // Add more conditions here for other types like 'heading', 'ul', 'li', etc.
         return null
       })}
     </>
