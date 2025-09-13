@@ -222,6 +222,34 @@ export interface Page {
             blockName?: string | null;
             blockType: 'clientTestimonials';
           }
+        | {
+            titleLines: {
+              line: string;
+              id?: string | null;
+            }[];
+            highlightText: string;
+            buttonText: string;
+            image: string | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'assistingBlock';
+          }
+        | {
+            titleLines: {
+              line: string;
+              id?: string | null;
+            }[];
+            faqs?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faqBlock';
+          }
       )[]
     | null;
   /**
@@ -933,6 +961,40 @@ export interface PagesSelect<T extends boolean = true> {
                     feedback?: T;
                     avatar?: T;
                     rating?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        assistingBlock?:
+          | T
+          | {
+              titleLines?:
+                | T
+                | {
+                    line?: T;
+                    id?: T;
+                  };
+              highlightText?: T;
+              buttonText?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faqBlock?:
+          | T
+          | {
+              titleLines?:
+                | T
+                | {
+                    line?: T;
+                    id?: T;
+                  };
+              faqs?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
                     id?: T;
                   };
               id?: T;

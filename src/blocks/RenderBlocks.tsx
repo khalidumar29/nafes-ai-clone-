@@ -7,12 +7,16 @@ import Trusted from '@/app/(frontend)/[locale]/components/Trusted'
 import CompeteBetter from '@/app/(frontend)/[locale]/components/CompeteBetter'
 import WorkFlow from '@/app/(frontend)/[locale]/components/WorkFlow'
 import Client from '@/app/(frontend)/[locale]/components/Client'
+import Assisting from '@/app/(frontend)/[locale]/components/Assisting'
+import { FAQ } from '@/app/(frontend)/[locale]/components/FAQ'
 const blockComponents: Record<string, React.FC<any>> = {
   hero: Hero,
   trusted: Trusted,
   competeBetter: CompeteBetter,
   workFlow: WorkFlow,
   clientTestimonials: Client,
+  assisting: Assisting,
+  faqBlock: FAQ,
 }
 
 export const RenderBlocks: React.FC<{

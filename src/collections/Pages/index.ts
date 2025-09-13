@@ -10,6 +10,8 @@ import { Trusted } from '@/blocks/Trusted'
 import { CompeteBetter } from '@/blocks/CompeteBetter'
 import { WorkFlow } from '@/blocks/WorkFlow'
 import { Client } from '@/blocks/Client'
+import { Assisting } from '@/blocks/Assisting'
+import { FAQ } from '@/blocks/FAQ'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -55,7 +57,7 @@ export const Pages: CollectionConfig<'pages'> = {
     {
       name: 'layout',
       type: 'blocks',
-      blocks: [Hero, Trusted, CompeteBetter, WorkFlow, Client],
+      blocks: [Hero, Trusted, CompeteBetter, WorkFlow, Client, Assisting, FAQ],
       localized: true,
     },
     {
