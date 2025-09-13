@@ -333,6 +333,36 @@ export interface Page {
             blockName?: string | null;
             blockType: 'ctaSection';
           }
+        | {
+            mainTitle: string;
+            sections?:
+              | {
+                  /**
+                   * e.g., "Introduction" or "Information We Collect".
+                   */
+                  heading: string;
+                  content: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'privacyPolicy';
+          }
       )[]
     | null;
   /**
@@ -1164,6 +1194,20 @@ export interface PagesSelect<T extends boolean = true> {
               description?: T;
               ctaText?: T;
               ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        privacyPolicy?:
+          | T
+          | {
+              mainTitle?: T;
+              sections?:
+                | T
+                | {
+                    heading?: T;
+                    content?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

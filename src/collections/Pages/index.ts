@@ -17,6 +17,7 @@ import { AboutSection } from '@/blocks/about/AboutSection'
 import { WhyChoose } from '@/blocks/about/WhyChoose'
 import { Stats } from '@/blocks/about/Stats'
 import { CtaSection } from '@/blocks/about/Cta'
+import { PrivacyPolicy } from '@/blocks/privacy-policy/PrivacyPolicy'
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
@@ -74,6 +75,7 @@ export const Pages: CollectionConfig<'pages'> = {
         WhyChoose,
         Stats,
         CtaSection,
+        PrivacyPolicy,
       ],
       localized: true,
     },
