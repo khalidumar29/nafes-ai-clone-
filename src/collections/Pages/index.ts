@@ -5,7 +5,11 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
-import { HeroBlock } from '@/blocks/Hero'
+import { Hero } from '@/blocks/Hero'
+import { Trusted } from '@/blocks/Trusted'
+import { CompeteBetter } from '@/blocks/CompeteBetter'
+import { WorkFlow } from '@/blocks/WorkFlow'
+import { Client } from '@/blocks/Client'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -51,7 +55,7 @@ export const Pages: CollectionConfig<'pages'> = {
     {
       name: 'layout',
       type: 'blocks',
-      blocks: [HeroBlock],
+      blocks: [Hero, Trusted, CompeteBetter, WorkFlow, Client],
       localized: true,
     },
     {

@@ -150,41 +150,79 @@ export interface Page {
   title: string;
   slug: string;
   layout?:
-    | {
-        heading?: {
-          /**
-           * Text before the gradient.
-           */
-          part1?: string | null;
-          /**
-           * The text that will have a gradient applied.
-           */
-          highlighted?: string | null;
-          /**
-           * Text after the gradient.
-           */
-          part3?: string | null;
-        };
-        buttons?:
-          | {
-              link: string | Page;
-              style?: ('primary' | 'secondary') | null;
+    | (
+        | {
+            heading: string;
+            highlight?: string | null;
+            subHeading?: string | null;
+            primaryButton?: string | null;
+            secondaryButton?: string | null;
+            mainImage?: (string | null) | Media;
+            barImage?: (string | null) | Media;
+            personImage?: (string | null) | Media;
+            bubbleText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            introText: string;
+            heading: string;
+            items: {
+              image?: (string | null) | Media;
+              title?: string | null;
+              text?: string | null;
               id?: string | null;
-            }[]
-          | null;
-        images: {
-          mainImage: string | Media;
-          personImage: string | Media;
-          barImage: string | Media;
-        };
-        floatingText?: {
-          topLeft?: string | null;
-          bottomRight?: string | null;
-        };
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'hero';
-      }[]
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'trusted';
+          }
+        | {
+            heading: string;
+            dashboardImage?: (string | null) | Media;
+            dashboardNote?: string | null;
+            cards: {
+              icon?: (string | null) | Media;
+              title?: string | null;
+              description?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'competeBetter';
+          }
+        | {
+            title: string;
+            highlight: string;
+            description?: string | null;
+            intro?: string | null;
+            items?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            image?: (string | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'workFlow';
+          }
+        | {
+            title: string;
+            reviews: {
+              name: string;
+              role?: string | null;
+              feedback: string;
+              avatar?: (string | null) | Media;
+              rating: number;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'clientTestimonials';
+          }
+      )[]
     | null;
   /**
    * The date the page will be considered published. If this date is in the future, the page will not be publicly accessible until that date.
@@ -821,32 +859,81 @@ export interface PagesSelect<T extends boolean = true> {
         hero?:
           | T
           | {
-              heading?:
+              heading?: T;
+              highlight?: T;
+              subHeading?: T;
+              primaryButton?: T;
+              secondaryButton?: T;
+              mainImage?: T;
+              barImage?: T;
+              personImage?: T;
+              bubbleText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        trusted?:
+          | T
+          | {
+              introText?: T;
+              heading?: T;
+              items?:
                 | T
                 | {
-                    part1?: T;
-                    highlighted?: T;
-                    part3?: T;
-                  };
-              buttons?:
-                | T
-                | {
-                    link?: T;
-                    style?: T;
+                    image?: T;
+                    title?: T;
+                    text?: T;
                     id?: T;
                   };
-              images?:
+              id?: T;
+              blockName?: T;
+            };
+        competeBetter?:
+          | T
+          | {
+              heading?: T;
+              dashboardImage?: T;
+              dashboardNote?: T;
+              cards?:
                 | T
                 | {
-                    mainImage?: T;
-                    personImage?: T;
-                    barImage?: T;
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
                   };
-              floatingText?:
+              id?: T;
+              blockName?: T;
+            };
+        workFlow?:
+          | T
+          | {
+              title?: T;
+              highlight?: T;
+              description?: T;
+              intro?: T;
+              items?:
                 | T
                 | {
-                    topLeft?: T;
-                    bottomRight?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
+        clientTestimonials?:
+          | T
+          | {
+              title?: T;
+              reviews?:
+                | T
+                | {
+                    name?: T;
+                    role?: T;
+                    feedback?: T;
+                    avatar?: T;
+                    rating?: T;
+                    id?: T;
                   };
               id?: T;
               blockName?: T;

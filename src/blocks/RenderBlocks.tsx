@@ -3,9 +3,16 @@ import type { Page } from '@/payload-types'
 
 // import all block components you support
 import Hero from '@/app/(frontend)/[locale]/components/Hero'
-
+import Trusted from '@/app/(frontend)/[locale]/components/Trusted'
+import CompeteBetter from '@/app/(frontend)/[locale]/components/CompeteBetter'
+import WorkFlow from '@/app/(frontend)/[locale]/components/WorkFlow'
+import Client from '@/app/(frontend)/[locale]/components/Client'
 const blockComponents: Record<string, React.FC<any>> = {
   hero: Hero,
+  trusted: Trusted,
+  competeBetter: CompeteBetter,
+  workFlow: WorkFlow,
+  clientTestimonials: Client,
 }
 
 export const RenderBlocks: React.FC<{
