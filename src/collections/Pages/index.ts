@@ -18,6 +18,8 @@ import { WhyChoose } from '@/blocks/about/WhyChoose'
 import { Stats } from '@/blocks/about/Stats'
 import { CtaSection } from '@/blocks/about/Cta'
 import { PrivacyPolicy } from '@/blocks/privacy-policy/PrivacyPolicy'
+import { KeyFeatures } from '@/blocks/Home/KeyFeatures'
+import { TermsAndConditions } from '@/blocks/terms-and-conditions/TermsAndConditions'
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
@@ -76,6 +78,8 @@ export const Pages: CollectionConfig<'pages'> = {
         Stats,
         CtaSection,
         PrivacyPolicy,
+        KeyFeatures,
+        TermsAndConditions,
       ],
       localized: true,
     },

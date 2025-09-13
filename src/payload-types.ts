@@ -363,6 +363,82 @@ export interface Page {
             blockName?: string | null;
             blockType: 'privacyPolicy';
           }
+        | {
+            title: string;
+            subtitle: string;
+            features?:
+              | {
+                  title: string;
+                  description: string;
+                  iconText: string;
+                  icons?:
+                    | {
+                        icon: string;
+                        backgroundColor:
+                          | 'bg-blue-100'
+                          | 'bg-green-100'
+                          | 'bg-purple-100'
+                          | 'bg-yellow-100'
+                          | 'bg-orange-100';
+                        id?: string | null;
+                      }[]
+                    | null;
+                  video: string | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'keyFeatures';
+          }
+        | {
+            mainTitle: string;
+            /**
+             * The introductory paragraphs before the numbered sections begin.
+             */
+            introduction?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            sections?:
+              | {
+                  /**
+                   * Example: "1. Subscriptions" or "2. Nafes Responsibilities"
+                   */
+                  heading: string;
+                  content: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'termsAndConditions';
+          }
       )[]
     | null;
   /**
@@ -1201,6 +1277,45 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               mainTitle?: T;
+              sections?:
+                | T
+                | {
+                    heading?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        keyFeatures?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              features?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    iconText?: T;
+                    icons?:
+                      | T
+                      | {
+                          icon?: T;
+                          backgroundColor?: T;
+                          id?: T;
+                        };
+                    video?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        termsAndConditions?:
+          | T
+          | {
+              mainTitle?: T;
+              introduction?: T;
               sections?:
                 | T
                 | {
