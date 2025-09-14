@@ -1,10 +1,11 @@
-import { getPayload } from 'payload'
-import config from '@/payload.config'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
+import config from '@/payload.config'
+import { getPayload } from 'payload'
 // import PageClient from '../components/PageClient'
+import { localeLang } from '@/utilities/locale'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
-import { localeLang } from '@/utilities/locale'
+import Articles from '../components/home/Articals'
 
 // interface PageProps {
 //   params: {
@@ -42,9 +43,8 @@ export default async function Page({
   return (
     <main>
       <RenderBlocks blocks={page.layout || []} />
-      {/*
+
       <Articles />
- */}
     </main>
   )
 }

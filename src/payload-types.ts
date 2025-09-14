@@ -288,6 +288,35 @@ export interface Page {
           }
         | {
             title: string;
+            articles?:
+              | {
+                  image: string | Media;
+                  title: string;
+                  description: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  tag: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'articleBlock';
+          }
+        | {
+            title: string;
             highlightText?: string | null;
             description?: string | null;
             cards?:
@@ -1224,6 +1253,22 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     heading?: T;
                     text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        articleBlock?:
+          | T
+          | {
+              title?: T;
+              articles?:
+                | T
+                | {
+                    image?: T;
+                    title?: T;
+                    description?: T;
+                    tag?: T;
                     id?: T;
                   };
               id?: T;

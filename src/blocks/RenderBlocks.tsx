@@ -1,21 +1,22 @@
-import React, { Fragment } from 'react'
 import type { Page } from '@/payload-types'
+import React, { Fragment } from 'react'
 
 // import all block components you support
-import Hero from '@/app/(frontend)/[locale]/components/home/Hero'
-import Trusted from '@/app/(frontend)/[locale]/components/home/Trusted'
-import CompeteBetter from '@/app/(frontend)/[locale]/components/home/CompeteBetter'
-import WorkFlow from '@/app/(frontend)/[locale]/components/home/WorkFlow'
-import Client from '@/app/(frontend)/[locale]/components/home/Client'
-import Assisting from '@/app/(frontend)/[locale]/components/home/Assisting'
-import FAQ from '@/app/(frontend)/[locale]/components/home/FAQ'
-import { AboutHero } from '@/app/(frontend)/[locale]/components/about/Hero'
 import AboutSection from '@/app/(frontend)/[locale]/components/about/AboutSection'
-import WhyChooseSection from '@/app/(frontend)/[locale]/components/about/WhyChooseSection'
-import StatsSection from '@/app/(frontend)/[locale]/components/about/StatsSection'
 import { CtaSection } from '@/app/(frontend)/[locale]/components/about/CtaSection'
-import PrivacyPolicy from '@/app/(frontend)/[locale]/components/privacy-policy/PrivacyPolicy'
+import { AboutHero } from '@/app/(frontend)/[locale]/components/about/Hero'
+import StatsSection from '@/app/(frontend)/[locale]/components/about/StatsSection'
+import WhyChooseSection from '@/app/(frontend)/[locale]/components/about/WhyChooseSection'
+import Articles from '@/app/(frontend)/[locale]/components/home/Articals'
+import Assisting from '@/app/(frontend)/[locale]/components/home/Assisting'
+import Client from '@/app/(frontend)/[locale]/components/home/Client'
+import CompeteBetter from '@/app/(frontend)/[locale]/components/home/CompeteBetter'
+import FAQ from '@/app/(frontend)/[locale]/components/home/FAQ'
+import Hero from '@/app/(frontend)/[locale]/components/home/Hero'
 import KeyFeatures from '@/app/(frontend)/[locale]/components/home/keyFeatures'
+import Trusted from '@/app/(frontend)/[locale]/components/home/Trusted'
+import WorkFlow from '@/app/(frontend)/[locale]/components/home/WorkFlow'
+import PrivacyPolicy from '@/app/(frontend)/[locale]/components/privacy-policy/PrivacyPolicy'
 import TermsAndConditionsBlock from '@/app/(frontend)/[locale]/components/terms-and-conditions/TermsAndConditions'
 
 const blockComponents: Record<string, React.FC<any>> = {
@@ -28,6 +29,7 @@ const blockComponents: Record<string, React.FC<any>> = {
   faq: FAQ,
   aboutHero: AboutHero,
   aboutSection: AboutSection,
+  articles: Articles,
   whyChooseSection: WhyChooseSection,
   statsSection: StatsSection,
   ctaSection: CtaSection,
