@@ -550,8 +550,7 @@ export interface Media {
 export interface Post {
   id: string;
   title: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
+  slug: string;
   'Short Description'?: string | null;
   heroTag?: string | null;
   heroImage?: (string | null) | Media;
@@ -1335,7 +1334,6 @@ export interface PagesSelect<T extends boolean = true> {
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
-  slugLock?: T;
   'Short Description'?: T;
   heroTag?: T;
   heroImage?: T;

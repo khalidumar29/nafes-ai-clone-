@@ -25,7 +25,7 @@ export const Posts: CollectionConfig<'posts'> = {
       label: 'Post Title',
       localized: true,
     },
-    ...slugField(),
+    { name: 'slug', type: 'text', required: true, unique: true },
     {
       name: 'Short Description',
       type: 'textarea',
