@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-
+import { TextFieldSingleValidation } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -20,6 +20,9 @@ import { CtaSection } from '@/blocks/about/Cta'
 import { PrivacyPolicy } from '@/blocks/privacy-policy/PrivacyPolicy'
 import { KeyFeatures } from '@/blocks/Home/KeyFeatures'
 import { TermsAndConditions } from '@/blocks/terms-and-conditions/TermsAndConditions'
+
+export const hardCodedSlugs = ['blogs']
+
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
@@ -60,6 +63,13 @@ export const Pages: CollectionConfig<'pages'> = {
       type: 'text',
       required: true,
       unique: true,
+      validate: ((value: unknown) => {
+        if (typeof value !== 'string') return true
+        if (hardCodedSlugs.includes(value.toLowerCase())) {
+          return `The slug "${value}" is reserved and cannot be used.`
+        }
+        return true
+      }) as TextFieldSingleValidation,
     },
     {
       name: 'layout',

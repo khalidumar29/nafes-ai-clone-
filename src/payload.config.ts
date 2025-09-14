@@ -12,10 +12,11 @@ import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
 import { plugins } from './plugins'
-import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Navbar } from './blocks/NavBar'
 import Footer from './blocks/Footer'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { BlogPage } from './collections/BlogPage/BlogPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -56,7 +57,7 @@ export default buildConfig({
       },
     },
   },
-  editor: defaultLexical,
+  editor: lexicalEditor(),
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
@@ -77,7 +78,7 @@ export default buildConfig({
     fallback: true,
   },
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Navbar, Footer],
+  globals: [Navbar, Footer, BlogPage],
   plugins: [...plugins],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
