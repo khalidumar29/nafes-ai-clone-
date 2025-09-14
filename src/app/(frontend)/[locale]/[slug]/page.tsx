@@ -5,7 +5,6 @@ import { getPayload } from 'payload'
 import { localeLang } from '@/utilities/locale'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
-import Articles from '../components/home/Articals'
 
 // interface PageProps {
 //   params: {
@@ -44,7 +43,7 @@ export default async function Page({
     <main>
       <RenderBlocks blocks={page.layout || []} />
 
-      <Articles />
+      {/* <Articles /> */}
     </main>
   )
 }

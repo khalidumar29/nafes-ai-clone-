@@ -29,7 +29,7 @@ const blockComponents: Record<string, React.FC<any>> = {
   faq: FAQ,
   aboutHero: AboutHero,
   aboutSection: AboutSection,
-  articles: Articles,
+  articleBlock: Articles,
   whyChooseSection: WhyChooseSection,
   statsSection: StatsSection,
   ctaSection: CtaSection,

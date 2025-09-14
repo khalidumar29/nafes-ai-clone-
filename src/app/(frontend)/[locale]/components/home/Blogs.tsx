@@ -6,7 +6,7 @@ import { MoveRight } from 'lucide-react'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-const Blogs = () => {
+const Blogs = ({ articles }: { articles: any[] }) => {
   return (
     <div className=" px-6 bg-white pb-[100px]">
       <div className="max-w-7xl mx-auto">
@@ -33,9 +33,9 @@ const Blogs = () => {
             // className="pb-16"
           >
             {/* Blog Post 1 */}
-            {Array.from({ length: 5 }, (_, i) => (
+            {articles.map((article, i) => (
               <SwiperSlide key={i}>
-                <BlogCard />
+                <BlogCard article={article} />
               </SwiperSlide>
             ))}
           </Swiper>
