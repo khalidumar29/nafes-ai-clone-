@@ -6,7 +6,6 @@ import {
   InlineToolbarFeature,
   HorizontalRuleFeature,
 } from '@payloadcms/richtext-lexical'
-import { slugField } from '@/fields/slug'
 import {
   MetaTitleField,
   MetaDescriptionField,
