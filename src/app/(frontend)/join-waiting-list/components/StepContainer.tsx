@@ -1,6 +1,12 @@
+import { Step } from '@/type'
 import { cn } from '@/utilities/ui'
 
-const StepContainer = ({ allSteps, currentStep }) => {
+interface StepContainerProps {
+  allSteps: Step[]
+  currentStep: number
+}
+
+const StepContainer = ({ allSteps, currentStep }: StepContainerProps) => {
   return (
     <div className="flex items-center justify-center gap-[5px]">
       {allSteps.map((item) => (

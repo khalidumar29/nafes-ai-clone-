@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button'
+import { FormData } from '@/type'
 import { Send } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-const FinalStep = ({ formData }) => {
+const FinalStep = ({ formData }: { formData: FormData }) => {
   const router = useRouter()
   return (
     <div>
@@ -13,8 +14,7 @@ const FinalStep = ({ formData }) => {
       <p className="text-center my-3">
         Our team will review your information and we will contact your email
       </p>
-      <p>{formData.email}</p>
-      <p className="text-center font-bold">test@email.com</p>
+      <p className="text-center font-bold">{formData.email}</p>
       <div className="flex items-center justify-center my-3">
         <Button onClick={() => router.push('/')} variant={'outline'}>
           Back to Home page

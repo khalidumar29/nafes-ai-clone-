@@ -1,4 +1,5 @@
 'use client'
+import { FormData, Step } from '@/type'
 import { useState } from 'react'
 import FinalStep from './FinalStep'
 import PreviousTrendsStep from './PreviousTrendsStep'
@@ -7,7 +8,7 @@ import StepContainer from './StepContainer'
 import UserForm from './UserForm'
 
 const MultiStepForm = () => {
-  const allSteps = [
+  const allSteps: Step[] = [
     {
       step: 1,
       title: 'What are your objectives from using Nafes?',
@@ -29,7 +30,7 @@ const MultiStepForm = () => {
       title: '',
     },
   ]
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     objective: '',
     platforms: '',
     averageRate: '',
@@ -39,21 +40,21 @@ const MultiStepForm = () => {
     company_name: '',
     mobile: '',
   })
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState<number>(1)
   const currentTitle = allSteps.find((item) => item.step === currentStep)?.title
-  const objectiveItems = [
+  const objectiveItems: string[] = [
     'Reduce non-compliance',
     'Automate manual tasks',
     'Get more business intelligence',
   ]
-  const platformItems = [
+  const platformItems: string[] = [
     'Etimad only',
     'Etimad and other platforms',
     'We haven’t accessed any tenders related platforms',
   ]
-  const participateItems = ['0', '1-3', '4-10', '10+']
-  const averageItems = ['Never won', '10% - 20%', '20% +']
-  const renderForm = (step) => {
+  const participateItems: string[] = ['0', '1-3', '4-10', '10+']
+  const averageItems: string[] = ['Never won', '10% - 20%', '20% +']
+  const renderForm = (step: number) => {
     switch (step) {
       case 1:
         return (

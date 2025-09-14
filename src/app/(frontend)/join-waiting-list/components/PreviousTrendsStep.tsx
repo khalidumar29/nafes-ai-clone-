@@ -1,7 +1,18 @@
+import { FormData } from '@/type'
+import React from 'react'
 import FormButtonContainer from './FormButtonContainer'
 import SelectLabel from './SelectLabel'
 
-const PreviousTrendsStep = ({
+interface PreviousTrendsStepProps {
+  averageItems: string[]
+  participateItems: string[]
+  formData: FormData
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>
+  currentStep: number
+}
+
+const PreviousTrendsStep: React.FC<PreviousTrendsStepProps> = ({
   averageItems,
   participateItems,
   formData,

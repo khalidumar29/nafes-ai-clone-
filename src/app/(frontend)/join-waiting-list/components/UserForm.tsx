@@ -14,7 +14,14 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
-const UserForm = ({ currentStep, formData, setCurrentStep, setFormData }) => {
+interface UserFormProps {
+  currentStep: number
+  formData: Partial<FormData>
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>
+  setFormData: React.Dispatch<React.SetStateAction<Partial<FormData>>>
+}
+
+const UserForm = ({ currentStep, formData, setCurrentStep, setFormData }: UserFormProps) => {
   const {
     register,
     handleSubmit,
