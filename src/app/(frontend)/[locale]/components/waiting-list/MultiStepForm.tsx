@@ -13,6 +13,8 @@ import FinalStep from './FinalStep'
 import StepContainer from './StepContainer'
 
 const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
+  console.log({ allStepsData })
+
   const [currentStep, setCurrentStep] = useState<number>(1)
 
   interface StepInput {
@@ -34,6 +36,8 @@ const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
   const currentStepData: StepData | undefined = (allStepsData as StepData[])?.find(
     (item: StepData) => item.step === currentStep,
   )
+  console.log({ currentStepData })
+
   // Extended schema for all fields
   const schema = z.object({
     objective: z.string().min(1, 'Objective is required'),
@@ -68,6 +72,7 @@ const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
   console.log({ isValid, errors })
 
   const watchedValues = watch() // Watch all values for controlled selects
+  console.log({ watchedValues })
 
   const onSubmit = (data: FormData) => {
     if (currentStep < 5) {
@@ -95,14 +100,14 @@ const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
       />
       {currentStepData?.formType !== 'final' ? (
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          {currentStepData?.field?.map((items: StepField, i: number) => (
+          {currentStepData?.fields?.map((items: StepField, i: number) => (
             <div key={i} className="w-full">
               {items.title && <p className="font-bold text-2xl leading-10">{items.title}</p>}
               {currentStepData.formType === 'select' ? (
                 <div
                   className={cn(
                     'flex flex-col gap-5 mb-5 mt-[20px]',
-                    currentStepData.field.length > 1 && 'flex-row',
+                    currentStepData.fields.length > 1 && 'flex-row',
                   )}
                 >
                   {items.inputs.map((input: StepInput, i: number) => (
@@ -113,7 +118,7 @@ const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
                         'w-full text-lg h-[75px] flex items-center px-6 justify-start cursor-pointer border rounded-[10px]',
                         watchedValues[input.name as keyof FormData] === input.value &&
                           'bg-[#0daca3] text-white',
-                        currentStepData.field.length > 1 && 'justify-center',
+                        currentStepData.fields.length > 1 && 'justify-center',
                       )}
                     >
                       <p>{input.value}</p>
@@ -146,7 +151,7 @@ const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
               </Button>
             )}
             <Button
-              disabled={!isValid && currentStepData?.formType === 'form'} // Disable next if invalid on form step
+              // disabled={!isValid && currentStepData?.formType === 'form'} // Disable next if invalid on form step
               onClick={() => setCurrentStep(currentStep + 1)}
               variant="outline"
               type={currentStepData?.formType === 'form' ? 'submit' : 'button'}
