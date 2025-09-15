@@ -441,6 +441,49 @@ export interface Page {
             blockName?: string | null;
             blockType: 'termsAndConditions';
           }
+        | {
+            heroTitle: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'waitingListHero';
+          }
+        | {
+            title: string;
+            reasons: {
+              reason: string;
+              id?: string | null;
+            }[];
+            subTitle?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'waitingListReason';
+          }
+        | {
+            image: string | Media;
+            headline?: string | null;
+            subheadline?: string | null;
+            steps: {
+              step: number;
+              formType: 'select' | 'form' | 'final';
+              fields?:
+                | {
+                    title: string;
+                    inputs?:
+                      | {
+                          name: string;
+                          value: string;
+                          id?: string | null;
+                        }[]
+                      | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'multiStepFormContainer';
+          }
       )[]
     | null;
   /**
@@ -1316,6 +1359,56 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     heading?: T;
                     content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        waitingListHero?:
+          | T
+          | {
+              heroTitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        waitingListReason?:
+          | T
+          | {
+              title?: T;
+              reasons?:
+                | T
+                | {
+                    reason?: T;
+                    id?: T;
+                  };
+              subTitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        multiStepFormContainer?:
+          | T
+          | {
+              image?: T;
+              headline?: T;
+              subheadline?: T;
+              steps?:
+                | T
+                | {
+                    step?: T;
+                    formType?: T;
+                    fields?:
+                      | T
+                      | {
+                          title?: T;
+                          inputs?:
+                            | T
+                            | {
+                                name?: T;
+                                value?: T;
+                                id?: T;
+                              };
+                          id?: T;
+                        };
                     id?: T;
                   };
               id?: T;

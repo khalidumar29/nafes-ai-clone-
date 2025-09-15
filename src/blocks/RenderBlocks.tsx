@@ -17,6 +17,9 @@ import { CtaSection } from '@/app/(frontend)/[locale]/components/about/CtaSectio
 import PrivacyPolicy from '@/app/(frontend)/[locale]/components/privacy-policy/PrivacyPolicy'
 import KeyFeatures from '@/app/(frontend)/[locale]/components/home/keyFeatures'
 import TermsAndConditionsBlock from '@/app/(frontend)/[locale]/components/terms-and-conditions/TermsAndConditions'
+import WaitingHero from '@/app/(frontend)/[locale]/components/waiting-list/WaitingHero'
+import WaitingListReason from '@/app/(frontend)/[locale]/components/waiting-list/WaitingListReason'
+import MultiStepFormContainer from '@/app/(frontend)/[locale]/components/waiting-list/MultiStepFormContainer'
 
 const blockComponents: Record<string, React.FC<any>> = {
   hero: Hero,
@@ -34,6 +37,9 @@ const blockComponents: Record<string, React.FC<any>> = {
   privacyPolicy: PrivacyPolicy,
   KeyFeatures: KeyFeatures,
   termsAndConditions: TermsAndConditionsBlock,
+  waitingListHero: WaitingHero,
+  multiStepFormContainer: MultiStepFormContainer,
+  waitingListReason: WaitingListReason,
 }
 
 export const RenderBlocks: React.FC<{

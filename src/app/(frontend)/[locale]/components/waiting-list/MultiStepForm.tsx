@@ -12,148 +12,28 @@ import z from 'zod'
 import FinalStep from './FinalStep'
 import StepContainer from './StepContainer'
 
-const MultiStepForm = () => {
+const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
   const [currentStep, setCurrentStep] = useState<number>(1)
 
-  const allStepsData = [
-    {
-      id: 0,
-      step: 1,
-      formType: 'select',
+  interface StepInput {
+    name: string
+    value: string
+  }
 
-      field: [
-        {
-          id: 0,
-          title: 'What are your objectives from using Nafes?',
-          inputs: [
-            {
-              name: 'objective',
-              value: 'Reduce non-compliance',
-            },
-            {
-              name: 'objective',
-              value: 'Automate manual tasks',
-            },
-            {
-              name: 'objective',
-              value: 'Get more business intelligence',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 1,
-      step: 2,
-      formType: 'select',
+  interface StepField {
+    title?: string
+    inputs: StepInput[]
+  }
 
-      field: [
-        {
-          id: 0,
-          title: 'Which platforms you user to access tenders?',
-          inputs: [
-            {
-              name: 'platforms',
-              value: 'Etimad only',
-            },
-            {
-              name: 'platforms',
-              value: 'Etimad and other platforms',
-            },
-            {
-              name: 'platforms',
-              value: 'We haven’t accessed any tenders related platforms',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 2,
-      step: 3,
-      formType: 'select',
+  interface StepData {
+    step: number
+    formType: 'form' | 'select' | 'final'
+    field: StepField[]
+  }
 
-      field: [
-        {
-          id: 1,
-          title: 'What is your average win rate in tenders?',
-          inputs: [
-            {
-              name: 'averageRate',
-              value: 'Never won',
-            },
-            {
-              name: 'averageRate',
-              value: '10% - 20%',
-            },
-            {
-              name: 'averageRate',
-              value: '20% +',
-            },
-          ],
-        },
-        {
-          id: 0,
-          title: 'How many tenders do you participate in per month?',
-          inputs: [
-            {
-              name: 'tendersPerMonth',
-              value: '0',
-            },
-            {
-              name: 'tendersPerMonth',
-              value: '1-3',
-            },
-            {
-              name: 'tendersPerMonth',
-              value: '4-10',
-            },
-            {
-              name: 'tendersPerMonth',
-              value: '10+',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 3,
-      step: 4,
-      formType: 'form',
-
-      field: [
-        {
-          id: 1,
-          title: 'Please fill in your information',
-          inputs: [
-            {
-              name: 'Full Name',
-              value: 'full_name',
-            },
-            {
-              name: 'Email',
-              value: 'email',
-            },
-            {
-              name: 'Company Name',
-              value: 'company_name',
-            },
-            {
-              name: 'Mobile',
-              value: 'mobile',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 4,
-      step: 5,
-      formType: 'final',
-      field: [],
-    },
-  ]
-  const currentStepData = allStepsData.find((item) => item.step === currentStep)
+  const currentStepData: StepData | undefined = (allStepsData as StepData[])?.find(
+    (item: StepData) => item.step === currentStep,
+  )
   // Extended schema for all fields
   const schema = z.object({
     objective: z.string().min(1, 'Objective is required'),
@@ -203,10 +83,19 @@ const MultiStepForm = () => {
   }
   return (
     <div className="bg-white rounded-xl p-8 max-w-[560px] mx-auto shadow-[0_4px_16px_rgba(0,0,0,0.1)] border border-gray-200 m-0 flex flex-col gap-8 relative">
-      <StepContainer allSteps={allStepsData} currentStep={currentStep} />
+      <StepContainer
+        allSteps={allStepsData?.map((stepObj: any) => ({
+          step: stepObj.step,
+          title:
+            stepObj?.fields?.length > 0 && stepObj.fields[0].title
+              ? stepObj.fields[0].title
+              : `Step ${stepObj.step}`,
+        }))}
+        currentStep={currentStep}
+      />
       {currentStepData?.formType !== 'final' ? (
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          {currentStepData?.field.map((items, i) => (
+          {currentStepData?.field?.map((items: StepField, i: number) => (
             <div key={i} className="w-full">
               {items.title && <p className="font-bold text-2xl leading-10">{items.title}</p>}
               {currentStepData.formType === 'select' ? (
@@ -216,13 +105,14 @@ const MultiStepForm = () => {
                     currentStepData.field.length > 1 && 'flex-row',
                   )}
                 >
-                  {items.inputs.map((input, i) => (
+                  {items.inputs.map((input: StepInput, i: number) => (
                     <div
                       key={i}
                       onClick={() => handleSelect(input.name as keyof FormData, input.value)}
                       className={cn(
                         'w-full text-lg h-[75px] flex items-center px-6 justify-start cursor-pointer border rounded-[10px]',
-                        watchedValues[input.name] === input.value && 'bg-[#0daca3] text-white',
+                        watchedValues[input.name as keyof FormData] === input.value &&
+                          'bg-[#0daca3] text-white',
                         currentStepData.field.length > 1 && 'justify-center',
                       )}
                     >
@@ -232,12 +122,14 @@ const MultiStepForm = () => {
                 </div>
               ) : currentStepData.formType === 'form' ? (
                 <div className="space-y-4 mt-4">
-                  {items.inputs.map((input, i) => (
+                  {items.inputs.map((input: StepInput, i: number) => (
                     <div key={i}>
                       <Label htmlFor={input.value}>{input.name}</Label>
                       <Input id={input.value} {...register(input.value as keyof FormData)} />
-                      {errors[input.value] && (
-                        <p className="text-red-500">{errors[input.value]?.message}</p>
+                      {errors[input.value as keyof FormData] && (
+                        <p className="text-red-500">
+                          {errors[input.value as keyof FormData]?.message as string}
+                        </p>
                       )}
                     </div>
                   ))}
@@ -254,17 +146,17 @@ const MultiStepForm = () => {
               </Button>
             )}
             <Button
-              disabled={!isValid && currentStepData.formType === 'form'} // Disable next if invalid on form step
+              disabled={!isValid && currentStepData?.formType === 'form'} // Disable next if invalid on form step
               onClick={() => setCurrentStep(currentStep + 1)}
               variant="outline"
-              type={currentStepData.formType === 'form' ? 'submit' : 'button'}
+              type={currentStepData?.formType === 'form' ? 'submit' : 'button'}
             >
               Next <ArrowRight />
             </Button>
           </div>
         </form>
       ) : (
-        <FinalStep formData={watchedValues} />
+        <FinalStep formData={watchedValues as FormData} />
       )}
     </div>
   )

@@ -9,7 +9,7 @@ interface StepContainerProps {
 const StepContainer = ({ allSteps, currentStep }: StepContainerProps) => {
   return (
     <div className="flex items-center justify-center gap-[5px]">
-      {allSteps.map((item) => (
+      {allSteps?.map((item) => (
         <div
           key={item.step}
           className={cn(

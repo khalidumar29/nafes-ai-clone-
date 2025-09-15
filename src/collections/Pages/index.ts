@@ -20,6 +20,9 @@ import { CtaSection } from '@/blocks/about/Cta'
 import { PrivacyPolicy } from '@/blocks/privacy-policy/PrivacyPolicy'
 import { KeyFeatures } from '@/blocks/Home/KeyFeatures'
 import { TermsAndConditions } from '@/blocks/terms-and-conditions/TermsAndConditions'
+import { WaitingListHero } from '@/blocks/waiting-list/WaitingListHero'
+import { WaitingListReason } from '@/blocks/waiting-list/WaitingListReason'
+import { MultiStepFormContainer } from '@/blocks/waiting-list/MultiStepFormContainer'
 
 export const hardCodedSlugs = ['blogs']
 
@@ -90,6 +93,9 @@ export const Pages: CollectionConfig<'pages'> = {
         PrivacyPolicy,
         KeyFeatures,
         TermsAndConditions,
+        WaitingListHero,
+        WaitingListReason,
+        MultiStepFormContainer,
       ],
       localized: true,
     },
