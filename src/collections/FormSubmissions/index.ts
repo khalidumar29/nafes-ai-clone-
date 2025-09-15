@@ -3,8 +3,8 @@ import { CollectionConfig } from 'payload'
 export const FormSubmissions: CollectionConfig = {
   slug: 'waiting-form-submissions',
   labels: {
-    singular: 'Join Waiting List Form Submission',
-    plural: 'Join Waiting List Form Submissions',
+    singular: 'Waiting List User',
+    plural: 'Waiting List Users',
   },
   admin: {
     useAsTitle: 'full_name',
