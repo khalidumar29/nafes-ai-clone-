@@ -70,8 +70,8 @@ export interface Config {
     pages: Page;
     posts: Post;
     media: Media;
-    categories: Category;
     users: User;
+    'waiting-form-submissions': WaitingFormSubmission;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -86,8 +86,8 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'waiting-form-submissions': WaitingFormSubmissionsSelect<false> | WaitingFormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -480,6 +480,10 @@ export interface Page {
                 | null;
               id?: string | null;
             }[];
+            submitButtonText?: string | null;
+            submissionThanks?: string | null;
+            submissionMessage?: string | null;
+            backToHomeText?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'multiStepFormContainer';
@@ -653,22 +657,18 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
+ * via the `definition` "waiting-form-submissions".
  */
-export interface Category {
+export interface WaitingFormSubmission {
   id: string;
-  title: string;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  parent?: (string | null) | Category;
-  breadcrumbs?:
-    | {
-        doc?: (string | null) | Category;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  objective?: string | null;
+  platforms?: string | null;
+  averageRate?: string | null;
+  tendersPerMonth?: string | null;
+  full_name?: string | null;
+  email?: string | null;
+  company_name?: string | null;
+  mobile?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1032,12 +1032,12 @@ export interface PayloadLockedDocument {
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'categories';
-        value: string | Category;
-      } | null)
-    | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'waiting-form-submissions';
+        value: string | WaitingFormSubmission;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1411,6 +1411,10 @@ export interface PagesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
+              submitButtonText?: T;
+              submissionThanks?: T;
+              submissionMessage?: T;
+              backToHomeText?: T;
               id?: T;
               blockName?: T;
             };
@@ -1539,26 +1543,6 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
- */
-export interface CategoriesSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  slugLock?: T;
-  parent?: T;
-  breadcrumbs?:
-    | T
-    | {
-        doc?: T;
-        url?: T;
-        label?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -1579,6 +1563,22 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "waiting-form-submissions_select".
+ */
+export interface WaitingFormSubmissionsSelect<T extends boolean = true> {
+  objective?: T;
+  platforms?: T;
+  averageRate?: T;
+  tendersPerMonth?: T;
+  full_name?: T;
+  email?: T;
+  company_name?: T;
+  mobile?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

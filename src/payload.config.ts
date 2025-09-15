@@ -17,6 +17,7 @@ import { Navbar } from './blocks/NavBar'
 import Footer from './blocks/Footer'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { BlogPage } from './collections/BlogPage/BlogPage'
+import { FormSubmissions } from './collections/FormSubmissions'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -61,7 +62,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [Pages, Posts, Media, Users, FormSubmissions],
   localization: {
     locales: [
       {

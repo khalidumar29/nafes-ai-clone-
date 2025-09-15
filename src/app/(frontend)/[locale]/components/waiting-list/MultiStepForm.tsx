@@ -12,11 +12,20 @@ import z from 'zod'
 import FinalStep from './FinalStep'
 import StepContainer from './StepContainer'
 
-const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
-  console.log({ allStepsData })
-
+const MultiStepForm = ({
+  allStepsData,
+  submitButtonText,
+  submissionThanks,
+  submissionMessage,
+  backToHomeText,
+}: {
+  allStepsData: any
+  submitButtonText: string
+  submissionThanks?: string
+  submissionMessage?: string
+  backToHomeText?: string
+}) => {
   const [currentStep, setCurrentStep] = useState<number>(1)
-
   interface StepInput {
     name: string
     value: string
@@ -28,6 +37,7 @@ const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
   }
 
   interface StepData {
+    [x: string]: any
     step: number
     formType: 'form' | 'select' | 'final'
     field: StepField[]
@@ -74,13 +84,33 @@ const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
   const watchedValues = watch() // Watch all values for controlled selects
   console.log({ watchedValues })
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     if (currentStep < 5) {
       setCurrentStep((prev) => prev + 1)
     } else {
-      // Final submission (e.g., send to API)
-      console.log('Final data:', data)
-      // Handle API call here
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/waiting-form-submissions`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          },
+        )
+
+        if (!res.ok) {
+          throw new Error(`Failed: ${res.status}`)
+        }
+
+        const json = await res.json()
+        console.log('Saved to Payload:', json)
+
+        setCurrentStep((prev) => prev + 1)
+      } catch (err) {
+        console.error('Error submitting to Payload:', err)
+      }
     }
   }
   const handleSelect = (name: keyof FormData, value: string) => {
@@ -156,12 +186,17 @@ const MultiStepForm = ({ allStepsData }: { allStepsData: any }) => {
               variant="outline"
               type={currentStepData?.formType === 'form' ? 'submit' : 'button'}
             >
-              Next <ArrowRight />
+              {submitButtonText} <ArrowRight />
             </Button>
           </div>
         </form>
       ) : (
-        <FinalStep formData={watchedValues as FormData} />
+        <FinalStep
+          formData={watchedValues as FormData}
+          submissionThanks={submissionThanks}
+          submissionMessage={submissionMessage}
+          backToHomeText={backToHomeText}
+        />
       )}
     </div>
   )

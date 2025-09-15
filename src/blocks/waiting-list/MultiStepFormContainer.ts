@@ -85,5 +85,17 @@ export const MultiStepFormContainer: Block = {
         },
       ],
     },
+    {
+      name: 'submitButtonText',
+      type: 'text',
+      defaultValue: 'Next',
+    },
+    { name: 'submissionThanks', type: 'text', defaultValue: 'Thank you for your submission' },
+    {
+      name: 'submissionMessage',
+      type: 'text',
+      defaultValue: 'Our team will review your information and we will contact your email',
+    },
+    { name: 'backToHomeText', type: 'text', defaultValue: 'Back to Home page' },
   ],
 }

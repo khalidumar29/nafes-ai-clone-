@@ -5,11 +5,19 @@ const MultiStepFormContainer = ({
   headline,
   subheadline,
   steps,
+  submitButtonText,
+  submissionThanks,
+  submissionMessage,
+  backToHomeText,
 }: {
   image: { url: string }
   headline: string
   subheadline: string
   steps: any[]
+  submitButtonText: string
+  submissionThanks?: string
+  submissionMessage?: string
+  backToHomeText?: string
 }) => {
   return (
     <section className="w-full grid lg:grid-cols-2 grid-cols-1 mt-[50px]">
@@ -23,7 +31,13 @@ const MultiStepFormContainer = ({
         </div>
       </div>
       <div>
-        <MultiStepForm allStepsData={steps} />
+        <MultiStepForm
+          allStepsData={steps}
+          submitButtonText={submitButtonText}
+          submissionThanks={submissionThanks}
+          submissionMessage={submissionMessage}
+          backToHomeText={backToHomeText}
+        />
       </div>
     </section>
   )
