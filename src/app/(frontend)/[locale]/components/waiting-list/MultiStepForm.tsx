@@ -65,18 +65,20 @@ const MultiStepForm = ({
     handleSubmit,
     setValue,
     watch,
+    trigger,
+    getValues,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      objective: '',
-      platforms: '',
-      averageRate: '',
-      tendersPerMonth: '',
-      full_name: '',
-      email: '',
-      company_name: '',
-      mobile: '',
+      objective: 'fsfs',
+      platforms: 'fsdf',
+      averageRate: 'fsdf',
+      tendersPerMonth: 'fs',
+      full_name: 'fsfd',
+      email: 'fsf',
+      company_name: 'fsdf',
+      mobile: '01908899996',
     },
   })
   console.log({ isValid, errors })
@@ -85,32 +87,30 @@ const MultiStepForm = ({
   console.log({ watchedValues })
 
   const onSubmit = async (data: FormData) => {
-    if (currentStep < 5) {
-      setCurrentStep((prev) => prev + 1)
-    } else {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/waiting-form-submissions`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+    console.log('hi----------------')
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/waiting-form-submissions`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-        )
+          body: JSON.stringify(data),
+        },
+      )
 
-        if (!res.ok) {
-          throw new Error(`Failed: ${res.status}`)
-        }
-
-        const json = await res.json()
-        console.log('Saved to Payload:', json)
-
-        setCurrentStep((prev) => prev + 1)
-      } catch (err) {
-        console.error('Error submitting to Payload:', err)
+      if (!res.ok) {
+        throw new Error(`Failed: ${res.status}`)
       }
+
+      const json = await res.json()
+      console.log('Saved to Payload:', json)
+
+      setCurrentStep((prev) => prev + 1)
+    } catch (err) {
+      console.error('Error submitting to Payload:', err)
     }
   }
   const handleSelect = (name: keyof FormData, value: string) => {
@@ -182,9 +182,20 @@ const MultiStepForm = ({
             )}
             <Button
               // disabled={!isValid && currentStepData?.formType === 'form'} // Disable next if invalid on form step
-              onClick={() => setCurrentStep(currentStep + 1)}
+              onClick={() => {
+                if (currentStepData?.formType === 'form') {
+                  trigger().then((isFormValid) => {
+                    if (isFormValid) {
+                      const data = getValues() // Get current form values
+                      onSubmit(data) // Call your submit function
+                    }
+                  })
+                } else {
+                  setCurrentStep(currentStep + 1)
+                }
+              }}
               variant="outline"
-              type={currentStepData?.formType === 'form' ? 'submit' : 'button'}
+              type={'button'}
             >
               {submitButtonText} <ArrowRight />
             </Button>
