@@ -71,13 +71,31 @@ export const MultiStepFormContainer: Block = {
               fields: [
                 {
                   name: 'name',
-                  type: 'text',
+                  type: 'select',
                   required: true,
+                  options: [
+                    { label: 'Objective', value: 'objective' },
+                    { label: 'Platforms', value: 'platforms' },
+                    { label: 'Average Rate', value: 'averageRate' },
+                    { label: 'Tenders per Month', value: 'tendersPerMonth' },
+                    { label: 'Full Name', value: 'full_name' },
+                    { label: 'Email', value: 'email' },
+                    { label: 'Company Name', value: 'company_name' },
+                    { label: 'Mobile', value: 'mobile' },
+                  ],
+                  admin: {
+                    description:
+                      'Pick one of the submission fields (each field should only be used once across the whole form)',
+                  },
                 },
                 {
-                  name: 'value',
+                  name: 'label',
                   type: 'text',
                   required: true,
+                  admin: {
+                    description:
+                      'The label shown on the form for this field (e.g. "Your Email Address")',
+                  },
                 },
               ],
             },
@@ -90,12 +108,20 @@ export const MultiStepFormContainer: Block = {
       type: 'text',
       defaultValue: 'Next',
     },
-    { name: 'submissionThanks', type: 'text', defaultValue: 'Thank you for your submission' },
+    {
+      name: 'submissionThanks',
+      type: 'text',
+      defaultValue: 'Thank you for your submission',
+    },
     {
       name: 'submissionMessage',
       type: 'text',
       defaultValue: 'Our team will review your information and we will contact your email',
     },
-    { name: 'backToHomeText', type: 'text', defaultValue: 'Back to Home page' },
+    {
+      name: 'backToHomeText',
+      type: 'text',
+      defaultValue: 'Back to Home page',
+    },
   ],
 }

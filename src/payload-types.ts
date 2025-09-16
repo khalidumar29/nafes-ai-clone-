@@ -470,8 +470,22 @@ export interface Page {
                     title: string;
                     inputs?:
                       | {
-                          name: string;
-                          value: string;
+                          /**
+                           * Pick one of the submission fields (each field should only be used once across the whole form)
+                           */
+                          name:
+                            | 'objective'
+                            | 'platforms'
+                            | 'averageRate'
+                            | 'tendersPerMonth'
+                            | 'full_name'
+                            | 'email'
+                            | 'company_name'
+                            | 'mobile';
+                          /**
+                           * The label shown on the form for this field (e.g. "Your Email Address")
+                           */
+                          label: string;
                           id?: string | null;
                         }[]
                       | null;
@@ -1404,7 +1418,7 @@ export interface PagesSelect<T extends boolean = true> {
                             | T
                             | {
                                 name?: T;
-                                value?: T;
+                                label?: T;
                                 id?: T;
                               };
                           id?: T;

@@ -26,39 +26,27 @@ const MultiStepForm = ({
   backToHomeText?: string
 }) => {
   const [currentStep, setCurrentStep] = useState<number>(1)
-  interface StepInput {
-    name: string
-    value: string
-  }
 
-  interface StepField {
-    title?: string
-    inputs: StepInput[]
-  }
+  // -----------------------
+  // Build schema + defaults dynamically from PayloadCMS JSON
+  // -----------------------
+  const schemaShape: Record<string, any> = {}
+  const defaultValues: Record<string, string> = {}
+  const seen = new Set<string>()
 
-  interface StepData {
-    [x: string]: any
-    step: number
-    formType: 'form' | 'select' | 'final'
-    field: StepField[]
-  }
-
-  const currentStepData: StepData | undefined = (allStepsData as StepData[])?.find(
-    (item: StepData) => item.step === currentStep,
-  )
-  console.log({ currentStepData })
-
-  // Extended schema for all fields
-  const schema = z.object({
-    objective: z.string().min(1, 'Objective is required'),
-    platforms: z.string().min(1, 'Platform is required'),
-    averageRate: z.string().min(1, 'Average rate is required'),
-    tendersPerMonth: z.string().min(1, 'Tenders per month is required'),
-    full_name: z.string().min(1, 'Full name is required'),
-    email: z.string().email('Invalid email'),
-    company_name: z.string().min(1, 'Company name is required'),
-    mobile: z.string().min(10, 'Mobile number must be at least 10 digits'),
+  allStepsData?.forEach((step: any) => {
+    step.fields?.forEach((field: any) => {
+      field.inputs?.forEach((input: any) => {
+        if (!seen.has(input.name)) {
+          schemaShape[input.name] = z.string().min(1, `${input.label || input.name} is required`)
+          defaultValues[input.name] = ''
+          seen.add(input.name)
+        }
+      })
+    })
   })
+
+  const schema = z.object(schemaShape)
 
   const {
     register,
@@ -68,24 +56,18 @@ const MultiStepForm = ({
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      objective: '',
-      platforms: '',
-      averageRate: '',
-      tendersPerMonth: '',
-      full_name: '',
-      email: '',
-      company_name: '',
-      mobile: '',
-    },
+    defaultValues,
+    mode: 'onChange',
   })
-  console.log({ isValid, errors })
 
-  const watchedValues = watch() // Watch all values for controlled selects
-  console.log({ watchedValues })
+  const currentStepData = allStepsData?.find((item: any) => item.step === currentStep)
+  const watchedValues = watch()
 
+  // -----------------------
+  // Submit handler
+  // -----------------------
   const onSubmit = async (data: FormData) => {
-    if (currentStep < 5) {
+    if (currentStep < allStepsData.length) {
       setCurrentStep((prev) => prev + 1)
     } else {
       try {
@@ -93,31 +75,27 @@ const MultiStepForm = ({
           `${process.env.NEXT_PUBLIC_SERVER_URL}/api/waiting-form-submissions`,
           {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
           },
         )
-
-        if (!res.ok) {
-          throw new Error(`Failed: ${res.status}`)
-        }
+        if (!res.ok) throw new Error(`Failed: ${res.status}`)
 
         const json = await res.json()
         console.log('Saved to Payload:', json)
-
         setCurrentStep((prev) => prev + 1)
       } catch (err) {
         console.error('Error submitting to Payload:', err)
       }
     }
   }
+
   const handleSelect = (name: keyof FormData, value: string) => {
-    setValue(name, value, { shouldValidate: true }) // Use setValue for selects
+    setValue(name, value, { shouldValidate: true })
   }
+
   return (
-    <div className="bg-white rounded-xl p-8 max-w-[560px] mx-auto shadow-[0_4px_16px_rgba(0,0,0,0.1)] border border-gray-200 m-0 flex flex-col gap-8 relative">
+    <div className="bg-white rounded-xl p-8 max-w-[560px] mx-auto shadow-[0_4px_16px_rgba(0,0,0,0.1)] border border-gray-200 flex flex-col gap-8 relative">
       <StepContainer
         allSteps={allStepsData?.map((stepObj: any) => ({
           step: stepObj.step,
@@ -128,11 +106,13 @@ const MultiStepForm = ({
         }))}
         currentStep={currentStep}
       />
+
       {currentStepData?.formType !== 'final' ? (
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          {currentStepData?.fields?.map((items: StepField, i: number) => (
+          {currentStepData?.fields?.map((items: any, i: number) => (
             <div key={i} className="w-full">
               {items.title && <p className="font-bold text-2xl leading-10">{items.title}</p>}
+
               {currentStepData.formType === 'select' ? (
                 <div
                   className={cn(
@@ -140,40 +120,39 @@ const MultiStepForm = ({
                     currentStepData.fields.length > 1 && 'flex-row',
                   )}
                 >
-                  {items.inputs.map((input: StepInput, i: number) => (
+                  {items.inputs.map((input: any, j: number) => (
                     <div
-                      key={i}
-                      onClick={() => handleSelect(input.name as keyof FormData, input.value)}
+                      key={j}
+                      onClick={() => handleSelect(input.name, input.label)}
                       className={cn(
                         'w-full text-lg h-[75px] flex items-center px-6 justify-start cursor-pointer border rounded-[10px]',
-                        watchedValues[input.name as keyof FormData] === input.value &&
+                        watchedValues[input.name as keyof FormData] === input.label &&
                           'bg-[#0daca3] text-white',
                         currentStepData.fields.length > 1 && 'justify-center',
                       )}
                     >
-                      <p>{input.value}</p>
+                      <p>{input.label}</p>
                     </div>
                   ))}
                 </div>
               ) : currentStepData.formType === 'form' ? (
                 <div className="space-y-4 mt-4">
-                  {items.inputs.map((input: StepInput, i: number) => (
-                    <div key={i}>
-                      <Label htmlFor={input.value}>{input.name}</Label>
-                      <Input id={input.value} {...register(input.value as keyof FormData)} />
-                      {errors[input.value as keyof FormData] && (
+                  {items.inputs.map((input: any, j: number) => (
+                    <div key={j}>
+                      <Label htmlFor={input.name}>{input.label || input.name}</Label>
+                      <Input id={input.name} {...register(input.name)} />
+                      {errors[input.name as keyof FormData] && (
                         <p className="text-red-500">
-                          {errors[input.value as keyof FormData]?.message as string}
+                          {errors[input.name as keyof FormData]?.message as string}
                         </p>
                       )}
                     </div>
                   ))}
                 </div>
-              ) : (
-                <></>
-              )}
+              ) : null}
             </div>
           ))}
+
           <div className="w-full flex justify-between mt-5">
             {currentStep > 1 && (
               <Button onClick={() => setCurrentStep(currentStep - 1)} variant="ghost">
@@ -181,7 +160,7 @@ const MultiStepForm = ({
               </Button>
             )}
             <Button
-              // disabled={!isValid && currentStepData?.formType === 'form'} // Disable next if invalid on form step
+              disabled={!isValid && currentStepData?.formType === 'form'}
               onClick={() => setCurrentStep(currentStep + 1)}
               variant="outline"
               type={currentStepData?.formType === 'form' ? 'submit' : 'button'}
