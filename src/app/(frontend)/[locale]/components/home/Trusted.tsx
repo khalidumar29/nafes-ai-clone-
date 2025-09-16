@@ -1,13 +1,15 @@
 'use client'
 import { MoveUpRight, TrendingUp } from 'lucide-react'
 import Image from 'next/image'
+import CompanySlider from './CompanySlider'
 
-const Trusted = ({ introText, heading, items }: any) => {
+const Trusted = ({ introText, heading, items, companyLogos }: any) => {
   return (
     <div className="bg-[#e6f7f6] mb-[100px]">
       <div className="container sm:py-[100px] py-[50px]">
         <p className="text-sm text-center mb-[40px]">{introText}</p>
         {/* if you had CompanySlider, keep it here */}
+        <CompanySlider companyLogos={companyLogos} />
       </div>
 
       <div className="container sm:pt-[70px] pt-[40px]">
