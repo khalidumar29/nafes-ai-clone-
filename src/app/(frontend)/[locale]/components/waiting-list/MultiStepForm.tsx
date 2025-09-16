@@ -53,6 +53,8 @@ const MultiStepForm = ({
     handleSubmit,
     setValue,
     watch,
+    trigger,
+    getValues,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -163,7 +165,7 @@ const MultiStepForm = ({
               disabled={!isValid && currentStepData?.formType === 'form'}
               onClick={() => setCurrentStep(currentStep + 1)}
               variant="outline"
-              type={currentStepData?.formType === 'form' ? 'submit' : 'button'}
+              type={'button'}
             >
               {submitButtonText} <ArrowRight />
             </Button>
