@@ -1,51 +1,65 @@
 import React, { Fragment } from 'react'
-
 import type { Page } from '@/payload-types'
 
-import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
-import { CallToActionBlock } from '@/blocks/CallToAction/Component'
-import { ContentBlock } from '@/blocks/Content/Component'
-import { FormBlock } from '@/blocks/Form/Component'
-import { MediaBlock } from '@/blocks/MediaBlock/Component'
+// import all block components you support
+import Hero from '@/app/(frontend)/[locale]/components/home/Hero'
+import Trusted from '@/app/(frontend)/[locale]/components/home/Trusted'
+import CompeteBetter from '@/app/(frontend)/[locale]/components/home/CompeteBetter'
+import WorkFlow from '@/app/(frontend)/[locale]/components/home/WorkFlow'
+import Client from '@/app/(frontend)/[locale]/components/home/Client'
+import Assisting from '@/app/(frontend)/[locale]/components/home/Assisting'
+import FAQ from '@/app/(frontend)/[locale]/components/home/FAQ'
+import { AboutHero } from '@/app/(frontend)/[locale]/components/about/Hero'
+import AboutSection from '@/app/(frontend)/[locale]/components/about/AboutSection'
+import WhyChooseSection from '@/app/(frontend)/[locale]/components/about/WhyChooseSection'
+import StatsSection from '@/app/(frontend)/[locale]/components/about/StatsSection'
+import { CtaSection } from '@/app/(frontend)/[locale]/components/about/CtaSection'
+import PrivacyPolicy from '@/app/(frontend)/[locale]/components/privacy-policy/PrivacyPolicy'
+import KeyFeatures from '@/app/(frontend)/[locale]/components/home/keyFeatures'
+import TermsAndConditionsBlock from '@/app/(frontend)/[locale]/components/terms-and-conditions/TermsAndConditions'
+import WaitingHero from '@/app/(frontend)/[locale]/components/waiting-list/WaitingHero'
+import WaitingListReason from '@/app/(frontend)/[locale]/components/waiting-list/WaitingListReason'
+import MultiStepFormContainer from '@/app/(frontend)/[locale]/components/waiting-list/MultiStepFormContainer'
 
-const blockComponents = {
-  archive: ArchiveBlock,
-  content: ContentBlock,
-  cta: CallToActionBlock,
-  formBlock: FormBlock,
-  mediaBlock: MediaBlock,
+const blockComponents: Record<string, React.FC<any>> = {
+  hero: Hero,
+  trusted: Trusted,
+  competeBetter: CompeteBetter,
+  workFlow: WorkFlow,
+  client: Client,
+  assisting: Assisting,
+  faq: FAQ,
+  aboutHero: AboutHero,
+  aboutSection: AboutSection,
+  whyChooseSection: WhyChooseSection,
+  statsSection: StatsSection,
+  ctaSection: CtaSection,
+  privacyPolicy: PrivacyPolicy,
+  KeyFeatures: KeyFeatures,
+  termsAndConditions: TermsAndConditionsBlock,
+  waitingListHero: WaitingHero,
+  multiStepFormContainer: MultiStepFormContainer,
+  waitingListReason: WaitingListReason,
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
-}> = (props) => {
-  const { blocks } = props
+  blocks?: Page['layout'] // <-- use flat array, optional
+}> = ({ blocks = [] }) => {
+  if ((blocks ?? []).length === 0) return null
 
-  const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
+  return (
+    <Fragment>
+      {(blocks ?? []).map((block, index) => {
+        const { blockType } = block
+        const Block = blockType ? blockComponents[blockType] : null
+        if (!Block) return null
 
-  if (hasBlocks) {
-    return (
-      <Fragment>
-        {blocks.map((block, index) => {
-          const { blockType } = block
-
-          if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
-
-            if (Block) {
-              return (
-                <div className="my-16" key={index}>
-                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
-                  <Block {...block} disableInnerContainer />
-                </div>
-              )
-            }
-          }
-          return null
-        })}
-      </Fragment>
-    )
-  }
-
-  return null
+        return (
+          <div className="my-16" key={index}>
+            <Block {...block} disableInnerContainer />
+          </div>
+        )
+      })}
+    </Fragment>
+  )
 }
