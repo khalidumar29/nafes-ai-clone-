@@ -8,58 +8,38 @@ export const KeyFeatures: Block = {
   },
   fields: [
     {
-      name: 'title',
+      name: 'ttl',
       type: 'text',
       label: 'Main Title',
       required: true,
       defaultValue: 'Key Features',
     },
     {
-      name: 'subtitle',
+      name: 'sub',
       type: 'textarea',
       label: 'Subtitle',
       required: true,
       defaultValue: 'Everything you need to turn everyday moments into lasting achievements',
     },
     {
-      name: 'features',
+      name: 'ftrs', // features
       type: 'array',
       label: 'Features List',
       minRows: 1,
       fields: [
+        { name: 'ttl', type: 'text', label: 'Feature Title', required: true },
+        { name: 'desc', type: 'textarea', label: 'Feature Description', required: true },
+        { name: 'txt', type: 'text', label: 'Text by Icons', required: true },
         {
-          name: 'title',
-          type: 'text',
-          label: 'Feature Title',
-          required: true,
-        },
-        {
-          name: 'description',
-          type: 'textarea',
-          label: 'Feature Description',
-          required: true,
-        },
-        {
-          name: 'iconText',
-          type: 'text',
-          label: 'Text by Icons',
-          required: true,
-        },
-        {
-          name: 'icons',
+          name: 'icns', // icons
           type: 'array',
           label: 'Icons',
           minRows: 1,
           maxRows: 3,
           fields: [
+            { name: 'icn', type: 'text', label: 'Icon (Emoji)', required: true },
             {
-              name: 'icon',
-              type: 'text', // Using text field for emoji
-              label: 'Icon (Emoji)',
-              required: true,
-            },
-            {
-              name: 'backgroundColor',
+              name: 'bg', // backgroundColor
               type: 'select',
               label: 'Background Color',
               required: true,
@@ -74,7 +54,7 @@ export const KeyFeatures: Block = {
           ],
         },
         {
-          name: 'video',
+          name: 'vid',
           type: 'upload',
           relationTo: 'media',
           label: 'Feature Video',

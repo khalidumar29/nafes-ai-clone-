@@ -364,26 +364,21 @@ export interface Page {
             blockType: 'privacyPolicy';
           }
         | {
-            title: string;
-            subtitle: string;
-            features?:
+            ttl: string;
+            sub: string;
+            ftrs?:
               | {
-                  title: string;
-                  description: string;
-                  iconText: string;
-                  icons?:
+                  ttl: string;
+                  desc: string;
+                  txt: string;
+                  icns?:
                     | {
-                        icon: string;
-                        backgroundColor:
-                          | 'bg-blue-100'
-                          | 'bg-green-100'
-                          | 'bg-purple-100'
-                          | 'bg-yellow-100'
-                          | 'bg-orange-100';
+                        icn: string;
+                        bg: 'bg-blue-100' | 'bg-green-100' | 'bg-purple-100' | 'bg-yellow-100' | 'bg-orange-100';
                         id?: string | null;
                       }[]
                     | null;
-                  video: number | Media;
+                  vid: number | Media;
                   id?: string | null;
                 }[]
               | null;
@@ -457,21 +452,21 @@ export interface Page {
             blockType: 'waitingListReason';
           }
         | {
-            image: number | Media;
-            headline?: string | null;
-            subheadline?: string | null;
+            img: number | Media;
+            head?: string | null;
+            sub?: string | null;
             steps: {
-              step: number;
-              formType: 'select' | 'form' | 'final';
-              fields?:
+              stp: number;
+              fType: 'select' | 'form' | 'final';
+              flds?:
                 | {
-                    title: string;
-                    inputs?:
+                    ttl: string;
+                    inpts?:
                       | {
                           /**
-                           * Pick one of the submission fields (each field should only be used once across the whole form)
+                           * Pick one submission field (use only once)
                            */
-                          name:
+                          nm:
                             | 'objective'
                             | 'platforms'
                             | 'averageRate'
@@ -481,9 +476,9 @@ export interface Page {
                             | 'company_name'
                             | 'mobile';
                           /**
-                           * The label shown on the form for this field (e.g. "Your Email Address")
+                           * Label shown on the form
                            */
-                          label: string;
+                          lbl: string;
                           id?: string | null;
                         }[]
                       | null;
@@ -492,13 +487,13 @@ export interface Page {
                 | null;
               id?: string | null;
             }[];
-            submitButtonText?: string | null;
-            submissionThanks?: string | null;
-            submissionMessage?: string | null;
-            backToHomeText?: string | null;
+            btn?: string | null;
+            thanks?: string | null;
+            msg?: string | null;
+            back?: string | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'multiStepFormContainer';
+            blockType: 'msForm';
           }
       )[]
     | null;
@@ -1305,22 +1300,22 @@ export interface PagesSelect<T extends boolean = true> {
         keyFeatures?:
           | T
           | {
-              title?: T;
-              subtitle?: T;
-              features?:
+              ttl?: T;
+              sub?: T;
+              ftrs?:
                 | T
                 | {
-                    title?: T;
-                    description?: T;
-                    iconText?: T;
-                    icons?:
+                    ttl?: T;
+                    desc?: T;
+                    txt?: T;
+                    icns?:
                       | T
                       | {
-                          icon?: T;
-                          backgroundColor?: T;
+                          icn?: T;
+                          bg?: T;
                           id?: T;
                         };
-                    video?: T;
+                    vid?: T;
                     id?: T;
                   };
               id?: T;
@@ -1362,36 +1357,36 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        multiStepFormContainer?:
+        msForm?:
           | T
           | {
-              image?: T;
-              headline?: T;
-              subheadline?: T;
+              img?: T;
+              head?: T;
+              sub?: T;
               steps?:
                 | T
                 | {
-                    step?: T;
-                    formType?: T;
-                    fields?:
+                    stp?: T;
+                    fType?: T;
+                    flds?:
                       | T
                       | {
-                          title?: T;
-                          inputs?:
+                          ttl?: T;
+                          inpts?:
                             | T
                             | {
-                                name?: T;
-                                label?: T;
+                                nm?: T;
+                                lbl?: T;
                                 id?: T;
                               };
                           id?: T;
                         };
                     id?: T;
                   };
-              submitButtonText?: T;
-              submissionThanks?: T;
-              submissionMessage?: T;
-              backToHomeText?: T;
+              btn?: T;
+              thanks?: T;
+              msg?: T;
+              back?: T;
               id?: T;
               blockName?: T;
             };

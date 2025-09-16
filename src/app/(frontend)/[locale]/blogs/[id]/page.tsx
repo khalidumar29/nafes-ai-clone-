@@ -63,7 +63,17 @@ const Page = async ({ params }: { params: Promise<{ locale: string; id: string }
           </p>
           <div className="w-full rounded-5 max-h-[350px] h-full mt-8">
             <Image
-              src={'/api/media/file/2149074561%201.svg'}
+              src={
+                docs[0].heroImage
+                  ? typeof docs[0].heroImage === 'string'
+                    ? docs[0].heroImage
+                    : typeof docs[0].heroImage === 'object' &&
+                        docs[0].heroImage !== null &&
+                        'url' in docs[0].heroImage
+                      ? (docs[0].heroImage as { url: string }).url
+                      : img
+                  : img
+              }
               alt="img"
               className="max-h-[350px] w-full object-cover rounded-[20px]"
               width={1200}
@@ -129,7 +139,15 @@ const Page = async ({ params }: { params: Promise<{ locale: string; id: string }
             {sideBarDocs.map((doc, i) => (
               <Link href={'#'} key={i} className="mb-10 flex gap-[20px] ">
                 <Image
-                  src={typeof doc.heroImage === 'string' ? doc.heroImage : doc.heroImage?.url || ''}
+                  src={
+                    typeof doc.heroImage === 'string'
+                      ? doc.heroImage
+                      : typeof doc.heroImage === 'object' &&
+                          doc.heroImage !== null &&
+                          'url' in doc.heroImage
+                        ? (doc.heroImage as { url: string }).url
+                        : ''
+                  }
                   width={82}
                   height={82}
                   alt="img"

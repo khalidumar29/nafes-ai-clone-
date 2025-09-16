@@ -1,45 +1,24 @@
-// payload/blocks/MultiStepFormContainer.ts
 import { Block } from 'payload'
 
 export const MultiStepFormContainer: Block = {
-  slug: 'multiStepFormContainer',
+  slug: 'msForm',
   labels: {
     singular: 'Multi Step Form Container',
     plural: 'Multi Step Form Containers',
   },
   fields: [
-    {
-      name: 'image',
-      type: 'upload',
-      relationTo: 'media',
-      required: true,
-    },
-    {
-      name: 'headline',
-      type: 'text',
-      defaultValue: '50,000+',
-    },
-    {
-      name: 'subheadline',
-      type: 'text',
-      defaultValue: 'Joined the waiting list',
-    },
+    { name: 'img', type: 'upload', relationTo: 'media', required: true },
+    { name: 'head', type: 'text', defaultValue: '50,000+' },
+    { name: 'sub', type: 'text', defaultValue: 'Joined the waiting list' },
     {
       name: 'steps',
       type: 'array',
       required: true,
-      labels: {
-        singular: 'Step',
-        plural: 'Steps',
-      },
+      labels: { singular: 'Step', plural: 'Steps' },
       fields: [
+        { name: 'stp', type: 'number', required: true },
         {
-          name: 'step',
-          type: 'number',
-          required: true,
-        },
-        {
-          name: 'formType',
+          name: 'fType',
           type: 'select',
           required: true,
           options: [
@@ -49,28 +28,18 @@ export const MultiStepFormContainer: Block = {
           ],
         },
         {
-          name: 'fields',
+          name: 'flds',
           type: 'array',
-          labels: {
-            singular: 'Field',
-            plural: 'Fields',
-          },
+          labels: { singular: 'Field', plural: 'Fields' },
           fields: [
+            { name: 'ttl', type: 'text', required: true },
             {
-              name: 'title',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'inputs',
+              name: 'inpts',
               type: 'array',
-              labels: {
-                singular: 'Input',
-                plural: 'Inputs',
-              },
+              labels: { singular: 'Input', plural: 'Inputs' },
               fields: [
                 {
-                  name: 'name',
+                  name: 'nm',
                   type: 'select',
                   required: true,
                   options: [
@@ -83,19 +52,13 @@ export const MultiStepFormContainer: Block = {
                     { label: 'Company Name', value: 'company_name' },
                     { label: 'Mobile', value: 'mobile' },
                   ],
-                  admin: {
-                    description:
-                      'Pick one of the submission fields (each field should only be used once across the whole form)',
-                  },
+                  admin: { description: 'Pick one submission field (use only once)' },
                 },
                 {
-                  name: 'label',
+                  name: 'lbl',
                   type: 'text',
                   required: true,
-                  admin: {
-                    description:
-                      'The label shown on the form for this field (e.g. "Your Email Address")',
-                  },
+                  admin: { description: 'Label shown on the form' },
                 },
               ],
             },
@@ -103,25 +66,13 @@ export const MultiStepFormContainer: Block = {
         },
       ],
     },
+    { name: 'btn', type: 'text', defaultValue: 'Next' },
+    { name: 'thanks', type: 'text', defaultValue: 'Thank you for your submission' },
     {
-      name: 'submitButtonText',
-      type: 'text',
-      defaultValue: 'Next',
-    },
-    {
-      name: 'submissionThanks',
-      type: 'text',
-      defaultValue: 'Thank you for your submission',
-    },
-    {
-      name: 'submissionMessage',
+      name: 'msg',
       type: 'text',
       defaultValue: 'Our team will review your information and we will contact your email',
     },
-    {
-      name: 'backToHomeText',
-      type: 'text',
-      defaultValue: 'Back to Home page',
-    },
+    { name: 'back', type: 'text', defaultValue: 'Back to Home page' },
   ],
 }
