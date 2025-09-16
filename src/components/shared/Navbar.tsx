@@ -12,6 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
+import LanguageSwitcher from './LanguageSwitcher'
 
 type NavbarButton = {
   href: string
@@ -31,11 +32,14 @@ const Navbar = ({ navbar }: { navbar: any }) => {
       >
         {/* Logo */}
         <Link href="/home" className="flex items-center">
-          <div className="text-2xl font-bold text-teal-500 leading-tight">
-            {navbar?.logo?.line1}
-            <br />
-            {navbar?.logo?.line2}
-          </div>
+          {navbar?.logo && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={navbar.logo?.url}
+              alt={navbar.logo?.alt || 'Logo'}
+              className="h-8 w-auto object-contain"
+            />
+          )}
         </Link>
 
         <div className={cn('flex gap-20', lang === 'ar' && 'flex-row-reverse')}>
@@ -84,28 +88,7 @@ const Navbar = ({ navbar }: { navbar: any }) => {
 
           {/* Right Side */}
           <div className={cn('flex items-center gap-4', lang === 'ar' && 'flex-row-reverse')}>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="focus:outline-none">
-                {' '}
-                <Globe className="w-5 h-5 text-gray-600" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="rounded-lg p-3 ">
-                <DropdownMenuItem
-                  className="w-full bg-[#f7f7f7] px-[15px] py-[10px] text-base focus:outline-none mb-4 hover:!bg-green-100 cursor-pointer"
-                  value="ar"
-                  onClick={() => setLang('ar')}
-                >
-                  العربية
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="w-full bg-[#f7f7f7] px-[15px] py-[10px] text-base focus:outline-none mb-4 hover:!bg-green-100 cursor-pointer"
-                  value="en"
-                  onClick={() => setLang('en')}
-                >
-                  English
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <LanguageSwitcher setLang={setLang} />
             {navbar?.buttons?.map((btn: NavbarButton, i: number) => (
               <Link key={i} href={btn.href}>
                 <Button

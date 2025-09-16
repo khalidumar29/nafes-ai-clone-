@@ -9,24 +9,10 @@ export const Navbar: GlobalConfig = {
   fields: [
     {
       name: 'logo',
-      type: 'group',
-      label: 'Logo',
-      fields: [
-        {
-          name: 'line1',
-          type: 'text',
-          label: 'Top Line (Arabic)',
-          required: true,
-          defaultValue: 'نوالي',
-        },
-        {
-          name: 'line2',
-          type: 'text',
-          label: 'Bottom Line (English)',
-          required: true,
-          defaultValue: 'Nafes',
-        },
-      ],
+      type: 'upload',
+      label: 'Logo Image',
+      relationTo: 'media', // assumes you have a media collection
+      required: true,
     },
     {
       name: 'navLinks',

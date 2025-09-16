@@ -1786,10 +1786,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Navbar {
   id: number;
-  logo: {
-    line1: string;
-    line2: string;
-  };
+  logo: number | Media;
   navLinks?:
     | {
         label: string;
@@ -1865,12 +1862,7 @@ export interface BlogPage {
  * via the `definition` "navbar_select".
  */
 export interface NavbarSelect<T extends boolean = true> {
-  logo?:
-    | T
-    | {
-        line1?: T;
-        line2?: T;
-      };
+  logo?: T;
   navLinks?:
     | T
     | {
