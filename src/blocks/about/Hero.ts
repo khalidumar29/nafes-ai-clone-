@@ -3,8 +3,8 @@ import { Block } from 'payload'
 export const AboutHero: Block = {
   slug: 'aboutHero',
   labels: {
-    singular: 'Hero Section',
-    plural: 'Hero Sections',
+    singular: 'About Hero Section',
+    plural: 'About Hero Sections',
   },
   fields: [
     {
