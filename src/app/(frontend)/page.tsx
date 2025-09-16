@@ -1,7 +1,13 @@
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
-import React from 'react'
 
-export default function Page() {
-  redirect('/home')
-  return <div>loading...</div>
+export default async function RootPage() {
+  const supportedLocales = ['en', 'ar']
+
+  const acceptLang = (await headers()).get('accept-language') || ''
+  const userLocale = acceptLang.split(',')[0].split('-')[0].toLowerCase()
+  console.log(`Locale determined: ${userLocale}`)
+  const locale = supportedLocales.includes(userLocale) ? userLocale : 'hr'
+
+  redirect(`/${locale}`)
 }

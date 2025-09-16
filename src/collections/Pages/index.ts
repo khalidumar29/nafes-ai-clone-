@@ -1,25 +1,30 @@
 import type { CollectionConfig } from 'payload'
-
+import { TextFieldSingleValidation } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Archive } from '../../blocks/ArchiveBlock/config'
-import { CallToAction } from '../../blocks/CallToAction/config'
-import { Content } from '../../blocks/Content/config'
-import { FormBlock } from '../../blocks/Form/config'
-import { MediaBlock } from '../../blocks/MediaBlock/config'
-import { hero } from '@/heros/config'
-import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
+import { Hero } from '@/blocks/Home/Hero'
+import { Trusted } from '@/blocks/Home/Trusted'
+import { CompeteBetter } from '@/blocks/Home/CompeteBetter'
+import { WorkFlow } from '@/blocks/Home/WorkFlow'
+import { Client } from '@/blocks/Home/Client'
+import { Assisting } from '@/blocks/Home/Assisting'
+import { FAQ } from '@/blocks/Home/FAQ'
+import { AboutHero } from '@/blocks/about/Hero'
+import { AboutSection } from '@/blocks/about/AboutSection'
+import { WhyChoose } from '@/blocks/about/WhyChoose'
+import { Stats } from '@/blocks/about/Stats'
+import { CtaSection } from '@/blocks/about/Cta'
+import { PrivacyPolicy } from '@/blocks/privacy-policy/PrivacyPolicy'
+import { KeyFeatures } from '@/blocks/Home/KeyFeatures'
+import { TermsAndConditions } from '@/blocks/terms-and-conditions/TermsAndConditions'
+import { WaitingListHero } from '@/blocks/waiting-list/WaitingListHero'
+import { WaitingListReason } from '@/blocks/waiting-list/WaitingListReason'
+import { MultiStepFormContainer } from '@/blocks/waiting-list/MultiStepFormContainer'
 
-import {
-  MetaDescriptionField,
-  MetaImageField,
-  MetaTitleField,
-  OverviewField,
-  PreviewField,
-} from '@payloadcms/plugin-seo/fields'
+export const hardCodedSlugs = ['blogs']
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -34,18 +39,18 @@ export const Pages: CollectionConfig<'pages'> = {
     slug: true,
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
-    livePreview: {
-      url: ({ data, req }) => {
-        const path = generatePreviewPath({
-          slug: typeof data?.slug === 'string' ? data.slug : '',
-          collection: 'pages',
-          req,
-        })
+    // defaultColumns: ['updatedAt'],
+    // livePreview: {
+    //   url: ({ data, req }) => {
+    //     const path = generatePreviewPath({
+    //       slug: typeof data?.slug === 'string' ? data.slug : '',
+    //       collection: 'pages',
+    //       req,
+    //     })
 
-        return path
-      },
-    },
+    //     return path
+    //   },
+    // },
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
@@ -55,70 +60,53 @@ export const Pages: CollectionConfig<'pages'> = {
     useAsTitle: 'title',
   },
   fields: [
+    { name: 'title', type: 'text', required: true, localized: true },
     {
-      name: 'title',
+      name: 'slug',
       type: 'text',
       required: true,
-      localized: true,
+      unique: true,
+      validate: ((value: unknown) => {
+        if (typeof value !== 'string') return true
+        if (hardCodedSlugs.includes(value.toLowerCase())) {
+          return `The slug "${value}" is reserved and cannot be used.`
+        }
+        return true
+      }) as TextFieldSingleValidation,
     },
     {
-      type: 'tabs',
-      tabs: [
-        {
-          fields: [hero],
-          label: 'Hero',
-        },
-        {
-          fields: [
-            {
-              name: 'layout',
-              type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
-              required: true,
-              admin: {
-                initCollapsed: true,
-              },
-            },
-          ],
-          label: 'Content',
-        },
-        {
-          name: 'meta',
-          label: 'SEO',
-          fields: [
-            OverviewField({
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-              imagePath: 'meta.image',
-            }),
-            MetaTitleField({
-              hasGenerateFn: true,
-            }),
-            MetaImageField({
-              relationTo: 'media',
-            }),
-
-            MetaDescriptionField({}),
-            PreviewField({
-              // if the `generateUrl` function is configured
-              hasGenerateFn: true,
-
-              // field paths to match the target field for data
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-            }),
-          ],
-        },
+      name: 'layout',
+      type: 'blocks',
+      blocks: [
+        Hero,
+        Trusted,
+        CompeteBetter,
+        WorkFlow,
+        Client,
+        Assisting,
+        FAQ,
+        AboutHero,
+        AboutSection,
+        WhyChoose,
+        Stats,
+        CtaSection,
+        PrivacyPolicy,
+        KeyFeatures,
+        TermsAndConditions,
+        WaitingListHero,
+        WaitingListReason,
+        MultiStepFormContainer,
       ],
+      localized: true,
     },
     {
       name: 'publishedAt',
       type: 'date',
       admin: {
-        position: 'sidebar',
+        description:
+          'The date the page will be considered published. If this date is in the future, the page will not be publicly accessible until that date.',
       },
     },
-    ...slugField(),
   ],
   hooks: {
     afterChange: [revalidatePage],
@@ -128,7 +116,7 @@ export const Pages: CollectionConfig<'pages'> = {
   versions: {
     drafts: {
       autosave: {
-        interval: 100, // We set this interval for optimal live preview
+        interval: 100,
       },
       schedulePublish: true,
     },
