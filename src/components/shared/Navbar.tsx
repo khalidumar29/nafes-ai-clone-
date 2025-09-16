@@ -1,10 +1,17 @@
 'use client'
 
+import { cn } from '@/utilities/ui'
 import { Globe } from 'lucide-react'
-import { Button } from '../ui/button'
 import Link from 'next/link'
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key } from 'react'
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from 'react'
 import { UrlObject } from 'url'
+import { Button } from '../ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu'
 
 type NavbarButton = {
   href: string
@@ -13,9 +20,15 @@ type NavbarButton = {
 }
 
 const Navbar = ({ navbar }: { navbar: any }) => {
+  const [lang, setLang] = useState('en')
   return (
     <div className="border-b bg-white">
-      <nav className="flex items-center justify-between px-6 py-3 mx-auto container">
+      <nav
+        className={cn(
+          'flex items-center justify-between px-6 py-3  mx-auto container ',
+          lang === 'ar' && 'flex-row-reverse',
+        )}
+      >
         {/* Logo */}
         <Link href="/home" className="flex items-center">
           <div className="text-2xl font-bold text-teal-500 leading-tight">
@@ -25,9 +38,11 @@ const Navbar = ({ navbar }: { navbar: any }) => {
           </div>
         </Link>
 
-        <div className="flex gap-20">
+        <div className={cn('flex gap-20', lang === 'ar' && 'flex-row-reverse')}>
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div
+            className={cn('hidden md:flex items-center gap-8', lang === 'ar' && 'flex-row-reverse')}
+          >
             {navbar?.navLinks?.map(
               (
                 link: {
@@ -68,8 +83,29 @@ const Navbar = ({ navbar }: { navbar: any }) => {
           </div>
 
           {/* Right Side */}
-          <div className="flex items-center space-x-4">
-            <Globe className="w-5 h-5 text-gray-600" />
+          <div className={cn('flex items-center gap-4', lang === 'ar' && 'flex-row-reverse')}>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="focus:outline-none">
+                {' '}
+                <Globe className="w-5 h-5 text-gray-600" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="rounded-lg p-3 ">
+                <DropdownMenuItem
+                  className="w-full bg-[#f7f7f7] px-[15px] py-[10px] text-base focus:outline-none mb-4 hover:!bg-green-100 cursor-pointer"
+                  value="ar"
+                  onClick={() => setLang('ar')}
+                >
+                  العربية
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="w-full bg-[#f7f7f7] px-[15px] py-[10px] text-base focus:outline-none mb-4 hover:!bg-green-100 cursor-pointer"
+                  value="en"
+                  onClick={() => setLang('en')}
+                >
+                  English
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             {navbar?.buttons?.map((btn: NavbarButton, i: number) => (
               <Link key={i} href={btn.href}>
                 <Button
