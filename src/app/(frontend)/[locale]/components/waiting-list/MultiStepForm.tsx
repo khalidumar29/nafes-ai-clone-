@@ -63,29 +63,21 @@ const MultiStepForm = ({
   const watchedValues = watch()
 
   const onSubmit = async (data: FormData) => {
-    console.log('from multistep form', data)
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/waiting-form-submissions`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        },
+      )
+      if (!res.ok) throw new Error(`Failed: ${res.status}`)
 
-    if (currentStep < allStepsData.length) {
+      const json = await res.json()
+
       setCurrentStep((prev) => prev + 1)
-    } else {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/waiting-form-submissions`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-          },
-        )
-        if (!res.ok) throw new Error(`Failed: ${res.status}`)
-
-        const json = await res.json()
-        console.log('Saved to Payload:', json)
-        setCurrentStep((prev) => prev + 1)
-      } catch (err) {
-        console.error('Error submitting to Payload:', err)
-      }
-    }
+    } catch (err) {}
   }
 
   const handleSelect = (name: keyof FormData, value: string) => {
@@ -159,12 +151,20 @@ const MultiStepForm = ({
             )}
             <Button
               disabled={!isValid && currentStepData?.formType === 'form'}
-              type={currentStep === allStepsData.length ? 'submit' : 'button'}
-              onClick={
-                currentStep === allStepsData.length
-                  ? undefined
-                  : () => setCurrentStep((prev) => prev + 1)
-              }
+              type="button"
+              onClick={() => {
+                if (currentStepData?.formType === 'form') {
+                  // Trigger validation programmatically
+                  trigger().then((isFormValid) => {
+                    if (isFormValid) {
+                      const data = getValues() // Get current form values
+                      onSubmit(data) // Call your submit function
+                    }
+                  })
+                } else {
+                  setCurrentStep(currentStep + 1) // Increment step for non-form steps
+                }
+              }}
               variant="outline"
             >
               {submitButtonText} <ArrowRight />
