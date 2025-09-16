@@ -75,7 +75,6 @@ export interface Config {
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
-    search: Search;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -91,14 +90,13 @@ export interface Config {
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
-    search: SearchSelect<false> | SearchSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {
     navbar: Navbar;
@@ -148,7 +146,7 @@ export interface UserAuthOperations {
  * via the `definition` "pages".
  */
 export interface Page {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   layout?:
@@ -159,9 +157,9 @@ export interface Page {
             subHeading?: string | null;
             primaryButton?: string | null;
             secondaryButton?: string | null;
-            mainImage?: (string | null) | Media;
-            barImage?: (string | null) | Media;
-            personImage?: (string | null) | Media;
+            mainImage?: (number | null) | Media;
+            barImage?: (number | null) | Media;
+            personImage?: (number | null) | Media;
             bubbleText?: string | null;
             id?: string | null;
             blockName?: string | null;
@@ -171,7 +169,7 @@ export interface Page {
             introText: string;
             heading: string;
             items: {
-              image?: (string | null) | Media;
+              image?: (number | null) | Media;
               title?: string | null;
               text?: string | null;
               id?: string | null;
@@ -182,10 +180,10 @@ export interface Page {
           }
         | {
             heading: string;
-            dashboardImage?: (string | null) | Media;
+            dashboardImage?: (number | null) | Media;
             dashboardNote?: string | null;
             cards: {
-              icon?: (string | null) | Media;
+              icon?: (number | null) | Media;
               title?: string | null;
               description?: string | null;
               id?: string | null;
@@ -205,7 +203,7 @@ export interface Page {
                   id?: string | null;
                 }[]
               | null;
-            image?: (string | null) | Media;
+            image?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'workFlow';
@@ -216,7 +214,7 @@ export interface Page {
               name: string;
               role?: string | null;
               feedback: string;
-              avatar?: (string | null) | Media;
+              avatar?: (number | null) | Media;
               rating: number;
               id?: string | null;
             }[];
@@ -231,7 +229,7 @@ export interface Page {
             }[];
             highlightText: string;
             buttonText: string;
-            image: string | Media;
+            image: number | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'assisting';
@@ -260,7 +258,7 @@ export interface Page {
             }[];
             companies?:
               | {
-                  logo: string | Media;
+                  logo: number | Media;
                   id?: string | null;
                 }[]
               | null;
@@ -268,7 +266,7 @@ export interface Page {
             description: string;
             ctaText?: string | null;
             ctaLink?: string | null;
-            image: string | Media;
+            image: number | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'aboutHero';
@@ -276,7 +274,7 @@ export interface Page {
         | {
             title: string;
             description?: string | null;
-            image?: (string | null) | Media;
+            image?: (number | null) | Media;
             items?:
               | {
                   heading: string;
@@ -296,7 +294,7 @@ export interface Page {
               | {
                   title: string;
                   description?: string | null;
-                  img: string | Media;
+                  img: number | Media;
                   id?: string | null;
                 }[]
               | null;
@@ -385,7 +383,7 @@ export interface Page {
                         id?: string | null;
                       }[]
                     | null;
-                  video: string | Media;
+                  video: number | Media;
                   id?: string | null;
                 }[]
               | null;
@@ -459,7 +457,7 @@ export interface Page {
             blockType: 'waitingListReason';
           }
         | {
-            image: string | Media;
+            image: number | Media;
             headline?: string | null;
             subheadline?: string | null;
             steps: {
@@ -517,7 +515,7 @@ export interface Page {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt?: string | null;
   caption?: {
     root: {
@@ -609,14 +607,14 @@ export interface Media {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   'Short Description'?: string | null;
   heroTag?: string | null;
-  heroImage?: (string | null) | Media;
+  heroImage?: (number | null) | Media;
   publishedAt?: string | null;
-  author?: (string | null) | User;
+  author?: (number | null) | User;
   content: {
     root: {
       type: string;
@@ -632,13 +630,13 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  relatedPosts?: (string | Post)[] | null;
+  relatedPosts?: (number | Post)[] | null;
   seo?: {
     title?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
     description?: string | null;
   };
   updatedAt: string;
@@ -649,7 +647,7 @@ export interface Post {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   name?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -674,7 +672,7 @@ export interface User {
  * via the `definition` "waiting-form-submissions".
  */
 export interface WaitingFormSubmission {
-  id: string;
+  id: number;
   objective?: string | null;
   platforms?: string | null;
   averageRate?: string | null;
@@ -691,7 +689,7 @@ export interface WaitingFormSubmission {
  * via the `definition` "redirects".
  */
 export interface Redirect {
-  id: string;
+  id: number;
   /**
    * You will need to rebuild the website when changing this field.
    */
@@ -701,11 +699,11 @@ export interface Redirect {
     reference?:
       | ({
           relationTo: 'pages';
-          value: string | Page;
+          value: number | Page;
         } | null)
       | ({
           relationTo: 'posts';
-          value: string | Post;
+          value: number | Post;
         } | null);
     url?: string | null;
   };
@@ -717,7 +715,7 @@ export interface Redirect {
  * via the `definition` "forms".
  */
 export interface Form {
-  id: string;
+  id: number;
   title: string;
   fields?:
     | (
@@ -891,8 +889,8 @@ export interface Form {
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
-  id: string;
-  form: string | Form;
+  id: number;
+  form: number | Form;
   submissionData?:
     | {
         field: string;
@@ -904,42 +902,11 @@ export interface FormSubmission {
   createdAt: string;
 }
 /**
- * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "search".
- */
-export interface Search {
-  id: string;
-  title?: string | null;
-  priority?: number | null;
-  doc: {
-    relationTo: 'posts';
-    value: string | Post;
-  };
-  slug?: string | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: (string | null) | Media;
-  };
-  categories?:
-    | {
-        relationTo?: string | null;
-        categoryID?: string | null;
-        title?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
-  id: string;
+  id: number;
   /**
    * Input data provided to the job
    */
@@ -1031,52 +998,48 @@ export interface PayloadJob {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'pages';
-        value: string | Page;
+        value: number | Page;
       } | null)
     | ({
         relationTo: 'posts';
-        value: string | Post;
+        value: number | Post;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'waiting-form-submissions';
-        value: string | WaitingFormSubmission;
+        value: number | WaitingFormSubmission;
       } | null)
     | ({
         relationTo: 'redirects';
-        value: string | Redirect;
+        value: number | Redirect;
       } | null)
     | ({
         relationTo: 'forms';
-        value: string | Form;
+        value: number | Form;
       } | null)
     | ({
         relationTo: 'form-submissions';
-        value: string | FormSubmission;
-      } | null)
-    | ({
-        relationTo: 'search';
-        value: string | Search;
+        value: number | FormSubmission;
       } | null)
     | ({
         relationTo: 'payload-jobs';
-        value: string | PayloadJob;
+        value: number | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -1086,10 +1049,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -1109,7 +1072,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -1761,33 +1724,6 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "search_select".
- */
-export interface SearchSelect<T extends boolean = true> {
-  title?: T;
-  priority?: T;
-  doc?: T;
-  slug?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
-      };
-  categories?:
-    | T
-    | {
-        relationTo?: T;
-        categoryID?: T;
-        title?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs_select".
  */
 export interface PayloadJobsSelect<T extends boolean = true> {
@@ -1854,7 +1790,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "navbar".
  */
 export interface Navbar {
-  id: string;
+  id: number;
   logo: {
     line1: string;
     line2: string;
@@ -1882,7 +1818,7 @@ export interface Navbar {
  * via the `definition` "footer".
  */
 export interface Footer {
-  id: string;
+  id: number;
   links?:
     | {
         label: string;
@@ -1894,7 +1830,7 @@ export interface Footer {
     | {
         platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'email' | 'phone';
         url: string;
-        icon: string | Media;
+        icon: number | Media;
         id?: string | null;
       }[]
     | null;
@@ -1914,16 +1850,16 @@ export interface Footer {
  * via the `definition` "blog-page".
  */
 export interface BlogPage {
-  id: string;
+  id: number;
   hero: {
     title: string;
     description: string;
-    image: string | Media;
+    image: number | Media;
   };
   /**
    * Select one post to feature at the top of the page.
    */
-  featuredPost: string | Post;
+  featuredPost: number | Post;
   moreArticlesTitle: string;
   featurePostButtonText: string;
   updatedAt?: string | null;
@@ -2020,10 +1956,10 @@ export interface TaskSchedulePublish {
     locale?: string | null;
     doc?: {
       relationTo: 'pages';
-      value: string | Page;
+      value: number | Page;
     } | null;
     global?: string | null;
-    user?: (string | null) | User;
+    user?: (number | null) | User;
   };
   output?: unknown;
 }
