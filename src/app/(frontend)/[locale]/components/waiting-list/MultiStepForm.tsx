@@ -27,9 +27,6 @@ const MultiStepForm = ({
 }) => {
   const [currentStep, setCurrentStep] = useState<number>(1)
 
-  // -----------------------
-  // Build schema + defaults dynamically from PayloadCMS JSON
-  // -----------------------
   const schemaShape: Record<string, any> = {}
   const defaultValues: Record<string, string> = {}
   const seen = new Set<string>()
@@ -65,10 +62,9 @@ const MultiStepForm = ({
   const currentStepData = allStepsData?.find((item: any) => item.step === currentStep)
   const watchedValues = watch()
 
-  // -----------------------
-  // Submit handler
-  // -----------------------
   const onSubmit = async (data: FormData) => {
+    console.log('from multistep form', data)
+
     if (currentStep < allStepsData.length) {
       setCurrentStep((prev) => prev + 1)
     } else {
@@ -163,9 +159,13 @@ const MultiStepForm = ({
             )}
             <Button
               disabled={!isValid && currentStepData?.formType === 'form'}
-              onClick={() => setCurrentStep(currentStep + 1)}
+              type={currentStep === allStepsData.length ? 'submit' : 'button'}
+              onClick={
+                currentStep === allStepsData.length
+                  ? undefined
+                  : () => setCurrentStep((prev) => prev + 1)
+              }
               variant="outline"
-              type={'button'}
             >
               {submitButtonText} <ArrowRight />
             </Button>
