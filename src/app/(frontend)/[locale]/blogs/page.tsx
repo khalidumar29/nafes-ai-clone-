@@ -3,7 +3,6 @@ import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import Link from 'next/link'
 import banner from '../../../../../public/images/banner.svg'
-import bp from '../../../../../public/images/bp.webp'
 import { getPayload } from '@/lib/payload'
 import { Button } from '@/components/ui/button'
 const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
@@ -45,7 +44,12 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
               src={
                 typeof blogPageData?.hero?.image === 'string'
                   ? blogPageData.hero.image
-                  : blogPageData?.hero?.image?.url || ''
+                  : typeof blogPageData?.hero?.image === 'object' &&
+                      blogPageData?.hero?.image !== null &&
+                      'url' in blogPageData.hero.image &&
+                      typeof blogPageData.hero.image.url === 'string'
+                    ? blogPageData.hero.image.url
+                    : ''
               }
               alt="bp"
               width={800}
@@ -133,7 +137,14 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
                   <div className="max-h-[320px]">
                     <Image
                       src={
-                        typeof doc.heroImage === 'string' ? doc.heroImage : doc.heroImage?.url || ''
+                        typeof doc.heroImage === 'string'
+                          ? doc.heroImage
+                          : typeof doc.heroImage === 'object' &&
+                              doc.heroImage !== null &&
+                              'url' in doc.heroImage &&
+                              typeof doc.heroImage.url === 'string'
+                            ? doc.heroImage.url
+                            : ''
                       }
                       alt="banner "
                       className="max-h-[320px] h-full w-full object-cover"

@@ -21,6 +21,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   const navbar = await payload.findGlobal({ slug: 'navbar' as any })
   const footer = await payload.findGlobal({ slug: 'footer' })
+  if (!navbar || !footer) {
+    return <div>Loading...</div>
+  }
   return (
     <html
       className={cn(GeistSans.variable, GeistMono.variable)}
