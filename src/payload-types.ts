@@ -167,6 +167,12 @@ export interface Page {
           }
         | {
             introText: string;
+            companyLogos?:
+              | {
+                  logo?: (number | null) | Media;
+                  id?: string | null;
+                }[]
+              | null;
             heading: string;
             items: {
               image?: (number | null) | Media;
@@ -1102,6 +1108,12 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               introText?: T;
+              companyLogos?:
+                | T
+                | {
+                    logo?: T;
+                    id?: T;
+                  };
               heading?: T;
               items?:
                 | T

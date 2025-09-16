@@ -15,6 +15,19 @@ export const Trusted: Block = {
       defaultValue: 'Trusted by the top organizations',
     },
     {
+      name: 'companyLogos',
+      type: 'array',
+      label: 'Company Logos',
+      fields: [
+        {
+          name: 'logo',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Logo',
+        },
+      ],
+    },
+    {
       name: 'heading',
       type: 'text',
       label: 'Heading',

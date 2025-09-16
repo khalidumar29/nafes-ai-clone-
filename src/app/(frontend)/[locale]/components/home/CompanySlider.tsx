@@ -3,7 +3,9 @@
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-const CompanySlider = () => {
+const CompanySlider = ({ companyLogos }: { companyLogos: any[] }) => {
+  console.log('company logo:', companyLogos[0].logo.url)
+
   return (
     <div className="py-[20px] px-[10px]">
       <Swiper
@@ -30,11 +32,17 @@ const CompanySlider = () => {
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
       >
-        {Array.from({ length: 20 }, (_, index) => (
+        {companyLogos.map((logo, index) => (
           <SwiperSlide key={index} className="flex items-center justify-center">
             <div className="w-[119px] h-[119px] border p-[20px] rounded-[8px] bg-white">
-              slide {index + 1}
+              <img
+                src={logo.logo.url}
+                alt={`Logo ${index + 1}`}
+                className="max-w-full max-h-full object-contain"
+              />
             </div>
+
+            {/*  */}
           </SwiperSlide>
         ))}
       </Swiper>
