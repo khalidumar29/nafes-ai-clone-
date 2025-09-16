@@ -5,7 +5,7 @@ const MultiStepFormContainer = ({
   headline,
   subheadline,
   steps,
-  submitButtonText,
+  submitButtonText = 'next',
   submissionThanks,
   submissionMessage,
   backToHomeText,
@@ -19,6 +19,8 @@ const MultiStepFormContainer = ({
   submissionMessage?: string
   backToHomeText?: string
 }) => {
+  console.log(submitButtonText)
+
   return (
     <section className="w-full grid lg:grid-cols-2 grid-cols-1 mt-[50px]">
       <div>

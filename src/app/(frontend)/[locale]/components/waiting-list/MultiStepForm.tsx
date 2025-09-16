@@ -20,7 +20,7 @@ const MultiStepForm = ({
   backToHomeText,
 }: {
   allStepsData: any
-  submitButtonText: string
+  submitButtonText?: string
   submissionThanks?: string
   submissionMessage?: string
   backToHomeText?: string
