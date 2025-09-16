@@ -1,3 +1,4 @@
+import LocaleLink from '@/components/shared/LocaleLink'
 import { Button } from '@/components/ui/button'
 import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
@@ -41,21 +42,25 @@ const HeroBlock = ({
 
           <div className="flex items-center space-x-8 mt-12">
             {primaryButton && (
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-black rounded-[8px] text-gray-800 px-8 py-3 text-lg h-full hover:bg-teal-500 hover:border-none hover:text-white"
-              >
-                {primaryButton}
-              </Button>
+              <LocaleLink href={'/'}>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-black rounded-[8px] text-gray-800 px-8 py-3 text-lg h-full hover:bg-teal-500 hover:border-none hover:text-white"
+                >
+                  {primaryButton}
+                </Button>
+              </LocaleLink>
             )}
             {secondaryButton && (
-              <Button
-                variant={'ghost'}
-                className="text-gray-800 hover:bg-teal-500 hover:text-white transition-colors text-lg font-medium px-8 py-3 h-full rounded-[8px]"
-              >
-                {secondaryButton}
-              </Button>
+              <LocaleLink href={'/'}>
+                <Button
+                  variant={'ghost'}
+                  className="text-gray-800 hover:bg-teal-500 hover:text-white transition-colors text-lg font-medium px-8 py-3 h-full rounded-[8px]"
+                >
+                  {secondaryButton}
+                </Button>
+              </LocaleLink>
             )}
           </div>
         </div>

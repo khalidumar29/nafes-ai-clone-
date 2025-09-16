@@ -1,18 +1,11 @@
 'use client'
 
 import { cn } from '@/utilities/ui'
-import { Globe } from 'lucide-react'
-import Link from 'next/link'
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from 'react'
 import { UrlObject } from 'url'
 import { Button } from '../ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '../ui/dropdown-menu'
 import LanguageSwitcher from './LanguageSwitcher'
+import LocaleLink from './LocaleLink'
 
 type NavbarButton = {
   href: string
@@ -31,7 +24,7 @@ const Navbar = ({ navbar }: { navbar: any }) => {
         )}
       >
         {/* Logo */}
-        <Link href="/home" className="flex items-center">
+        <LocaleLink href="/home" className="flex items-center">
           {navbar?.logo && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -40,7 +33,7 @@ const Navbar = ({ navbar }: { navbar: any }) => {
               className="h-8 w-auto object-contain"
             />
           )}
-        </Link>
+        </LocaleLink>
 
         <div className={cn('flex gap-20', lang === 'ar' && 'flex-row-reverse')}>
           {/* Navigation Links */}
@@ -75,13 +68,13 @@ const Navbar = ({ navbar }: { navbar: any }) => {
                 },
                 i: Key | null | undefined,
               ) => (
-                <Link
+                <LocaleLink
                   key={i}
                   href={link.href}
                   className="text-gray-800 hover:text-teal-500 transition-colors"
                 >
                   {link.label}
-                </Link>
+                </LocaleLink>
               ),
             )}
           </div>
@@ -90,7 +83,7 @@ const Navbar = ({ navbar }: { navbar: any }) => {
           <div className={cn('flex items-center gap-4', lang === 'ar' && 'flex-row-reverse')}>
             <LanguageSwitcher setLang={setLang} />
             {navbar?.buttons?.map((btn: NavbarButton, i: number) => (
-              <Link key={i} href={btn.href}>
+              <LocaleLink key={i} href={btn.href}>
                 <Button
                   className={
                     btn.variant === 'primary'
@@ -101,7 +94,7 @@ const Navbar = ({ navbar }: { navbar: any }) => {
                 >
                   {btn.label}
                 </Button>
-              </Link>
+              </LocaleLink>
             ))}
           </div>
         </div>

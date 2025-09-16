@@ -7,8 +7,7 @@ import {
   DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu'
 import { Globe } from 'lucide-react'
-import { useRouter, usePathname } from 'next/navigation'
-import React from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 
 const LanguageSwitcher = ({ setLang }: { setLang: (lang: string) => void }) => {
   const router = useRouter()
