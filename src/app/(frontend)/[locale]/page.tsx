@@ -40,7 +40,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   )
 }
 
-export async function generateMetadata({ params }: { params: { locale: string; slug: string } }) {
+export async function generateMetadata() {
   return {
     title: `Ostool | Home`,
   }
