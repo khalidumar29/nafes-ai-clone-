@@ -25,15 +25,15 @@ const LanguageSwitcher = () => {
       <DropdownMenuTrigger className="focus:outline-none">
         <Globe className="w-5 h-5 text-gray-600" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="rounded-lg p-3">
+      <DropdownMenuContent className="rounded-[8px] p-3 ml-24 min-w-[150px]">
         <DropdownMenuItem
-          className="w-full bg-[#f7f7f7] px-[15px] py-[10px] text-base focus:outline-none mb-4 hover:!bg-green-100 cursor-pointer"
+          className="w-full bg-[#f7f7f7] px-[15px] py-[10px] text-base focus:outline-none mb-3 hover:!bg-green-100 cursor-pointer rounded-[10px]"
           onClick={() => switchLanguage('ar')}
         >
           العربية
         </DropdownMenuItem>
         <DropdownMenuItem
-          className="w-full bg-[#f7f7f7] px-[15px] py-[10px] text-base focus:outline-none mb-4 hover:!bg-green-100 cursor-pointer"
+          className="mb-0 w-full bg-[#f7f7f7] px-[15px] py-[10px] text-base focus:outline-none hover:!bg-green-100 cursor-pointer rounded-[10px]"
           onClick={() => switchLanguage('en')}
         >
           English
