@@ -96,7 +96,7 @@ const HeroBlock = ({
         {barImage && (
           <Image
             src={barImage.url}
-            alt={barImage.alt}
+            alt={barImage.alt || 'image'}
             width={264}
             height={280}
             className="absolute w-[150px] sm:w-[264px] sm:h-[280px] bottom-0 sm:right-[18em] right-5 z-10 shadow-[0_0_20px_0_rgba(0,0,0,0.15)] rounded-[24px]"

@@ -5,16 +5,15 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@radix-ui/react-dropdown-menu'
+} from '@/components/ui/dropdown-menu'
 import { Globe } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 
-const LanguageSwitcher = ({ setLang }: { setLang: (lang: string) => void }) => {
+const LanguageSwitcher = () => {
   const router = useRouter()
   const pathname = usePathname()
 
   const switchLanguage = (lang: string) => {
-    setLang(lang)
     const segments = pathname.split('/')
     segments[1] = lang
     const newPath = segments.join('/')

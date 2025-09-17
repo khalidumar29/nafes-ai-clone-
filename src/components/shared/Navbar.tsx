@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/utilities/ui'
-import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from 'react'
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from 'react'
 import { UrlObject } from 'url'
 import { Button } from '../ui/button'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -13,14 +13,13 @@ type NavbarButton = {
   variant: 'primary' | 'outline' | string
 }
 
-const Navbar = ({ navbar }: { navbar: any }) => {
-  const [lang, setLang] = useState('en')
+const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
   return (
     <div className="border-b bg-white">
       <nav
         className={cn(
           'flex items-center justify-between px-6 py-3  mx-auto container ',
-          lang === 'ar' && 'flex-row-reverse',
+          locale === 'ar' && 'flex-row-reverse',
         )}
       >
         {/* Logo */}
@@ -35,10 +34,13 @@ const Navbar = ({ navbar }: { navbar: any }) => {
           )}
         </LocaleLink>
 
-        <div className={cn('flex gap-20', lang === 'ar' && 'flex-row-reverse')}>
+        <div className={cn('flex gap-20', locale === 'ar' && 'flex-row-reverse')}>
           {/* Navigation Links */}
           <div
-            className={cn('hidden md:flex items-center gap-8', lang === 'ar' && 'flex-row-reverse')}
+            className={cn(
+              'hidden md:flex items-center gap-8',
+              locale === 'ar' && 'flex-row-reverse',
+            )}
           >
             {navbar?.navLinks?.map(
               (
@@ -80,15 +82,17 @@ const Navbar = ({ navbar }: { navbar: any }) => {
           </div>
 
           {/* Right Side */}
-          <div className={cn('flex items-center gap-4', lang === 'ar' && 'flex-row-reverse')}>
-            <LanguageSwitcher setLang={setLang} />
+          <div className={cn('flex items-center gap-4', locale === 'ar' && 'flex-row-reverse')}>
+            <div>
+              <LanguageSwitcher />
+            </div>
             {navbar?.buttons?.map((btn: NavbarButton, i: number) => (
               <LocaleLink key={i} href={btn.href}>
                 <Button
                   className={
                     btn.variant === 'primary'
                       ? 'bg-teal-500 hover:bg-teal-600 text-white px-6'
-                      : 'border-black text-gray-800 px-6 rounded-[8px] hover:bg-teal-500 hover:border-none hover:text-white'
+                      : 'border-black text-gray-800 px-6 rounded-[8px] hover:bg-teal-500 hover:border-none hover:text-white h-[44px] text-[14px]'
                   }
                   variant={btn.variant === 'outline' ? 'outline' : 'default'}
                 >

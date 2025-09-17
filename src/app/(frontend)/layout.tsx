@@ -8,8 +8,6 @@ import React from 'react'
 import { Providers } from '@/providers'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
-import Footer from '@/components/shared/Footer'
-import Navbar from '@/components/shared/Navbar'
 import { getServerSideURL } from '@/utilities/getURL'
 import config from '@payload-config'
 import { getPayload } from 'payload'
@@ -43,9 +41,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           /> */}
 
           {/* <Header /> */}
-          <Navbar navbar={navbar} />
+
           {children}
-          <Footer footer={footer} />
         </Providers>
       </body>
     </html>
