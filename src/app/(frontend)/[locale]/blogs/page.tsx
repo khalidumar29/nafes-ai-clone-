@@ -1,9 +1,11 @@
-// blogs page
 import LocaleLink from '@/components/shared/LocaleLink'
 import { Button } from '@/components/ui/button'
 import { getPayload } from '@/lib/payload'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
+
+// Loader function for next/image to handle custom image sources
+
 const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
   const { locale } = await params
   const payload = await getPayload()
@@ -15,16 +17,803 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
     },
     locale: locale as 'en' | 'ar',
     sort: '-publishedAt',
-    depth: 1,
+    depth: 2,
     overrideAccess: true,
   })
 
   const blogPageData = await payload.findGlobal({
     slug: 'blog-page',
-    depth: 1,
+    depth: 2,
     locale: locale as 'en' | 'ar',
     overrideAccess: true,
   })
+
+  // const blogPageData = {
+  //   id: 1,
+
+  //   hero: {
+  //     title: 'Recent Articles from Our Blog',
+  //     description:
+  //       'The Nafes Blog is the go-to resource for ambitious entrepreneurs, offering reliable and comprehensive content that clarifies the complete administrative process of bidding. It highlights key requirements, instructions, laws, and regulations while providing practical advice and leading economic trends to enhance your chances of winning tender',
+
+  //     image: {
+  //       id: 14,
+  //       alt: null,
+  //       caption: null,
+  //       updatedAt: '2025-09-16T21:47:34.486Z',
+  //       createdAt: '2025-09-16T21:47:34.486Z',
+  //       url: '/api/media/file/banner-1.svg',
+  //       thumbnailURL: null,
+  //       filename: 'banner-1.svg',
+  //       mimeType: 'image/svg+xml',
+  //       filesize: 605942,
+  //       width: 1000,
+  //       height: 714,
+  //       focalX: null,
+  //       focalY: null,
+
+  //       sizes: {
+  //         thumbnail: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         square: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         small: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         medium: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         large: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         xlarge: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         og: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+  //       },
+  //     },
+  //   },
+
+  //   featuredPost: {
+  //     id: 1,
+  //     title:
+  //       'Everything you need to know about the bidding system in commercial competitions with Nafis',
+  //     slug: 'system-in-commercial-competitions',
+  //     'Short Description':
+  //       "Are you competing in a live auction for a chance to win? Learn all about the bidding system, learn about the types of electronic bidding, and how to develop a winning strategy with Navis's comprehensive guide.",
+  //     heroTag: 'new',
+
+  //     heroImage: {
+  //       id: 18,
+  //       alt: 'waiting',
+  //       caption: null,
+  //       updatedAt: '2025-09-16T23:01:28.702Z',
+  //       createdAt: '2025-09-16T23:01:28.702Z',
+  //       url: '/api/media/file/waiting-ar.webp',
+  //       thumbnailURL: '/api/media/file/waiting-ar-300x301.webp',
+  //       filename: 'waiting-ar.webp',
+  //       mimeType: 'image/webp',
+  //       filesize: 19736,
+  //       width: 473,
+  //       height: 475,
+  //       focalX: 50,
+  //       focalY: 50,
+
+  //       sizes: {
+  //         thumbnail: {
+  //           url: '/api/media/file/waiting-ar-300x301.webp',
+  //           width: 300,
+  //           height: 301,
+  //           mimeType: 'image/webp',
+  //           filesize: 11752,
+  //           filename: 'waiting-ar-300x301.webp',
+  //         },
+
+  //         square: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         small: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         medium: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         large: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         xlarge: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+
+  //         og: {
+  //           url: null,
+  //           width: null,
+  //           height: null,
+  //           mimeType: null,
+  //           filesize: null,
+  //           filename: null,
+  //         },
+  //       },
+  //     },
+  //     publishedAt: '2025-09-02T18:00:00.000Z',
+
+  //     author: {
+  //       id: 1,
+  //       name: 'Khalid Umar',
+  //       updatedAt: '2025-09-17T14:30:09.409Z',
+  //       createdAt: '2025-09-16T18:11:58.715Z',
+  //       email: 'admin@admin.com',
+
+  //       sessions: [
+  //         {
+  //           id: 'cd0ab51c-3650-4669-b5bf-37ac25465ba9',
+  //           createdAt: '2025-09-17T14:30:09.409Z',
+  //           expiresAt: '2025-09-17T16:30:09.409Z',
+  //         },
+  //       ],
+  //     },
+
+  //     content: {
+  //       root: {
+  //         type: 'root',
+  //         format: '',
+  //         indent: 0,
+  //         version: 1,
+
+  //         children: [
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'When public institutions in the Kingdom of Saudi Arabia wish to purchase a specific commodity or obtain services or work, they resort to issuing tenders. Conversely, if the institution needs to sell an asset or service, it resorts to the government auction system, which is conducted via a set of dedicated official electronic platforms.',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             tag: 'h2',
+  //             type: 'heading',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Auction system ',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'An auction is a sales event in which potential buyers bid competitively to purchase assets or services. This is usually done either in a public manner, open to anyone who wants to enter the auction and propose a price, or in a closed manner. ',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Auctions are a popular method of selling because both the buyer and seller believe they are getting a good deal when buying or selling assets. Examples of auctions include cattle markets where farmers buy and sell animals, car auctions, real estate auctions, and auctions of art, antiques, and other items.',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             tag: 'h2',
+  //             type: 'heading',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Types of electronic auctions',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: "Electronic auction platforms are among the most prominent technologies that keep pace with the Kingdom of Saudi Arabia's technological progress. They effectively contribute to achieving the Kingdom's goals, which are based on the principles of transparency, openness, and equal opportunity. Here are the types of electronic auctions:",
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             tag: 'h3',
+  //             type: 'heading',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Hybrid Auction',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: ' This type of auction combines both in-person and virtual auctions. It is held in a dedicated hall, with the opportunity to participate remotely (via mobile phone or computer) to follow the auction process via live broadcast. To achieve this, in-person and virtual bids are monitored simultaneously, allowing participants to compete and the auction is decided in favor of the highest bidder at the end of the specified time.',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             tag: 'h3',
+  //             type: 'heading',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Virtual Auction',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Bidders and others can watch the live broadcast of the auctioneer or the auctioneer and bid on the item being auctioned. In this type of auction, attendance at the auction is limited to the auctioneer, while other participants are free to participate remotely.',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             tag: 'h2',
+  //             type: 'heading',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Auction mechanism',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Auctions are divided into public and closed auctions. In a public auction, all bidders are able to see the bids submitted publicly, while in a closed auction, bids submitted are confidential. Bidders are not permitted to see the bids of others.',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Auctions are usually conducted directly or through an official electronic platform, and in all cases, the offered asset or service is sold to the party who submits the highest bid at the public auction. The same usually applies to closed auctions.',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             tag: 'h2',
+  //             type: 'heading',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Bidding System Standards ',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'The outcome of auctions is subject to many factors and criteria that affect the auction, as follows:',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             tag: 'ul',
+  //             type: 'list',
+  //             start: 1,
+  //             format: '',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 type: 'listitem',
+  //                 value: 1,
+  //                 format: 'start',
+  //                 indent: 0,
+  //                 version: 1,
+
+  //                 children: [
+  //                   {
+  //                     mode: 'normal',
+  //                     text: 'Supply and Demand: ',
+  //                     type: 'text',
+  //                     style: '',
+  //                     detail: 0,
+  //                     format: 1,
+  //                     version: 1,
+  //                   },
+
+  //                   {
+  //                     mode: 'normal',
+  //                     text: 'Products and assets in high demand are more likely to fetch a high price, while less-demanding items are subject to fewer bids. However, in general, auctions offer quicker sales and are more efficient than traditional auctions.',
+  //                     type: 'text',
+  //                     style: '',
+  //                     detail: 0,
+  //                     format: 0,
+  //                     version: 1,
+  //                   },
+  //                 ],
+  //                 direction: 'ltr',
+  //                 textFormat: 1,
+  //               },
+
+  //               {
+  //                 type: 'listitem',
+  //                 value: 2,
+  //                 format: 'start',
+  //                 indent: 0,
+  //                 version: 1,
+
+  //                 children: [
+  //                   {
+  //                     mode: 'normal',
+  //                     text: 'Product quality: ',
+  //                     type: 'text',
+  //                     style: '',
+  //                     detail: 0,
+  //                     format: 1,
+  //                     version: 1,
+  //                   },
+
+  //                   {
+  //                     mode: 'normal',
+  //                     text: 'Product quality enhances its price value. The better the quality of the item, the more incentive it gives bidders to bid higher than the expected price.',
+  //                     type: 'text',
+  //                     style: '',
+  //                     detail: 0,
+  //                     format: 0,
+  //                     version: 1,
+  //                   },
+  //                 ],
+  //                 direction: 'ltr',
+  //                 textFormat: 1,
+  //               },
+
+  //               {
+  //                 type: 'listitem',
+  //                 value: 3,
+  //                 format: 'start',
+  //                 indent: 0,
+  //                 version: 1,
+
+  //                 children: [
+  //                   {
+  //                     mode: 'normal',
+  //                     text: 'Payment and Transfer of Ownership: ',
+  //                     type: 'text',
+  //                     style: '',
+  //                     detail: 0,
+  //                     format: 1,
+  //                     version: 1,
+  //                   },
+
+  //                   {
+  //                     mode: 'normal',
+  //                     text: 'Favorable payment terms and timely transfer of ownership are a significant influence on purchase intent, which directly impacts competition and purchasing.',
+  //                     type: 'text',
+  //                     style: '',
+  //                     detail: 0,
+  //                     format: 0,
+  //                     version: 1,
+  //                   },
+  //                 ],
+  //                 direction: 'ltr',
+  //                 textFormat: 1,
+  //               },
+  //             ],
+  //             listType: 'bullet',
+  //             direction: 'ltr',
+  //           },
+
+  //           {
+  //             tag: 'h2',
+  //             type: 'heading',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'The difference between tender and auction ',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'Although the laws governing auctions and tenders are similar, with some minor differences, the objectives of each type are entirely different. In tenders, a government entity issues ',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+
+  //               {
+  //                 id: '68c9e9a11801f364c41e8733',
+  //                 type: 'link',
+
+  //                 fields: {
+  //                   url: 'https://nafes.ai/blogs/%D9%85%D8%A7-%D9%87%D9%8A-%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%82%D8%B5%D8%A9',
+  //                   newTab: true,
+  //                   linkType: 'custom',
+  //                 },
+  //                 format: '',
+  //                 indent: 0,
+  //                 version: 3,
+
+  //                 children: [
+  //                   {
+  //                     mode: 'normal',
+  //                     text: 'a public tender',
+  //                     type: 'text',
+  //                     style: '',
+  //                     detail: 0,
+  //                     format: 0,
+  //                     version: 1,
+  //                   },
+  //                 ],
+  //                 direction: 'ltr',
+  //               },
+
+  //               {
+  //                 mode: 'normal',
+  //                 text: ' when it requires the completion of specific public projects or the supply of public utilities. In this process, the entity aims to select the best bid—that is, the one offering the lowest price and highest quality.',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: "An auction is used by a company's management when it wishes to sell or lease a portion of its real estate or property. It is conducted as part of an organized and smooth process aimed at obtaining the highest possible value from the sums offered. In other words, the offer with the highest price is chosen.",
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+
+  //           {
+  //             type: 'paragraph',
+  //             format: 'start',
+  //             indent: 0,
+  //             version: 1,
+
+  //             children: [
+  //               {
+  //                 mode: 'normal',
+  //                 text: 'The auction system is an ideal method for selling in the Saudi market, with a number of factors that can positively influence it, such as offering at the right time and the scarcity of the product, or negatively, such as customer saturation with the product in a specific location or weak purchasing power.',
+  //                 type: 'text',
+  //                 style: '',
+  //                 detail: 0,
+  //                 format: 0,
+  //                 version: 1,
+  //               },
+  //             ],
+  //             direction: 'ltr',
+  //             textStyle: '',
+  //             textFormat: 0,
+  //           },
+  //         ],
+  //         direction: 'ltr',
+  //       },
+  //     },
+
+  //     relatedPosts: [],
+
+  //     seo: {
+  //       title: '',
+  //       image: null,
+  //       description: null,
+  //     },
+  //     updatedAt: '2025-09-17T15:23:15.070Z',
+  //     createdAt: '2025-09-16T21:47:58.072Z',
+  //   },
+  //   moreArticlesTitle: 'More Articles',
+  //   featurePostButtonText: 'Continue Reading',
+  //   updatedAt: '2025-09-17T15:22:16.460Z',
+  //   createdAt: '2025-09-16T21:48:15.933Z',
+  //   globalType: 'blog-page',
+  // }
+
+  console.log('feature post image url:', blogPageData?.featuredPost)
 
   return (
     <section>
@@ -39,7 +828,7 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
             </p>
           </div>
           <div>
-            <Image
+            <img
               src={
                 typeof blogPageData?.hero?.image === 'string'
                   ? blogPageData.hero.image
@@ -51,24 +840,35 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
                     : ''
               }
               alt="bp"
-              width={800}
-              height={800}
-            ></Image>
+            />
           </div>
         </div>
         <div className="grid sm:grid-cols-2 grid-cols-1 gap-10">
           <div className="max-h-[340px]">
             <img
               src={
-                typeof blogPageData?.hero?.image === 'object' &&
-                blogPageData?.hero?.image !== null &&
-                'url' in blogPageData.hero.image &&
-                typeof blogPageData.hero.image.url === 'string'
-                  ? blogPageData.hero.image.url
-                  : ''
+                blogPageData?.featuredPost &&
+                typeof blogPageData.featuredPost === 'object' &&
+                blogPageData.featuredPost !== null &&
+                'heroImage' in blogPageData.featuredPost &&
+                blogPageData.featuredPost.heroImage &&
+                typeof blogPageData.featuredPost.heroImage === 'object' &&
+                'url' in blogPageData.featuredPost.heroImage &&
+                typeof blogPageData.featuredPost.heroImage.url === 'string'
+                  ? blogPageData.featuredPost.heroImage.url
+                  : '/placeholder.png'
               }
-              alt="banner"
-              className="w-full object-cover max-h-[340px]"
+              alt={
+                typeof blogPageData.featuredPost === 'object' &&
+                blogPageData.featuredPost !== null &&
+                'heroImage' in blogPageData.featuredPost &&
+                blogPageData.featuredPost.heroImage &&
+                typeof blogPageData.featuredPost.heroImage === 'object' &&
+                'alt' in blogPageData.featuredPost.heroImage
+                  ? (blogPageData.featuredPost.heroImage.alt ?? 'banner')
+                  : 'banner'
+              }
+              className="w-full object-cover"
             />
           </div>
           <div>
@@ -162,13 +962,13 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
                     <Image
                       src={
                         typeof doc.heroImage === 'string'
-                          ? doc.heroImage
+                          ? (doc.heroImage ?? '/placeholder.png')
                           : typeof doc.heroImage === 'object' &&
                               doc.heroImage !== null &&
                               'url' in doc.heroImage &&
                               typeof doc.heroImage.url === 'string'
-                            ? doc.heroImage.url
-                            : ''
+                            ? (doc.heroImage.url ?? '/placeholder.png')
+                            : '/placeholder.png'
                       }
                       alt="banner "
                       className="max-h-[320px] h-full w-full object-cover"
