@@ -8,7 +8,7 @@ const AboutSection = ({ title, description, image, items = [] }: any) => {
       <div className="container">
         {/* Main Title */}
         <div className="flex justify-center items-center w-full">
-          <h1 className="sm:text-[64px] text-[40px] font-bold text-center leading-[1.3] w-[60%]">
+          <h1 className="sm:text-[64px] text-[40px] font-bold text-center leading-[1.3] sm:w-[60%]">
             {title}
           </h1>
         </div>
