@@ -38,7 +38,7 @@ export default async function Page({
   const page = docs?.[0]
 
   if (!page) return notFound()
-  console.log(page.layout)
+  console.log(page)
   return (
     <main>
       <RenderBlocks blocks={page.layout || []} />
@@ -47,4 +47,23 @@ export default async function Page({
  */}
     </main>
   )
+}
+
+export async function generateMetadata({ params }: { params: { locale: string; slug: string } }) {
+  const { locale, slug } = await params
+  const payload = await getPayload({ config })
+  const { docs } = await payload.find({
+    collection: 'pages',
+    where: { slug: { equals: slug } },
+    locale: locale as 'en' | 'ar',
+    limit: 1,
+    overrideAccess: true,
+  })
+  const page = docs?.[0]
+
+  if (!page) return {}
+
+  return {
+    title: `Ostool | ${page.title}`,
+  }
 }

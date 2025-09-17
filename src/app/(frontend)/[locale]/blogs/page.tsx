@@ -1001,3 +1001,9 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
 }
 
 export default Page
+
+export async function generateMetadata({ params }: { params: { locale: string; slug: string } }) {
+  return {
+    title: `Ostool | Blogs`,
+  }
+}

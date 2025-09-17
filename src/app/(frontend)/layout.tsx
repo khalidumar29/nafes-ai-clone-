@@ -15,11 +15,6 @@ import 'swiper/css'
 import 'swiper/css/bundle'
 import './globals.css'
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const payload = await getPayload({ config })
-
-  const navbar = await payload.findGlobal({ slug: 'navbar' as any, locale: 'en' })
-  const footer = await payload.findGlobal({ slug: 'footer', locale: 'en' })
-
   return (
     <html
       className={cn(GeistSans.variable, GeistMono.variable)}
@@ -33,17 +28,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body className="bg-white text-black">
-        <Providers>
-          {/* <AdminBar
+        {/* <AdminBar
             adminBarProps={{
               preview: isEnabled,
             }}
           /> */}
 
-          {/* <Header /> */}
+        {/* <Header /> */}
 
-          {children}
-        </Providers>
+        {children}
       </body>
     </html>
   )

@@ -11,9 +11,10 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params // Await the params Promise
+  const typedLocale = locale as 'en' | 'ar' | 'all' | undefined
   const payload = await getPayload({ config })
-  const navbar = await payload.findGlobal({ slug: 'navbar' as any, locale })
-  const footer = await payload.findGlobal({ slug: 'footer', locale })
+  const navbar = await payload.findGlobal({ slug: 'navbar' as any, locale: typedLocale })
+  const footer = await payload.findGlobal({ slug: 'footer', locale: typedLocale })
 
   return (
     <>
