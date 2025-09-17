@@ -1,11 +1,11 @@
 // blogs/[id]
+import LocaleLink from '@/components/shared/LocaleLink'
+import { getPayload } from '@/lib/payload'
 import { RichText, defaultJSXConverters } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
-import Link from 'next/link'
-import img from '../../../../../../public/images/banner.svg'
-import { getPayload } from '@/lib/payload'
-import * as React from 'react'
 import { notFound } from 'next/navigation'
+import * as React from 'react'
+import img from '../../../../../../public/images/banner.svg'
 
 const Page = async ({ params }: { params: Promise<{ locale: string; id: string }> }) => {
   const { locale, id } = await params
@@ -137,7 +137,7 @@ const Page = async ({ params }: { params: Promise<{ locale: string; id: string }
           </h1>
           <div>
             {sideBarDocs.map((doc, i) => (
-              <Link href={'#'} key={i} className="mb-10 flex gap-[20px] ">
+              <LocaleLink href={'#'} key={i} className="mb-10 flex gap-[20px] ">
                 <Image
                   src={
                     typeof doc.heroImage === 'string'
@@ -165,7 +165,7 @@ const Page = async ({ params }: { params: Promise<{ locale: string; id: string }
                       : ''}
                   </p>
                 </div>
-              </Link>
+              </LocaleLink>
             ))}
           </div>
         </div>

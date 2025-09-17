@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import Image from 'next/image'
-import FooterImage from './FooterImage'
 import img from '../../../public/images/image.png'
+import FooterImage from './FooterImage'
+import LocaleLink from './LocaleLink'
 
 export default async function Footer({ footer }: { footer: any }) {
   return (
@@ -10,9 +10,9 @@ export default async function Footer({ footer }: { footer: any }) {
         <div className="flex items-center justify-between mb-5">
           <ul className="flex flex-col gap-5">
             {footer?.links?.map((link: any, i: number) => (
-              <Link key={i} href={link.url}>
+              <LocaleLink key={i} href={link.url}>
                 <li>{link.label}</li>
-              </Link>
+              </LocaleLink>
             ))}
           </ul>
           <Image src={img} className="w-[10em]" alt="Footer logo" />
@@ -45,9 +45,9 @@ export default async function Footer({ footer }: { footer: any }) {
         <div className="flex justify-between">
           <div className="flex gap-5">
             {footer?.legalLinks?.map((link: any, i: number) => (
-              <Link key={i} href={link.url}>
+              <LocaleLink key={i} href={link.url}>
                 {link.label}
-              </Link>
+              </LocaleLink>
             ))}
           </div>
           <div>

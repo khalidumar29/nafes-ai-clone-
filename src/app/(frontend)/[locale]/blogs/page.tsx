@@ -1,10 +1,9 @@
 // blogs page
+import LocaleLink from '@/components/shared/LocaleLink'
+import { Button } from '@/components/ui/button'
+import { getPayload } from '@/lib/payload'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
-import Link from 'next/link'
-import { getPayload } from '@/lib/payload'
-import { Button } from '@/components/ui/button'
-import LocaleLink from '@/components/shared/LocaleLink'
 const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
   const { locale } = await params
   const payload = await getPayload()
@@ -183,12 +182,12 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
                     </div>
                   </div>
                   <div>
-                    <Link
+                    <LocaleLink
                       href="/blogs/1"
                       className="font-bold text-[30px] my-[25px] hover:underline hover:text-[#5b39bb] transition-colors"
                     >
                       {doc.title}
-                    </Link>
+                    </LocaleLink>
                     <p className="text-sm">{doc['Short Description']}</p>
                   </div>
                 </div>

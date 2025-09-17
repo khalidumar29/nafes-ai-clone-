@@ -23,7 +23,7 @@ const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
         )}
       >
         {/* Logo */}
-        <LocaleLink href="/home" className="flex items-center">
+        <LocaleLink href="/" className="flex items-center">
           {navbar?.logo && (
             // eslint-disable-next-line @next/next/no-img-element
             <img

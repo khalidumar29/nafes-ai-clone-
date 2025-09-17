@@ -1,9 +1,9 @@
 'use client'
 
+import LocaleLink from '@/components/shared/LocaleLink'
 import { Button } from '@/components/ui/button'
 import { MoveRight } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import 'swiper/css'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -73,11 +73,11 @@ export const AboutHero = ({
           <p className="text-[#374151]">{description}</p>
 
           {ctaText && (
-            <Link href={ctaLink || '#'}>
+            <LocaleLink href={ctaLink || '#'}>
               <Button className="w-fit" variant="outline">
                 {ctaText} <MoveRight className="ml-2" />
               </Button>
-            </Link>
+            </LocaleLink>
           )}
         </div>
         {image?.url && (

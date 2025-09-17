@@ -1,8 +1,8 @@
 'use client'
 
+import LocaleLink from '@/components/shared/LocaleLink'
 import { Button } from '@/components/ui/button' // Assuming you have a reusable Button component
 import { ArrowRight } from 'lucide-react'
-import Link from 'next/link'
 
 // Define the types for the component props based on the Payload block fields
 type CtaSectionProps = {
@@ -37,7 +37,7 @@ export const CtaSection = ({ mainHeading, description, ctaText, ctaLink }: CtaSe
 
           {/* CTA Button with optional link */}
           {ctaLink ? (
-            <Link href={ctaLink}>{content}</Link>
+            <LocaleLink href={ctaLink}>{content}</LocaleLink>
           ) : (
             <div className="cursor-pointer">{content}</div>
           )}

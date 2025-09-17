@@ -1,9 +1,9 @@
 'use client'
 
-import Image from 'next/image'
+import LocaleLink from '@/components/shared/LocaleLink'
 import { Button } from '@/components/ui/button'
 import { MoveRight } from 'lucide-react'
-import Link from 'next/link'
+import Image from 'next/image'
 
 interface WhyChooseProps {
   title: string
@@ -63,11 +63,11 @@ const WhyChooseSection = ({
 
         {ctaText && (
           <div className="mt-10 flex items-center justify-center">
-            <Link href={ctaLink || '#'}>
+            <LocaleLink href={ctaLink || '#'}>
               <Button variant="outline">
                 {ctaText} <MoveRight className="ml-2" />
               </Button>
-            </Link>
+            </LocaleLink>
           </div>
         )}
       </div>
