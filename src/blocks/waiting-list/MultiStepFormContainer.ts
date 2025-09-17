@@ -16,9 +16,10 @@ export const MultiStepFormContainer: Block = {
       required: true,
       labels: { singular: 'Step', plural: 'Steps' },
       fields: [
-        { name: 'stp', type: 'number', required: true },
+        { name: 'stp', label: 'Step', type: 'number', required: true },
         {
           name: 'fType',
+          label: 'Field Type',
           type: 'select',
           required: true,
           options: [
@@ -29,17 +30,20 @@ export const MultiStepFormContainer: Block = {
         },
         {
           name: 'flds',
+          label: 'Fields',
           type: 'array',
           labels: { singular: 'Field', plural: 'Fields' },
           fields: [
-            { name: 'ttl', type: 'text', required: true },
+            { name: 'ttl', label: 'Title', type: 'text', required: true },
             {
               name: 'inpts',
+              label: 'Inputs',
               type: 'array',
               labels: { singular: 'Input', plural: 'Inputs' },
               fields: [
                 {
                   name: 'nm',
+                  label: 'Name',
                   type: 'select',
                   required: true,
                   options: [
@@ -56,6 +60,7 @@ export const MultiStepFormContainer: Block = {
                 },
                 {
                   name: 'lbl',
+                  label: 'Label',
                   type: 'text',
                   required: true,
                   admin: { description: 'Label shown on the form' },
@@ -66,13 +71,19 @@ export const MultiStepFormContainer: Block = {
         },
       ],
     },
-    { name: 'btn', type: 'text', defaultValue: 'Next' },
-    { name: 'thanks', type: 'text', defaultValue: 'Thank you for your submission' },
+    { name: 'btn', label: 'Button Text', type: 'text', defaultValue: 'Next' },
+    {
+      name: 'thanks',
+      label: 'Thank You Message',
+      type: 'text',
+      defaultValue: 'Thank you for your submission',
+    },
     {
       name: 'msg',
+      label: 'Message',
       type: 'text',
       defaultValue: 'Our team will review your information and we will contact your email',
     },
-    { name: 'back', type: 'text', defaultValue: 'Back to Home page' },
+    { name: 'back', label: 'Back to Home page', type: 'text', defaultValue: 'Back to Home page' },
   ],
 }

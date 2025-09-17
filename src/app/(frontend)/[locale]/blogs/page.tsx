@@ -2,9 +2,9 @@
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import Link from 'next/link'
-import banner from '../../../../../public/images/banner.svg'
 import { getPayload } from '@/lib/payload'
 import { Button } from '@/components/ui/button'
+import LocaleLink from '@/components/shared/LocaleLink'
 const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
   const { locale } = await params
   const payload = await getPayload()
@@ -59,14 +59,30 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
         </div>
         <div className="grid sm:grid-cols-2 grid-cols-1 gap-10">
           <div className="max-h-[340px]">
-            <Image src={banner} alt="banner" className="w-full object-cover max-h-[340px]"></Image>
+            <img
+              src={
+                typeof blogPageData?.hero?.image === 'object' &&
+                blogPageData?.hero?.image !== null &&
+                'url' in blogPageData.hero.image &&
+                typeof blogPageData.hero.image.url === 'string'
+                  ? blogPageData.hero.image.url
+                  : ''
+              }
+              alt="banner"
+              className="w-full object-cover max-h-[340px]"
+            />
           </div>
           <div>
             <p className="#555a65">
               {typeof blogPageData.featuredPost === 'object' &&
               blogPageData.featuredPost !== null &&
-              'publishedAt' in blogPageData.featuredPost
-                ? blogPageData.featuredPost.publishedAt
+              'publishedAt' in blogPageData.featuredPost &&
+              blogPageData.featuredPost.publishedAt
+                ? new Date(blogPageData.featuredPost.publishedAt).toLocaleDateString(locale, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })
                 : ''}
             </p>
             <h3 className="text-[30px] font-bold text-[#2b2d33]">
@@ -83,9 +99,18 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
                 ? blogPageData.featuredPost['Short Description']
                 : ''}
             </p>
-            <Link href="/blogs/1">
+            <LocaleLink
+              href={
+                typeof blogPageData?.featuredPost === 'object' &&
+                blogPageData.featuredPost !== null &&
+                'slug' in blogPageData.featuredPost &&
+                typeof blogPageData.featuredPost.slug === 'string'
+                  ? `/blogs/${blogPageData.featuredPost.slug}`
+                  : '#'
+              }
+            >
               <Button variant="outline">{blogPageData?.featurePostButtonText}</Button>
-            </Link>
+            </LocaleLink>
           </div>
         </div>
         <section className="sm:mt-[175px] mt-[100px]">

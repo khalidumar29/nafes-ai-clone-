@@ -16,11 +16,13 @@ const Footer: GlobalConfig = {
           name: 'label',
           type: 'text',
           required: true,
+          localized: true,
         },
         {
           name: 'url',
           type: 'text',
           required: true,
+          localized: true,
         },
       ],
     },
@@ -28,6 +30,7 @@ const Footer: GlobalConfig = {
       name: 'socials',
       type: 'array',
       label: 'Social Links',
+      localized: true,
       fields: [
         {
           name: 'platform',
@@ -60,6 +63,7 @@ const Footer: GlobalConfig = {
       name: 'legalLinks',
       type: 'array',
       label: 'Legal Links',
+      localized: true,
       fields: [
         {
           name: 'label',
@@ -77,6 +81,7 @@ const Footer: GlobalConfig = {
       name: 'footerNote',
       type: 'text',
       label: 'Footer Note',
+      localized: true,
       defaultValue: 'Nafes 2025 ©',
     },
   ],

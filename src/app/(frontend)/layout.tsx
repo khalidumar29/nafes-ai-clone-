@@ -19,8 +19,8 @@ import './globals.css'
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const payload = await getPayload({ config })
 
-  const navbar = await payload.findGlobal({ slug: 'navbar' as any })
-  const footer = await payload.findGlobal({ slug: 'footer' })
+  const navbar = await payload.findGlobal({ slug: 'navbar' as any, locale: 'en' })
+  const footer = await payload.findGlobal({ slug: 'footer', locale: 'en' })
 
   return (
     <html

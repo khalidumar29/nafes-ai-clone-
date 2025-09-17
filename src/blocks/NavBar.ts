@@ -19,6 +19,7 @@ export const Navbar: GlobalConfig = {
       type: 'array',
       label: 'Navigation Links',
       minRows: 1,
+      localized: true,
       fields: [
         {
           name: 'label',
@@ -38,6 +39,7 @@ export const Navbar: GlobalConfig = {
       label: 'Right Side Buttons',
       minRows: 1,
       maxRows: 2,
+      localized: true,
       fields: [
         {
           name: 'label',
