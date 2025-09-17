@@ -38,12 +38,12 @@ const blockComponents: Record<string, React.FC<any>> = {
   KeyFeatures: KeyFeatures,
   termsAndConditions: TermsAndConditionsBlock,
   waitingListHero: WaitingHero,
-  multiStepFormContainer: MultiStepFormContainer,
+  msForm: MultiStepFormContainer,
   waitingListReason: WaitingListReason,
 }
 
 export const RenderBlocks: React.FC<{
-  blocks?: Page['layout'] // <-- use flat array, optional
+  blocks?: Page['layout']
 }> = ({ blocks = [] }) => {
   if ((blocks ?? []).length === 0) return null
 
