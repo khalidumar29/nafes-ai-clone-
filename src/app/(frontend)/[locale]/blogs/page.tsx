@@ -983,7 +983,7 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
                   </div>
                   <div>
                     <LocaleLink
-                      href="/blogs/1"
+                      href={`/blogs/${doc.slug}`}
                       className="font-bold text-[30px] my-[25px] hover:underline hover:text-[#5b39bb] transition-colors"
                     >
                       {doc.title}
