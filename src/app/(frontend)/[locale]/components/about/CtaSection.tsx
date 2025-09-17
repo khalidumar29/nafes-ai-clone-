@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button' // Assuming you have a reusable Button component
+import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 // Define the types for the component props based on the Payload block fields
 type CtaSectionProps = {
@@ -25,7 +25,7 @@ export const CtaSection = ({ mainHeading, description, ctaText, ctaLink }: CtaSe
 
   return (
     <section>
-      <div className="sm:py-20 px-6 py-10 bg-gray-50">
+      <div className="sm:py-20 px-6 py-10 ">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Heading */}
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">{mainHeading}</h2>

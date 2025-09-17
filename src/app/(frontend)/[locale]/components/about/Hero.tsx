@@ -1,12 +1,12 @@
 'use client'
 
-import { Autoplay } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
+import { Button } from '@/components/ui/button'
+import { MoveRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { MoveRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import 'swiper/css'
+import { Autoplay } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 export const AboutHero = ({
   mainTitleLines = [],
@@ -20,17 +20,17 @@ export const AboutHero = ({
   return (
     <div className="container">
       {/* Main Title */}
-      <h1 className="sm:text-[72px] text-[40px] font-bold leading-[1.3] mt-[1em]">
+      <h1 className="sm:text-[72px] text-[40px] font-bold leading-[1.3] mt-[1em] w-[75%]">
         {mainTitleLines.map((line: any, i: number) => (
           <span key={i}>
             {line.isGradient ? (
               <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
-                {line.text}
+                {' '}
+                {line.text}{' '}
               </span>
             ) : (
               line.text
             )}
-            <br />
           </span>
         ))}
       </h1>

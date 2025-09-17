@@ -35,7 +35,7 @@ const CompeteBetter = ({ heading, dashboardImage, dashboardNote, cards }: any) =
 
         {/* Right Cards */}
         <div className="sm:col-span-7 col-span-12">
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {cards?.map((item: any, index: number) => (
               <div key={index}>
                 <div className="w-[64px] h-[64px] bg-[#dff1ef] rounded-full flex items-center justify-center mb-4">

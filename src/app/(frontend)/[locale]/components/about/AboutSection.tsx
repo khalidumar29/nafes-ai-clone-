@@ -7,7 +7,11 @@ const AboutSection = ({ title, description, image, items = [] }: any) => {
     <section className="bg-[linear-gradient(to_bottom,#fff_0%,#e6f7f6_27.88%,#e6f7f6_82.69%,#fff_100%)]">
       <div className="container">
         {/* Main Title */}
-        <h1 className="sm:text-[64px] text-[40px] font-bold text-center leading-[1.3]">{title}</h1>
+        <div className="flex justify-center items-center w-full">
+          <h1 className="sm:text-[64px] text-[40px] font-bold text-center leading-[1.3] w-[60%]">
+            {title}
+          </h1>
+        </div>
 
         {/* Description */}
         {description && (
@@ -26,7 +30,7 @@ const AboutSection = ({ title, description, image, items = [] }: any) => {
               alt={image.alt || 'About Image'}
               width={1200}
               height={400}
-              className="w-full sm:h-[300px] object-cover"
+              className="w-full sm:h-[300px] object-cover rounded-[20px]"
             />
           </div>
         )}
