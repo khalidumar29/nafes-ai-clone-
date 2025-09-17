@@ -24,7 +24,20 @@ export const Posts: CollectionConfig<'posts'> = {
       label: 'Post Title',
       localized: true,
     },
-    { name: 'slug', type: 'text', required: true, unique: true },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      validate: (value: string | null | undefined) => {
+        if (!value) return 'Slug is required.'
+        const regex = /^[a-zA-Z0-9][a-zA-Z0-9-]*$/
+        if (!regex.test(value)) {
+          return 'Slug must start with a letter or number, and only contain letters, numbers, or hyphens (no spaces or special characters).'
+        }
+        return true
+      },
+    },
     {
       name: 'Short Description',
       type: 'textarea',
