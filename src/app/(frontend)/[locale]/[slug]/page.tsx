@@ -5,6 +5,7 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { localeLang } from '@/utilities/locale'
+import { Metadata, ResolvingMetadata } from 'next'
 
 export default async function Page({
   params,
@@ -35,9 +36,29 @@ export default async function Page({
   return (
     <main>
       <RenderBlocks blocks={page.layout || []} />
-      {/*
-      <Articles />
- */}
     </main>
   )
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}): Promise<Metadata> {
+  const { locale, slug } = await params
+  const payload = await getPayload({ config })
+  const { docs } = await payload.find({
+    collection: 'pages',
+    where: { slug: { equals: slug } },
+    locale: locale as 'en' | 'ar',
+    limit: 1,
+    overrideAccess: true,
+  })
+
+  const page = docs?.[0]
+  if (!page) return {}
+
+  return {
+    title: `Ostool | ${page.title}`,
+  }
 }
