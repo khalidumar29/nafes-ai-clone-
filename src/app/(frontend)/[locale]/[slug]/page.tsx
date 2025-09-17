@@ -6,13 +6,6 @@ import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { localeLang } from '@/utilities/locale'
 
-// interface PageProps {
-//   params: {
-//     locale: string
-//     slug: string
-//   }
-// }
-
 export default async function Page({
   params,
 }: {
@@ -49,7 +42,11 @@ export default async function Page({
   )
 }
 
-export async function generateMetadata({ params }: { params: { locale: string; slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}) {
   const { locale, slug } = await params
   const payload = await getPayload({ config })
   const { docs } = await payload.find({
