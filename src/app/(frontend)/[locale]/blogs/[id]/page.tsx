@@ -54,11 +54,14 @@ const Page = async ({ params }: { params: Promise<{ locale: string; id: string }
           </h1>
           <p className="mt-5">
             {docs && docs[0]?.publishedAt
-              ? new Date(docs[0]?.publishedAt).toLocaleDateString('ar-SA', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })
+              ? new Date(docs[0]?.publishedAt).toLocaleDateString(
+                  locale === 'ar' ? 'ar-SA' : 'en-US',
+                  {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  },
+                )
               : ''}
           </p>
           <div className="w-full rounded-5 max-h-[350px] h-full mt-8">
