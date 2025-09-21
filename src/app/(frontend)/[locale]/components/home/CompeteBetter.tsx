@@ -38,7 +38,7 @@ const CompeteBetter = ({ heading, dashboardImage, dashboardNote, cards }: any) =
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {cards?.map((item: any, index: number) => (
               <div key={index}>
-                <div className="w-[64px] h-[64px] bg-[#dff1ef] rounded-full flex items-center justify-center mb-4">
+                <div className="w-[64px] h-[64px] bg-[#cde7ff] rounded-full flex items-center justify-center mb-4">
                   {item.icon && (
                     <Image src={item.icon.url} alt={item.title} width={40} height={40} />
                   )}

@@ -27,13 +27,18 @@ const HeroBlock = ({
   bubbleText,
 }: HeroBlockProps) => {
   return (
-    <div className="bg-[linear-gradient(0deg,#e6f7f6_0%,rgba(36,13,172,.08)_40%,#fff_100%)]">
+    <div className="bg-[linear-gradient(0deg,#ecf6ff_0%,rgba(36,13,172,.08)_40%,#fff_100%)]">
       <div className="container relative">
         <div className="flex flex-col items-center justify-center text-center sm:px-6 py-20 max-w-6xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 sm:mb-8 sm:w-[85%] sm:!leading-[1.3]">
             {heading}{' '}
             {highlight && (
-              <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
+              <span
+                className={
+                  'text-primary'
+                  // "bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent"
+                }
+              >
                 {highlight}
               </span>
             )}{' '}
@@ -43,23 +48,14 @@ const HeroBlock = ({
           <div className="flex items-center space-x-8 mt-12">
             {primaryButton && (
               <LocaleLink href={'/'}>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-black rounded-[8px] text-gray-800 px-8 py-3 text-lg h-full hover:bg-teal-500 hover:border-none hover:text-white"
-                >
+                <Button variant="outline" size="lg" className="px-8 py-3 text-lg h-full ">
                   {primaryButton}
                 </Button>
               </LocaleLink>
             )}
             {secondaryButton && (
               <LocaleLink href={'/'}>
-                <Button
-                  variant={'ghost'}
-                  className="text-gray-800 hover:bg-teal-500 hover:text-white transition-colors text-lg font-medium px-8 py-3 h-full rounded-[8px]"
-                >
-                  {secondaryButton}
-                </Button>
+                <Button variant={'ghost'}>{secondaryButton}</Button>
               </LocaleLink>
             )}
           </div>

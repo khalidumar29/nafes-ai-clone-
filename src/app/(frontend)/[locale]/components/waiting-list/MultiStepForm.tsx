@@ -18,12 +18,14 @@ const MultiStepForm = ({
   submissionThanks,
   submissionMessage,
   backToHomeText,
+  locale,
 }: {
   allStepsData: any
   submitButtonText?: string
   submissionThanks?: string
   submissionMessage?: string
   backToHomeText?: string
+  locale?: string
 }) => {
   const [currentStep, setCurrentStep] = useState<number>(1)
 
@@ -117,7 +119,7 @@ const MultiStepForm = ({
                       className={cn(
                         'w-full text-lg h-[75px] flex items-center px-6 justify-start cursor-pointer border rounded-[10px]',
                         watchedValues[input.name as keyof FormData] === input.label &&
-                          'bg-[#0daca3] text-white',
+                          'bg-primary text-white',
                         currentStepData.fields.length > 1 && 'justify-center',
                       )}
                     >
@@ -167,7 +169,7 @@ const MultiStepForm = ({
               }}
               variant="outline"
             >
-              {submitButtonText} <ArrowRight />
+              {submitButtonText} {locale === 'en' ? <ArrowRight /> : <ArrowLeft />}
             </Button>
           </div>
         </form>

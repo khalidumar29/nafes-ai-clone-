@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const AboutSection = ({ title, description, image, items = [] }: any) => {
   return (
-    <section className="bg-[linear-gradient(to_bottom,#fff_0%,#e6f7f6_27.88%,#e6f7f6_82.69%,#fff_100%)]">
+    <section className="bg-[linear-gradient(to_bottom,#fff_0%,#e1eefc_27.88%,#d4e9ff_82.69%,#fff_100%)]">
       <div className="container">
         {/* Main Title */}
         <div className="flex justify-center items-center w-full">

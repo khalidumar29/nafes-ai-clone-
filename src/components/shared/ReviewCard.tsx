@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { Media } from '@/payload-types'
+import Image from 'next/image'
 
 type Review = {
   name: string
@@ -13,7 +13,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
   const stars = review.rating || 5
 
   return (
-    <div className="bg-white rounded-3xl p-8 shadow-lg border border-teal-200 relative">
+    <div className="bg-white rounded-3xl p-8 shadow-lg border border-[#74bafb] relative">
       {/* Stars */}
       <div className="flex justify-center mb-6">
         {[...Array(5)].map((_, i) => (

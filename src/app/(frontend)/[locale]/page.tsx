@@ -1,7 +1,6 @@
-import { localeLang } from '@/utilities/locale'
 import config from '@/payload.config'
+import { localeLang } from '@/utilities/locale'
 import { notFound } from 'next/navigation'
-import React from 'react'
 import { getPayload } from 'payload'
 import PageClient from './components/PageClient'
 
@@ -27,7 +26,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {pages.docs.length > 0 ? (
         pages.docs.map((page) => (
           <div key={page.id}>
-            <PageClient page={page} />
+            <PageClient locale={locale} page={page} />
           </div>
         ))
       ) : (

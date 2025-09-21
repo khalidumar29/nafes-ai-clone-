@@ -1,17 +1,19 @@
-import { getPayload } from 'payload'
-import config from '@/payload.config'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
+import config from '@/payload.config'
+import { getPayload } from 'payload'
 // import PageClient from '../components/PageClient'
+import { localeLang } from '@/utilities/locale'
+import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
-import { localeLang } from '@/utilities/locale'
-import { Metadata, ResolvingMetadata } from 'next'
 
 export default async function Page({
   params,
 }: {
   params: Promise<{ locale: string; slug: string }>
 }) {
+  console.log('---------------------------------------------------------------')
+
   const { locale, slug } = await params
   console.log('Locale:', locale, 'Slug:', slug)
   const { isEnabled: isDraftMode } = await draftMode()
@@ -30,12 +32,13 @@ export default async function Page({
     overrideAccess: true,
   })
   const page = docs?.[0]
+  console.log({ localeFromLayout: locale })
 
   if (!page) return notFound()
   console.log(page.layout)
   return (
     <main>
-      <RenderBlocks blocks={page.layout || []} />
+      <RenderBlocks locale={locale} blocks={page.layout || []} />
     </main>
   )
 }

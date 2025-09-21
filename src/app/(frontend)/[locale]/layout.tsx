@@ -17,10 +17,10 @@ export default async function LocaleLayout({
   const footer = await payload.findGlobal({ slug: 'footer', locale: typedLocale })
 
   return (
-    <>
+    <div dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Navbar locale={locale} navbar={navbar} />
       {children}
       <Footer footer={footer} />
-    </>
+    </div>
   )
 }

@@ -1,12 +1,12 @@
 'use client'
 
 import ReviewCard from '@/components/shared/ReviewCard'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination } from 'swiper/modules'
+import { Media } from '@/payload-types'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { Media } from '@/payload-types'
+import { Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 type Review = {
   name: string
@@ -23,7 +23,7 @@ type ClientTestimonialsBlockProps = {
 
 const Client: React.FC<ClientTestimonialsBlockProps> = ({ title, reviews }) => {
   return (
-    <div className="py-20 px-6 bg-[#e6f7f6] mb-[100px]">
+    <div className="py-20 px-6 bg-[#e3f2ff] mb-[100px]">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-5xl md:text-6xl font-bold text-gray-900 text-center mb-16">{title}</h2>
 

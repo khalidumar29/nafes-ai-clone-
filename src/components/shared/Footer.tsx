@@ -5,7 +5,7 @@ import LocaleLink from './LocaleLink'
 
 export default async function Footer({ footer }: { footer: any }) {
   return (
-    <footer className="relative bg-[linear-gradient(270deg,rgba(91,57,187,.1),rgba(13,172,163,.08),hsla(0,0%,100%,.1))] border-t border-solid border-[#d7dae2] pt-[50px]">
+    <footer className="relative bg-[linear-gradient(270deg,rgba(91,57,187,.1),rgba(207,231,255,0.7),hsla(0,0%,100%,.1))] border-t border-solid border-[#d7dae2] pt-[50px]">
       <div className="container">
         <div className="flex items-center justify-between mb-5">
           <ul className="flex flex-col gap-5">

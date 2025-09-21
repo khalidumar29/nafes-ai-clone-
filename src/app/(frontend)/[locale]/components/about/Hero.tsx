@@ -2,7 +2,7 @@
 
 import LocaleLink from '@/components/shared/LocaleLink'
 import { Button } from '@/components/ui/button'
-import { MoveRight } from 'lucide-react'
+import { MoveLeft, MoveRight } from 'lucide-react'
 import Image from 'next/image'
 import 'swiper/css'
 import { Autoplay } from 'swiper/modules'
@@ -16,6 +16,7 @@ export const AboutHero = ({
   ctaText,
   ctaLink,
   image,
+  locale,
 }: any) => {
   return (
     <div className="container">
@@ -24,7 +25,12 @@ export const AboutHero = ({
         {mainTitleLines.map((line: any, i: number) => (
           <span key={i}>
             {line.isGradient ? (
-              <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
+              <span
+                className={
+                  'text-primary'
+                  // "bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent"
+                }
+              >
                 {' '}
                 {line.text}{' '}
               </span>
@@ -75,7 +81,8 @@ export const AboutHero = ({
           {ctaText && (
             <LocaleLink href={ctaLink || '#'}>
               <Button className="w-fit" variant="outline">
-                {ctaText} <MoveRight className="ml-2" />
+                {ctaText}
+                {locale === 'en' ? <MoveRight className="ml-2" /> : <MoveLeft className="ml-2" />}
               </Button>
             </LocaleLink>
           )}

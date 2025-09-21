@@ -14,8 +14,8 @@ const StepContainer = ({ allSteps, currentStep }: StepContainerProps) => {
           key={item.step}
           className={cn(
             'w-4 h-[6px] rounded bg-[#cfd1d4]',
-            currentStep > item.step && 'bg-[#240dac]',
-            currentStep === item.step && 'bg-[#0daca3] w-[32px]',
+            currentStep > item.step && 'bg-primary',
+            currentStep === item.step && 'bg-[#0548ff] w-[32px]',
           )}
         />
       ))}

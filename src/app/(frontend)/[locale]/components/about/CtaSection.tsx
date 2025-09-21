@@ -2,7 +2,7 @@
 
 import LocaleLink from '@/components/shared/LocaleLink'
 import { Button } from '@/components/ui/button' // Assuming you have a reusable Button component
-import { ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 // Define the types for the component props based on the Payload block fields
 type CtaSectionProps = {
@@ -10,16 +10,27 @@ type CtaSectionProps = {
   description: string
   ctaText: string
   ctaLink?: string
+  locale?: string
 }
 
-export const CtaSection = ({ mainHeading, description, ctaText, ctaLink }: CtaSectionProps) => {
+export const CtaSection = ({
+  mainHeading,
+  description,
+  ctaText,
+  ctaLink,
+  locale,
+}: CtaSectionProps) => {
   const content = (
     <Button
-      className="bg-black hover:bg-gray-800 text-white px-8 py-4 h-auto text-lg font-medium rounded-lg flex items-center space-x-3 mx-auto"
+      className="bg-black hover:bg-primary text-white px-8 py-4 h-auto text-lg font-medium rounded-lg flex items-center space-x-3 mx-auto"
       aria-label={ctaText}
     >
-      <span className="text-teal-400">{ctaText}</span>
-      <ArrowRight className="w-5 h-5 text-teal-400" />
+      <span className="text-white">{ctaText}</span>
+      {locale === 'en' ? (
+        <ArrowRight className="w-5 h-5 text-white" />
+      ) : (
+        <ArrowLeft className="w-5 h-5 text-white" />
+      )}
     </Button>
   )
 

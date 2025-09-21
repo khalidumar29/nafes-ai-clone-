@@ -2,11 +2,11 @@
 
 import BlogCard from '@/components/shared/BlogCard'
 import { Button } from '@/components/ui/button'
-import { MoveRight } from 'lucide-react'
+import { MoveLeft, MoveRight } from 'lucide-react'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-const Blogs = () => {
+const Blogs = ({ locale }: { locale: string }) => {
   return (
     <div className=" px-6 bg-white pb-[100px]">
       <div className="max-w-7xl mx-auto">
@@ -44,7 +44,8 @@ const Blogs = () => {
           <div className="blog-pagination flex justify-center space-x-3 mt-8"></div>
         </div>
         <Button className="w-fit text-[#0daca3]">
-          Read More <MoveRight className="ml-2" />
+          Read More{' '}
+          {locale === 'en' ? <MoveRight className="ml-2" /> : <MoveLeft className="ml-2" />}
         </Button>
       </div>
     </div>

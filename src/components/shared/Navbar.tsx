@@ -1,12 +1,13 @@
 'use client'
 
 import { cn } from '@/utilities/ui'
+import Image from 'next/image'
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from 'react'
 import { UrlObject } from 'url'
+import logo from '../../../public/logos/logo2.svg'
 import { Button } from '../ui/button'
 import LanguageSwitcher from './LanguageSwitcher'
 import LocaleLink from './LocaleLink'
-
 type NavbarButton = {
   href: string
   label: ReactNode
@@ -19,27 +20,28 @@ const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
       <nav
         className={cn(
           'flex items-center justify-between px-6 py-3  mx-auto container ',
-          locale === 'ar' && 'flex-row-reverse',
+          // locale === 'ar' && 'flex-row-reverse',
         )}
       >
         {/* Logo */}
         <LocaleLink href="/" className="flex items-center">
-          {navbar?.logo && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={navbar.logo?.url}
-              alt={navbar.logo?.alt || 'Logo'}
-              className="h-8 w-auto object-contain"
-            />
-          )}
+          {/* {navbar?.logo && ( */}
+          {}
+          <Image src={logo} alt={'logo'} className="h-8 w-full object-contain" />
+          {/* )} */}
         </LocaleLink>
 
-        <div className={cn('flex gap-20', locale === 'ar' && 'flex-row-reverse')}>
+        <div
+          className={cn(
+            'flex gap-20',
+            // locale === 'ar' && 'flex-row-reverse'
+          )}
+        >
           {/* Navigation Links */}
           <div
             className={cn(
               'hidden md:flex items-center gap-8',
-              locale === 'ar' && 'flex-row-reverse',
+              // locale === 'ar' && 'flex-row-reverse',
             )}
           >
             {navbar?.navLinks?.map(
@@ -73,7 +75,7 @@ const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
                 <LocaleLink
                   key={i}
                   href={link.href}
-                  className="text-gray-800 hover:text-teal-500 transition-colors"
+                  className="text-gray-800 hover:text-primary transition-colors"
                 >
                   {link.label}
                 </LocaleLink>
@@ -82,18 +84,19 @@ const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
           </div>
 
           {/* Right Side */}
-          <div className={cn('flex items-center gap-4', locale === 'ar' && 'flex-row-reverse')}>
+          <div
+            className={cn(
+              'flex items-center gap-4',
+              //  locale === 'ar' && 'flex-row-reverse'
+            )}
+          >
             <div>
               <LanguageSwitcher />
             </div>
             {navbar?.buttons?.map((btn: NavbarButton, i: number) => (
               <LocaleLink key={i} href={btn.href}>
                 <Button
-                  className={
-                    btn.variant === 'primary'
-                      ? 'bg-teal-500 hover:bg-teal-600 text-white px-6'
-                      : 'border-black text-gray-800 px-6 rounded-[8px] hover:bg-teal-500 hover:border-none hover:text-white h-[44px] text-[14px]'
-                  }
+                  className={btn.variant === 'outline' ? 'h-[44px] text-[14px]' : ''}
                   variant={btn.variant === 'outline' ? 'outline' : 'default'}
                 >
                   {btn.label}

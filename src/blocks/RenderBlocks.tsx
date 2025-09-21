@@ -44,7 +44,8 @@ const blockComponents: Record<string, React.FC<any>> = {
 
 export const RenderBlocks: React.FC<{
   blocks?: Page['layout']
-}> = ({ blocks = [] }) => {
+  locale: string
+}> = ({ blocks = [], locale = 'en' }) => {
   if ((blocks ?? []).length === 0) return null
 
   return (
@@ -56,7 +57,7 @@ export const RenderBlocks: React.FC<{
 
         return (
           <div className="" key={index}>
-            <Block {...block} disableInnerContainer />
+            <Block {...block} disableInnerContainer locale={locale} />
           </div>
         )
       })}

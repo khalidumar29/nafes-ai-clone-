@@ -2,7 +2,7 @@
 
 import LocaleLink from '@/components/shared/LocaleLink'
 import { Button } from '@/components/ui/button'
-import { MoveRight } from 'lucide-react'
+import { MoveLeft, MoveRight } from 'lucide-react'
 import Image from 'next/image'
 
 interface WhyChooseProps {
@@ -17,6 +17,7 @@ interface WhyChooseProps {
   }[]
   ctaText?: string
   ctaLink?: string
+  locale?: string
 }
 
 const WhyChooseSection = ({
@@ -26,6 +27,7 @@ const WhyChooseSection = ({
   cards = [],
   ctaText,
   ctaLink,
+  locale,
 }: WhyChooseProps) => {
   return (
     <section className="my-[100px]">
@@ -33,7 +35,12 @@ const WhyChooseSection = ({
         <h1 className="sm:text-[64px] text-[40px] font-bold text-start leading-[1.3]">
           {title}{' '}
           {highlightText && (
-            <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
+            <span
+              className={
+                'text-primary'
+                // "bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent"
+              }
+            >
               {highlightText}
             </span>
           )}
@@ -45,7 +52,7 @@ const WhyChooseSection = ({
         <div className="grid sm:grid-cols-3 grid-cols-1 gap-5">
           {cards.map((item) => (
             <div key={item.id} className="p-[24px] border rounded-[10px] flex flex-col gap-[24px]">
-              <div className="w-[64px] h-[64px] bg-[#dff1ef] rounded-full flex items-center justify-center mb-4">
+              <div className="w-[64px] h-[64px] bg-[#cde7ff] rounded-full flex items-center justify-center mb-4">
                 {item.img?.url && (
                   <Image
                     src={item.img.url}
@@ -65,7 +72,8 @@ const WhyChooseSection = ({
           <div className="mt-10 flex items-center justify-center">
             <LocaleLink href={ctaLink || '#'}>
               <Button variant="outline">
-                {ctaText} <MoveRight className="ml-2" />
+                {ctaText}{' '}
+                {locale === 'en' ? <MoveRight className="ml-2" /> : <MoveLeft className="ml-2" />}
               </Button>
             </LocaleLink>
           </div>

@@ -1,6 +1,6 @@
 import Blogs from './Blogs'
 
-const Articles = () => {
+const Articles = ({ locale }: { locale: string }) => {
   return (
     <div className="container">
       <div className="sm:w-1/2">
@@ -8,7 +8,7 @@ const Articles = () => {
           Recent Articles <br></br>from Our Blog
         </h1>
       </div>
-      <Blogs />
+      <Blogs locale={locale} />
     </div>
   )
 }

@@ -1,11 +1,12 @@
 'use client'
-import { MoveUpRight, TrendingUp } from 'lucide-react'
+import { cn } from '@/utilities/ui'
+import { MoveUpLeft, MoveUpRight, TrendingUp } from 'lucide-react'
 import Image from 'next/image'
 import CompanySlider from './CompanySlider'
 
-const Trusted = ({ introText, heading, items, companyLogos }: any) => {
+const Trusted = ({ introText, heading, items, companyLogos, locale }: any) => {
   return (
-    <div className="bg-[#e6f7f6] mb-[100px]">
+    <div className="bg-[#ecf6ff] mb-[100px]">
       <div className="container sm:py-[100px] py-[50px]">
         <p className="text-sm text-center mb-[40px]">{introText}</p>
         {/* if you had CompanySlider, keep it here */}
@@ -38,8 +39,8 @@ const Trusted = ({ introText, heading, items, companyLogos }: any) => {
 
                 {/* Right Text */}
                 <div className="w-full">
-                  <div className="w-[56px] h-[56px] bg-[#C2E8E5] rounded-full ml-[70%] flex justify-center items-center">
-                    <TrendingUp className="text-[#0CABA2]" size={42} />
+                  <div className="w-[56px] h-[56px] bg-[#cde7ff] rounded-full ml-[70%] flex justify-center items-center">
+                    <TrendingUp className="text-[#1179da]" size={42} />
                   </div>
                   <div className="w-3/4 px-3">
                     <h3 className="text-[24px] font-bold my-3">{item.title}</h3>
@@ -51,8 +52,8 @@ const Trusted = ({ introText, heading, items, companyLogos }: any) => {
               <>
                 {/* Left Text */}
                 <div className="w-full flex flex-col items-end">
-                  <div className="w-[56px] h-[56px] bg-[#C2E8E5] rounded-full flex justify-center items-center mr-[70%]">
-                    <TrendingUp className="text-[#0CABA2]" size={42} />
+                  <div className="w-[56px] h-[56px] bg-[#cde7ff] rounded-full flex justify-center items-center mr-[70%]">
+                    <TrendingUp className="text-[#1179da]" size={42} />
                   </div>
                   <div className="w-3/4 px-3 text-end">
                     <h3 className="text-[24px] font-bold my-3">{item.title}</h3>
@@ -80,8 +81,17 @@ const Trusted = ({ introText, heading, items, companyLogos }: any) => {
         ))}
       </div>
 
-      <div className="w-1/2 bg-white p-[18px] flex justify-end mt-[60px] rounded-tr-[32px]">
-        <MoveUpRight className="text-teal-500" size={80} />
+      <div
+        className={cn(
+          'w-1/2 bg-white p-[18px] flex justify-end mt-[60px] ',
+          locale === 'ar' ? 'rounded-tl-[32px]' : 'rounded-tr-[32px]',
+        )}
+      >
+        {locale === 'ar' ? (
+          <MoveUpLeft className="text-primary" size={80} />
+        ) : (
+          <MoveUpRight className="text-primary" size={80} />
+        )}
       </div>
     </div>
   )
