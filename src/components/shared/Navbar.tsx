@@ -4,7 +4,7 @@ import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from 'react'
 import { UrlObject } from 'url'
-import logo from '../../../public/logos/logo2.svg'
+import logo from '../../../public/logos/logo.png'
 import { Button } from '../ui/button'
 import LanguageSwitcher from './LanguageSwitcher'
 import LocaleLink from './LocaleLink'
@@ -16,7 +16,7 @@ type NavbarButton = {
 
 const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
   return (
-    <div className="border-b bg-white">
+    <div className="border-b  backdrop-blur-xl sticky top-0 z-50">
       <nav
         className={cn(
           'flex items-center justify-between px-6 py-3  mx-auto container ',

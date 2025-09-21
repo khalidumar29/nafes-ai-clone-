@@ -14,11 +14,11 @@ interface StatsProps {
 
 const StatsSection = ({ stats = [], textColor = 'white', direction = 'rtl' }: StatsProps) => {
   return (
-    <section className="container">
+    <section className="container mb-28">
       <div
         className={`flex sm:flex-row flex-col justify-between items-center m-0 mx-auto py-[40px] px-[20px] rounded-[12px] text-center ${direction === 'rtl' ? 'rtl' : 'ltr'}`}
         style={{
-          background: 'linear-gradient(92.16deg, #0daca3 43.64%, #250f8d 134.77%)',
+          background: 'linear-gradient(92.16deg, #0f5da7 43.64%, #250f8d 134.77%)',
           color: textColor || 'white',
         }}
       >
