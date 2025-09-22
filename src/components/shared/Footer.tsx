@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import img from '../../../public/images/image.png'
-import logo from '../../../public/logos/logo.png'
+import logo from '../../../public/logos/logo2.png'
 import LocaleLink from './LocaleLink'
 export default async function Footer({ footer }: { footer: any }) {
   return (
