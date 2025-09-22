@@ -11,14 +11,14 @@ export const AboutHero: Block = {
       name: 'mainTitleLines',
       type: 'array',
       label: 'Main Title Lines',
-      required: true,
+      required: false,
       minRows: 1,
       maxRows: 5,
       fields: [
         {
           name: 'text',
           type: 'text',
-          required: true,
+          required: false,
         },
         {
           name: 'isGradient',

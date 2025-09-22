@@ -257,11 +257,13 @@ export interface Page {
             blockType: 'faq';
           }
         | {
-            mainTitleLines: {
-              text: string;
-              isGradient?: boolean | null;
-              id?: string | null;
-            }[];
+            mainTitleLines?:
+              | {
+                  text?: string | null;
+                  isGradient?: boolean | null;
+                  id?: string | null;
+                }[]
+              | null;
             companies?:
               | {
                   logo: number | Media;
