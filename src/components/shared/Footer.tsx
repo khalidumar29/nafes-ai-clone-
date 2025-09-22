@@ -1,12 +1,11 @@
 import Image from 'next/image'
 import img from '../../../public/images/image.png'
-import FooterImage from './FooterImage'
+import logo from '../../../public/logos/logo.png'
 import LocaleLink from './LocaleLink'
-
 export default async function Footer({ footer }: { footer: any }) {
   return (
     <footer className="relative bg-[linear-gradient(270deg,rgba(91,57,187,.1),rgba(207,231,255,0.7),hsla(0,0%,100%,.1))] border-t border-solid border-[#d7dae2] pt-[50px]">
-      <div className="container">
+      <div className="container lg:max-h-[26em] md:max-h-[22em] max-h-[20em] overflow-hidden">
         <div className="flex items-center justify-between mb-5">
           <ul className="flex flex-col gap-5">
             {footer?.links?.map((link: any, i: number) => (
@@ -56,7 +55,8 @@ export default async function Footer({ footer }: { footer: any }) {
         </div>
 
         <div className="mt-[50px]">
-          <FooterImage />
+          {/* <FooterImage /> */}
+          <Image src={logo} alt="logo" width={1200} height={800} className="w-full h-full"></Image>
         </div>
       </div>
     </footer>

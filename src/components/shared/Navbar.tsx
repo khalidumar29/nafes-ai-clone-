@@ -8,6 +8,7 @@ import logo from '../../../public/logos/logo.png'
 import { Button } from '../ui/button'
 import LanguageSwitcher from './LanguageSwitcher'
 import LocaleLink from './LocaleLink'
+import MobileNavbar from './MobileNavbar'
 type NavbarButton = {
   href: string
   label: ReactNode
@@ -86,23 +87,29 @@ const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
           {/* Right Side */}
           <div
             className={cn(
-              'flex items-center gap-4',
+              'flex items-center gap-1 md:gap-4',
               //  locale === 'ar' && 'flex-row-reverse'
             )}
           >
-            <div>
+            <div className="hidden md:block">
               <LanguageSwitcher />
             </div>
             {navbar?.buttons?.map((btn: NavbarButton, i: number) => (
               <LocaleLink key={i} href={btn.href}>
                 <Button
-                  className={btn.variant === 'outline' ? 'h-[44px] text-[14px]' : ''}
+                  className={
+                    btn.variant === 'outline' ? 'h-[44px] text-[14px] hidden md:block' : ''
+                  }
                   variant={btn.variant === 'outline' ? 'outline' : 'default'}
                 >
                   {btn.label}
                 </Button>
               </LocaleLink>
             ))}
+
+            <div className="block md:hidden">
+              <MobileNavbar navbar={navbar} />
+            </div>
           </div>
         </div>
       </nav>
