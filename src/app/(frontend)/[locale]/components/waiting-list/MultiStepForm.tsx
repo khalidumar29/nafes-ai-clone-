@@ -148,7 +148,7 @@ const MultiStepForm = ({
           <div className="w-full flex justify-between mt-5">
             {currentStep > 1 && (
               <Button onClick={() => setCurrentStep(currentStep - 1)} variant="ghost">
-                <ArrowLeft />
+                {locale === 'en' ? <ArrowLeft /> : <ArrowRight />}
               </Button>
             )}
             <Button
