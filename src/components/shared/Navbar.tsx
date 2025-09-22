@@ -1,5 +1,6 @@
 'use client'
 
+import { NavbarButton } from '@/type'
 import { cn } from '@/utilities/ui'
 import Image from 'next/image'
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from 'react'
@@ -9,11 +10,6 @@ import { Button } from '../ui/button'
 import LanguageSwitcher from './LanguageSwitcher'
 import LocaleLink from './LocaleLink'
 import MobileNavbar from './MobileNavbar'
-type NavbarButton = {
-  href: string
-  label: ReactNode
-  variant: 'primary' | 'outline' | string
-}
 
 const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
   return (
