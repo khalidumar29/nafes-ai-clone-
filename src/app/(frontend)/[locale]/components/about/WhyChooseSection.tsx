@@ -44,7 +44,6 @@ const WhyChooseSection = ({
               {highlightText}
             </span>
           )}
-          ?
         </h1>
 
         {description && <p className="sm:w-[50%] mt-[30px] mb-[40px]">{description}</p>}
