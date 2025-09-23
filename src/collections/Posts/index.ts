@@ -13,9 +13,13 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { preventFeaturedDeletion } from './hooks/preventFeaturedDeletion'
 
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
+  hooks: {
+    beforeDelete: [preventFeaturedDeletion],
+  },
   fields: [
     {
       name: 'title',
