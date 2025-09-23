@@ -1,6 +1,6 @@
-import { APIError, type BeforeDeleteHook } from 'payload'
+import { APIError, type CollectionBeforeDeleteHook } from 'payload'
 
-export const preventFeaturedDeletion: BeforeDeleteHook = async ({ req, id }) => {
+export const preventFeaturedDeletion: CollectionBeforeDeleteHook = async ({ req, id }) => {
   const blogPage = await req.payload.findGlobal({
     slug: 'blog-page',
     depth: 0,
