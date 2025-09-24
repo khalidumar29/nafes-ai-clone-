@@ -156,6 +156,10 @@ export interface Page {
             highlight?: string | null;
             subHeading?: string | null;
             primaryButton?: string | null;
+            /**
+             * Enter a relative path like /contact or a full URL.
+             */
+            primaryButtonLink?: string | null;
             secondaryButton?: string | null;
             mainImage?: (number | null) | Media;
             barImage?: (number | null) | Media;
@@ -1098,6 +1102,7 @@ export interface PagesSelect<T extends boolean = true> {
               highlight?: T;
               subHeading?: T;
               primaryButton?: T;
+              primaryButtonLink?: T;
               secondaryButton?: T;
               mainImage?: T;
               barImage?: T;

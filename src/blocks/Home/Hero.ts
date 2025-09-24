@@ -29,6 +29,14 @@ export const Hero: Block = {
       label: 'Primary Button Label',
     },
     {
+      name: 'primaryButtonLink',
+      type: 'text',
+      label: 'Primary Button Link',
+      admin: {
+        description: 'Enter a relative path like /contact or a full URL.',
+      },
+    },
+    {
       name: 'secondaryButton',
       type: 'text',
       label: 'Secondary Button Label',

@@ -8,6 +8,7 @@ type HeroBlockProps = {
   highlight?: string
   subHeading?: string
   primaryButton?: string
+  primaryButtonLink?: string
   secondaryButton?: string
   mainImage?: { url: string; alt: string }
   barImage?: { url: string; alt: string }
@@ -20,6 +21,7 @@ const HeroBlock = ({
   highlight,
   subHeading,
   primaryButton,
+  primaryButtonLink,
   secondaryButton,
   mainImage,
   barImage,
@@ -47,7 +49,7 @@ const HeroBlock = ({
 
           <div className="flex items-center space-x-8 mt-12">
             {primaryButton && (
-              <LocaleLink href={'/'}>
+              <LocaleLink href={primaryButtonLink && primaryButtonLink.trim() ? primaryButtonLink : '/'}>
                 <Button variant="outline" size="lg" className="px-8 py-3 text-lg h-full ">
                   {primaryButton}
                 </Button>
