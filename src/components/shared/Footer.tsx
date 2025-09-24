@@ -32,7 +32,7 @@ export default async function Footer({ footer }: { footer: any }) {
         </div>
 
         {/* Socials */}
-        <div className="flex items-center space-x-4 my-5">
+        <div className="flex items-center gap-4 my-5">
           {footer?.socials?.map((s: any, i: number) => (
             <a
               key={i}
