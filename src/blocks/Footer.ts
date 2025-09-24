@@ -8,6 +8,14 @@ const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Footer Logo',
+      localized: true,
+      required: false,
+    },
+    {
       name: 'links',
       type: 'array',
       label: 'Footer Links',

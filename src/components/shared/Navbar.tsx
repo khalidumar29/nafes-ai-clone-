@@ -12,6 +12,19 @@ import LocaleLink from './LocaleLink'
 import MobileNavbar from './MobileNavbar'
 
 const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
+  const resolvedNavLogo =
+    navbar?.logo && typeof navbar.logo === 'object' && 'url' in navbar.logo ? navbar.logo : null
+  const navLogoWidth =
+    resolvedNavLogo?.width ||
+    resolvedNavLogo?.sizes?.medium?.width ||
+    resolvedNavLogo?.sizes?.small?.width ||
+    160
+  const navLogoHeight =
+    resolvedNavLogo?.height ||
+    resolvedNavLogo?.sizes?.medium?.height ||
+    resolvedNavLogo?.sizes?.small?.height ||
+    40
+
   return (
     <div className="border-b  backdrop-blur-xl sticky top-0 z-50">
       <nav
@@ -22,10 +35,18 @@ const Navbar = ({ navbar, locale }: { navbar: any; locale: string }) => {
       >
         {/* Logo */}
         <LocaleLink href="/" className="flex items-center">
-          {/* {navbar?.logo && ( */}
-          {}
-          <Image src={logo} alt={'logo'} className="h-8 w-full object-contain" />
-          {/* )} */}
+          {resolvedNavLogo?.url ? (
+            <Image
+              src={resolvedNavLogo.url}
+              alt={resolvedNavLogo.alt || 'logo'}
+              width={navLogoWidth}
+              height={navLogoHeight}
+              className="h-8 w-auto object-contain"
+              priority
+            />
+          ) : (
+            <Image src={logo} alt="logo" className="h-8 w-auto object-contain" priority />
+          )}
         </LocaleLink>
 
         <div

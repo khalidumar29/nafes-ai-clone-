@@ -13,6 +13,7 @@ export const Navbar: GlobalConfig = {
       label: 'Logo Image',
       relationTo: 'media', // assumes you have a media collection
       required: true,
+      localized: true,
     },
     {
       name: 'navLinks',

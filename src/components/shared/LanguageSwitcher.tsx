@@ -7,17 +7,29 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Globe } from 'lucide-react'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 
 const LanguageSwitcher = () => {
-  const router = useRouter()
   const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   const switchLanguage = (lang: string) => {
+    if (!pathname) return
+
     const segments = pathname.split('/')
-    segments[1] = lang
-    const newPath = segments.join('/')
-    router.push(newPath)
+    if (segments.length > 1) {
+      segments[1] = lang
+    } else {
+      segments.push(lang)
+    }
+
+    const nextPath = segments.join('/') || '/'
+    const queryString = searchParams?.toString()
+    const nextUrl = queryString ? `${nextPath}?${queryString}` : nextPath
+
+    if (typeof window !== 'undefined') {
+      window.location.assign(nextUrl)
+    }
   }
 
   return (

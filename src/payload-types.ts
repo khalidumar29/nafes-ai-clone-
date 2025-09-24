@@ -1825,6 +1825,7 @@ export interface Navbar {
  */
 export interface Footer {
   id: number;
+  logo?: (number | null) | Media;
   links?:
     | {
         label: string;
@@ -1901,6 +1902,7 @@ export interface NavbarSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  logo?: T;
   links?:
     | T
     | {

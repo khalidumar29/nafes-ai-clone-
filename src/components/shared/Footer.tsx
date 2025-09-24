@@ -3,6 +3,21 @@ import img from '../../../public/images/image.png'
 import logo from '../../../public/logos/logo2.png'
 import LocaleLink from './LocaleLink'
 export default async function Footer({ footer }: { footer: any }) {
+  const resolvedFooterLogo =
+    footer?.logo && typeof footer.logo === 'object' && 'url' in footer.logo ? footer.logo : null
+  const footerLogoWidth =
+    resolvedFooterLogo?.width ||
+    resolvedFooterLogo?.sizes?.large?.width ||
+    resolvedFooterLogo?.sizes?.medium?.width ||
+    resolvedFooterLogo?.sizes?.small?.width ||
+    1200
+  const footerLogoHeight =
+    resolvedFooterLogo?.height ||
+    resolvedFooterLogo?.sizes?.large?.height ||
+    resolvedFooterLogo?.sizes?.medium?.height ||
+    resolvedFooterLogo?.sizes?.small?.height ||
+    800
+
   return (
     <footer className="relative bg-[linear-gradient(270deg,rgba(91,57,187,.1),rgba(207,231,255,0.7),hsla(0,0%,100%,.1))] border-t border-solid border-[#d7dae2] pt-[50px]">
       <div className="container lg:max-h-[26em] md:max-h-[22em] max-h-[20em] overflow-hidden">
@@ -52,11 +67,21 @@ export default async function Footer({ footer }: { footer: any }) {
           <div>
             <p>{footer?.footerNote}</p>
           </div>
-        </div>
+          </div>
 
         <div className="mt-[50px]">
           {/* <FooterImage /> */}
-          <Image src={logo} alt="logo" width={1200} height={800} className="w-full h-full"></Image>
+          {resolvedFooterLogo?.url ? (
+            <Image
+              src={resolvedFooterLogo.url}
+              alt={resolvedFooterLogo.alt || 'logo'}
+              width={footerLogoWidth}
+              height={footerLogoHeight}
+              className="w-full h-full object-contain"
+            />
+          ) : (
+            <Image src={logo} alt="logo" width={1200} height={800} className="w-full h-full" />
+          )}
         </div>
       </div>
     </footer>
