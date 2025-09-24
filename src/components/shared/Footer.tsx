@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import img from '../../../public/images/image.png'
-import logo from '../../../public/logos/logo2.png'
 import LocaleLink from './LocaleLink'
 export default async function Footer({ footer }: { footer: any }) {
   const resolvedFooterLogo =
@@ -67,7 +66,7 @@ export default async function Footer({ footer }: { footer: any }) {
           <div>
             <p>{footer?.footerNote}</p>
           </div>
-          </div>
+        </div>
 
         <div className="mt-[50px]">
           {/* <FooterImage /> */}
@@ -80,7 +79,13 @@ export default async function Footer({ footer }: { footer: any }) {
               className="w-full h-full object-contain"
             />
           ) : (
-            <Image src={logo} alt="logo" width={1200} height={800} className="w-full h-full" />
+            <Image
+              src={resolvedFooterLogo?.url}
+              alt="logo"
+              width={1200}
+              height={800}
+              className="w-full h-full"
+            />
           )}
         </div>
       </div>
