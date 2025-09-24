@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import img from '../../../public/images/image.png'
 import LocaleLink from './LocaleLink'
 export default async function Footer({ footer }: { footer: any }) {
   const resolvedFooterLogo =
@@ -17,6 +16,8 @@ export default async function Footer({ footer }: { footer: any }) {
     resolvedFooterLogo?.sizes?.small?.height ||
     800
 
+  console.log(footer)
+
   return (
     <footer className="relative bg-[linear-gradient(270deg,rgba(91,57,187,.1),rgba(207,231,255,0.7),hsla(0,0%,100%,.1))] border-t border-solid border-[#d7dae2] pt-[50px]">
       <div className="container lg:max-h-[26em] md:max-h-[22em] max-h-[20em] overflow-hidden">
@@ -28,7 +29,15 @@ export default async function Footer({ footer }: { footer: any }) {
               </LocaleLink>
             ))}
           </ul>
-          <Image src={img} className="w-[10em]" alt="Footer logo" />
+          {footer?.highlightImage && (
+            <Image
+              src={footer?.highlightImage?.url}
+              width={600}
+              height={300}
+              className="w-[10em]"
+              alt="Footer logo"
+            />
+          )}
         </div>
 
         {/* Socials */}

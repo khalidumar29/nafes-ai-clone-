@@ -16,6 +16,14 @@ const Footer: GlobalConfig = {
       required: false,
     },
     {
+      name: 'highlightImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Footer Highlight',
+      localized: true,
+      required: false,
+    },
+    {
       name: 'links',
       type: 'array',
       label: 'Footer Links',
