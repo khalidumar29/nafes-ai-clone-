@@ -88,10 +88,12 @@ const Page = async ({ params }: { params: Promise<{ locale: string; id: string }
               converters={{
                 ...defaultJSXConverters,
                 paragraph: ({ node, nodesToJSX }) => (
-                  <p className="">{nodesToJSX({ parent: node, nodes: node.children })}</p>
+                  <p className="text-[16px] leading-[1.5] text-[#555a65] mb-6 last:mb-0">
+                    {nodesToJSX({ parent: node, nodes: node.children })}
+                  </p>
                 ),
                 blockquote: ({ node, nodesToJSX }) => (
-                  <blockquote className="border-l-4 border-gray-300 pl-4 italic">
+                  <blockquote className="border-l-4 border-gray-300 pl-4 italic text-[16px] leading-[1.5] text-[#555a65] my-8">
                     {nodesToJSX({ parent: node, nodes: node.children })}
                   </blockquote>
                 ),
@@ -102,18 +104,37 @@ const Page = async ({ params }: { params: Promise<{ locale: string; id: string }
                   const Tag = `h${level}` // Always a string like 'h1', 'h2', etc.
                   const classes =
                     level === 1
-                      ? 'text-4xl font-bold my-4'
+                      ? 'text-[32px] leading-[1.5] font-bold mt-12 mb-6'
                       : level === 2
-                        ? 'text-3xl font-bold my-3'
+                        ? 'text-[24px] leading-[1.5] font-semibold mt-10 mb-5'
                         : level === 3
-                          ? 'text-2xl font-bold my-2'
-                          : 'text-xl font-bold my-1'
+                          ? 'text-[18px] leading-[1.5] font-semibold mt-8 mb-4'
+                          : level === 4
+                            ? 'text-[16px] leading-[1.5] font-semibold mt-6 mb-3'
+                            : level === 5
+                              ? 'text-[16px] leading-[1.5] font-medium mt-4 mb-2'
+                              : 'text-[16px] leading-[1.5] font-medium mt-4 mb-2'
                   return React.createElement(
                     Tag,
                     { className: classes },
                     nodesToJSX({ parent: node, nodes: node.children }),
                   )
                 },
+                list: ({ node, nodesToJSX }) => {
+                  const Tag = node?.tag === 'ol' ? 'ol' : 'ul'
+                  const spacingClasses =
+                    Tag === 'ol'
+                      ? 'list-decimal pl-6 space-y-3 text-[16px] leading-[1.5] text-[#555a65]'
+                      : 'list-disc pl-6 space-y-3 text-[16px] leading-[1.5] text-[#555a65]'
+                  return React.createElement(
+                    Tag,
+                    { className: spacingClasses },
+                    nodesToJSX({ parent: node, nodes: node.children }),
+                  )
+                },
+                listitem: ({ node, nodesToJSX }) => (
+                  <li>{nodesToJSX({ parent: node, nodes: node.children })}</li>
+                ),
                 link: ({ node, nodesToJSX }) => {
                   const url = node.fields?.url || ''
                   const isInternal = url.startsWith('/')

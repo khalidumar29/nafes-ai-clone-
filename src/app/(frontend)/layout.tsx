@@ -5,12 +5,9 @@ import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import React from 'react'
 
-import { Providers } from '@/providers'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
 import { getServerSideURL } from '@/utilities/getURL'
-import config from '@payload-config'
-import { getPayload } from 'payload'
 import 'swiper/css'
 import 'swiper/css/bundle'
 import './globals.css'
