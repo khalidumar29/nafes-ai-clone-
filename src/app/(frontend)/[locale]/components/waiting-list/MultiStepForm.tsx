@@ -29,7 +29,6 @@ const MultiStepForm = ({
 }) => {
   const [currentStep, setCurrentStep] = useState<number>(1)
 
-  // Build schema only once when component mounts or data changes
   const { schema, defaultValues } = useMemo(() => {
     const schemaShape: Record<string, any> = {}
     const defaultVals: Record<string, string> = {}
@@ -38,8 +37,6 @@ const MultiStepForm = ({
     allStepsData?.forEach((step: any) => {
       step.fields?.forEach((field: any) => {
         field.inputs?.forEach((input: any) => {
-          console.log('Processing input:', input)
-
           if (!seen.has(input.name)) {
             // All fields should be optional by default, we'll validate individually per step
             schemaShape[input.name] = z.string().optional()
