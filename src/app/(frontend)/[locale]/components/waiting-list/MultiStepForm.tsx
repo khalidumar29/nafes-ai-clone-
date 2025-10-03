@@ -6,7 +6,7 @@ import { FormData } from '@/type'
 import { cn } from '@/utilities/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import z from 'zod'
 import FinalStep from './FinalStep'
@@ -29,23 +29,35 @@ const MultiStepForm = ({
 }) => {
   const [currentStep, setCurrentStep] = useState<number>(1)
 
-  const schemaShape: Record<string, any> = {}
-  const defaultValues: Record<string, string> = {}
-  const seen = new Set<string>()
+  // Build schema only once when component mounts or data changes
+  const { schema, defaultValues } = useMemo(() => {
+    const schemaShape: Record<string, any> = {}
+    const defaultVals: Record<string, string> = {}
+    const seen = new Set<string>()
 
-  allStepsData?.forEach((step: any) => {
-    step.fields?.forEach((field: any) => {
-      field.inputs?.forEach((input: any) => {
-        if (!seen.has(input.name)) {
-          schemaShape[input.name] = z.string().min(1, `${input.label || input.name} is required`)
-          defaultValues[input.name] = ''
-          seen.add(input.name)
-        }
+    allStepsData?.forEach((step: any) => {
+      step.fields?.forEach((field: any) => {
+        field.inputs?.forEach((input: any) => {
+          console.log('Processing input:', input)
+
+          if (!seen.has(input.name)) {
+            // All fields should be optional by default, we'll validate individually per step
+            schemaShape[input.name] = z.string().optional()
+            defaultVals[input.name] = ''
+            seen.add(input.name)
+            console.log(
+              `Added to schema: ${input.name} with label: ${input.label}, required: false`,
+            )
+          }
+        })
       })
     })
-  })
 
-  const schema = z.object(schemaShape)
+    return {
+      schema: z.object(schemaShape),
+      defaultValues: defaultVals,
+    }
+  }, [allStepsData])
 
   const {
     register,
@@ -64,22 +76,45 @@ const MultiStepForm = ({
   const currentStepData = allStepsData?.find((item: any) => item.step === currentStep)
   const watchedValues = watch()
 
+  console.log('Current step:', currentStep)
+  console.log('Current step data:', currentStepData)
+  console.log('Watched values:', watchedValues)
+  console.log('Form errors:', errors)
+  console.log('Form is valid:', isValid)
+
   const onSubmit = async (data: FormData) => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/waiting-form-submissions`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        },
-      )
-      if (!res.ok) throw new Error(`Failed: ${res.status}`)
+      console.log('===== FORM SUBMISSION DEBUG =====')
+      console.log('Submitting form data:', data)
+      console.log('Form data keys:', Object.keys(data))
+      console.log('Form data values:', Object.values(data))
+      console.log('JSON stringified:', JSON.stringify(data, null, 2))
+      const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL || window.location.origin
+      console.log('API URL:', `${apiUrl}/api/waiting-form-submissions`)
+
+      const res = await fetch(`${apiUrl}/api/waiting-form-submissions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      console.log('Response status:', res.status)
+
+      if (!res.ok) {
+        const errorText = await res.text()
+        console.error('Response error:', errorText)
+        throw new Error(`Failed: ${res.status} - ${errorText}`)
+      }
 
       const json = await res.json()
+      console.log('Form submitted successfully:', json)
 
       setCurrentStep((prev) => prev + 1)
-    } catch (err) {}
+    } catch (err) {
+      console.error('Form submission error:', err)
+      // You might want to show an error message to the user here
+      alert('Something went wrong. Please try again.')
+    }
   }
 
   const handleSelect = (name: keyof FormData, value: string) => {
@@ -152,19 +187,41 @@ const MultiStepForm = ({
               </Button>
             )}
             <Button
-              disabled={!isValid && currentStepData?.formType === 'form'}
               type="button"
               onClick={() => {
+                console.log('Button clicked - Current step formType:', currentStepData?.formType)
+                console.log('Button clicked - Current values:', getValues())
+
                 if (currentStepData?.formType === 'form') {
-                  // Trigger validation programmatically
-                  trigger().then((isFormValid) => {
-                    if (isFormValid) {
-                      const data = getValues() // Get current form values
-                      onSubmit(data) // Call your submit function
-                    }
+                  // For form steps, validate only the current step fields
+                  const currentStepFieldNames =
+                    currentStepData?.fields?.flatMap(
+                      (field: any) => field.inputs?.map((input: any) => input.name) || [],
+                    ) || []
+
+                  console.log('Validating fields for current step:', currentStepFieldNames)
+
+                  // Check if current step fields are filled
+                  const currentValues = getValues()
+                  const currentStepValid = currentStepFieldNames.every((fieldName: string) => {
+                    const value = currentValues[fieldName as keyof FormData]
+                    const isValid = value && value.trim() !== ''
+                    console.log(`Field ${fieldName}: "${value}" - valid: ${isValid}`)
+                    return isValid
                   })
+
+                  console.log('Current step validation result:', currentStepValid)
+
+                  if (currentStepValid) {
+                    const data = getValues()
+                    onSubmit(data)
+                  } else {
+                    console.log('Current step validation failed - some fields are empty')
+                    alert('Please fill in all required fields')
+                  }
                 } else {
-                  setCurrentStep(currentStep + 1) // Increment step for non-form steps
+                  console.log('Non-form step, incrementing...')
+                  setCurrentStep(currentStep + 1)
                 }
               }}
               variant="outline"

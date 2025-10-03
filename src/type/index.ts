@@ -6,10 +6,10 @@ export interface Step {
 }
 
 export interface FormData {
-  objective: string
-  platforms: string
-  averageRate: string
-  tendersPerMonth: string
+  business_type: string
+  fleet: string
+  manage_operation: string
+  challenge: string
   full_name: string
   email: string
   company_name: string

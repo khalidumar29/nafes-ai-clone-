@@ -14,13 +14,29 @@ export const FormSubmissions: CollectionConfig = {
     create: () => true,
   },
   fields: [
-    { name: 'objective', type: 'text' },
-    { name: 'platforms', type: 'text' },
-    { name: 'averageRate', type: 'text' },
-    { name: 'tendersPerMonth', type: 'text' },
-    { name: 'full_name', type: 'text' },
-    { name: 'email', type: 'email' },
-    { name: 'company_name', type: 'text' },
-    { name: 'mobile', type: 'text' },
+    { name: 'business_type', type: 'text', label: 'Business Type' },
+    { name: 'fleet', type: 'text', label: 'Fleet' },
+    { name: 'manage_operation', type: 'text', label: 'Manage Operation' },
+    { name: 'challenge', type: 'text', label: 'Challenge' },
+    { name: 'full_name', type: 'text', label: 'Full Name' },
+    { name: 'email', type: 'email', label: 'Email' },
+    { name: 'company_name', type: 'text', label: 'Company Name' },
+    { name: 'mobile', type: 'text', label: 'Mobile' },
   ],
 }
+
+/**
+ *
+ */ /**
+ * 
+ * [
+                    { label: 'Business Type', value: 'businessType' },
+                    { label: 'Fleet', value: 'fleet' },
+                    { label: 'Manage Operation', value: 'manageOperation' },
+                    { label: 'Challenge', value: 'challenge' },
+                    { label: 'Full Name', value: 'full_name' },
+                    { label: 'Email', value: 'email' },
+                    { label: 'Company Name', value: 'company_name' },
+                    { label: 'Mobile', value: 'mobile' },
+                  ]
+ */

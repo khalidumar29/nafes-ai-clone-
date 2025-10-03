@@ -479,10 +479,10 @@ export interface Page {
                            * Pick one submission field (use only once)
                            */
                           nm:
-                            | 'objective'
-                            | 'platforms'
-                            | 'averageRate'
-                            | 'tendersPerMonth'
+                            | 'business_type'
+                            | 'fleet'
+                            | 'manage_operation'
+                            | 'challenge'
                             | 'full_name'
                             | 'email'
                             | 'company_name'
@@ -680,10 +680,10 @@ export interface User {
  */
 export interface WaitingFormSubmission {
   id: number;
-  objective?: string | null;
-  platforms?: string | null;
-  averageRate?: string | null;
-  tendersPerMonth?: string | null;
+  business_type?: string | null;
+  fleet?: string | null;
+  manage_operation?: string | null;
+  challenge?: string | null;
   full_name?: string | null;
   email?: string | null;
   company_name?: string | null;
@@ -1560,10 +1560,10 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "waiting-form-submissions_select".
  */
 export interface WaitingFormSubmissionsSelect<T extends boolean = true> {
-  objective?: T;
-  platforms?: T;
-  averageRate?: T;
-  tendersPerMonth?: T;
+  business_type?: T;
+  fleet?: T;
+  manage_operation?: T;
+  challenge?: T;
   full_name?: T;
   email?: T;
   company_name?: T;
