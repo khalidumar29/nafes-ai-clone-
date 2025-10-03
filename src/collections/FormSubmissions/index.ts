@@ -22,6 +22,11 @@ export const FormSubmissions: CollectionConfig = {
     { name: 'email', type: 'email', label: 'Email' },
     { name: 'company_name', type: 'text', label: 'Company Name' },
     { name: 'mobile', type: 'text', label: 'Mobile' },
+    // Legacy fields - will be removed after data migration
+    { name: 'objective', type: 'text', label: 'Objective (Legacy)' },
+    { name: 'platforms', type: 'text', label: 'Platforms (Legacy)' },
+    { name: 'averageRate', type: 'text', label: 'Average Rate (Legacy)' },
+    { name: 'tendersPerMonth', type: 'text', label: 'Tenders Per Month (Legacy)' },
   ],
 }
 

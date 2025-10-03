@@ -486,7 +486,12 @@ export interface Page {
                             | 'full_name'
                             | 'email'
                             | 'company_name'
-                            | 'mobile';
+                            | 'mobile'
+                            | 'manageOperation'
+                            | 'objective'
+                            | 'platforms'
+                            | 'averageRate'
+                            | 'tendersPerMonth';
                           /**
                            * Label shown on the form
                            */
@@ -688,6 +693,10 @@ export interface WaitingFormSubmission {
   email?: string | null;
   company_name?: string | null;
   mobile?: string | null;
+  objective?: string | null;
+  platforms?: string | null;
+  averageRate?: string | null;
+  tendersPerMonth?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1568,6 +1577,10 @@ export interface WaitingFormSubmissionsSelect<T extends boolean = true> {
   email?: T;
   company_name?: T;
   mobile?: T;
+  objective?: T;
+  platforms?: T;
+  averageRate?: T;
+  tendersPerMonth?: T;
   updatedAt?: T;
   createdAt?: T;
 }

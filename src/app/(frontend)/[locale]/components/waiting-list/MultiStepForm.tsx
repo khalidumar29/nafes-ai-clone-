@@ -71,13 +71,25 @@ const MultiStepForm = ({
   const watchedValues = watch()
 
   const onSubmit = async (data: FormData) => {
+    console.log('=== FORM SUBMISSION DEBUG ===')
+    console.log('Form data received (already mapped during selection):', data)
+    console.log('Form data keys:', Object.keys(data))
+    console.log('Form data entries:', Object.entries(data))
+
+    // Data is already mapped during selection, so we can use it directly
+    const submissionData = { ...data }
+
+    console.log('Final data being sent to API:', submissionData)
+
     try {
       const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL || window.location.origin
+
+      console.log('Sending data to API:', JSON.stringify(submissionData, null, 2))
 
       const res = await fetch(`${apiUrl}/api/waiting-form-submissions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submissionData),
       })
 
       if (!res.ok) {
@@ -88,6 +100,7 @@ const MultiStepForm = ({
 
       const json = await res.json()
       console.log('Form submitted successfully:', json)
+      console.log('Created record ID:', json.doc?.id)
 
       setCurrentStep((prev) => prev + 1)
     } catch (err) {
@@ -98,7 +111,64 @@ const MultiStepForm = ({
   }
 
   const handleSelect = (name: keyof FormData, value: string) => {
-    setValue(name, value, { shouldValidate: true })
+    console.log(`=== FIELD SELECTION DEBUG ===`)
+    console.log(`Setting field "${name}" to value:`, value)
+    console.log('Current step:', currentStep)
+    console.log('All current form values before update:', getValues())
+
+    // Map field names based on current step and value to avoid conflicts
+    let mappedFieldName = name
+
+    if (name === 'company_name') {
+      // Step 1: business type values stored in company_name field
+      const businessTypeValues = [
+        'Car rental company',
+        'Car dealership',
+        'Transportation & logistics company',
+        'Private fleet owner',
+        'Other',
+      ]
+
+      if (businessTypeValues.includes(value)) {
+        mappedFieldName = 'business_type'
+      }
+    } else if (name === 'objective') {
+      // Map objective field based on value patterns and current step
+      if (['Less than 20', '20 – 100', '100 – 500', 'More than 500'].includes(value)) {
+        mappedFieldName = 'fleet'
+      } else if (
+        [
+          'Manually (paper/excel)',
+          'Local software solution',
+          'No system in place',
+          'Other',
+        ].includes(value)
+      ) {
+        mappedFieldName = 'manage_operation'
+      } else if (
+        [
+          'High operational costs',
+          'Lack of visibility over vehicles',
+          'Manual paperwork & errors',
+          'Regulatory compliance',
+          'Other',
+        ].includes(value)
+      ) {
+        mappedFieldName = 'challenge'
+      }
+    }
+
+    console.log(`Mapping "${name}" → "${mappedFieldName}" with value: "${value}"`)
+    setValue(mappedFieldName as keyof FormData, value, { shouldValidate: true })
+
+    // Log values after update
+    setTimeout(() => {
+      console.log('All current form values after update:', getValues())
+      console.log(
+        `Confirmed field "${mappedFieldName}" is now:`,
+        getValues()[mappedFieldName as keyof FormData],
+      )
+    }, 100)
   }
 
   return (

@@ -55,6 +55,12 @@ export const MultiStepFormContainer: Block = {
                     { label: 'Email', value: 'email' },
                     { label: 'Company Name', value: 'company_name' },
                     { label: 'Mobile', value: 'mobile' },
+                    // Legacy values that exist in database - will be removed after migration
+                    { label: 'Manage Operation (Legacy)', value: 'manageOperation' },
+                    { label: 'Objective (Legacy)', value: 'objective' },
+                    { label: 'Platforms (Legacy)', value: 'platforms' },
+                    { label: 'Average Rate (Legacy)', value: 'averageRate' },
+                    { label: 'Tenders Per Month (Legacy)', value: 'tendersPerMonth' },
                   ],
                   admin: { description: 'Pick one submission field (use only once)' },
                 },

@@ -14,6 +14,11 @@ export interface FormData {
   email: string
   company_name: string
   mobile: string
+  // Legacy fields - will be removed after data migration
+  objective?: string
+  platforms?: string
+  averageRate?: string
+  tendersPerMonth?: string
 }
 export type NavbarButton = {
   href: string
