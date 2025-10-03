@@ -45,9 +45,6 @@ const MultiStepForm = ({
             schemaShape[input.name] = z.string().optional()
             defaultVals[input.name] = ''
             seen.add(input.name)
-            console.log(
-              `Added to schema: ${input.name} with label: ${input.label}, required: false`,
-            )
           }
         })
       })
@@ -76,29 +73,15 @@ const MultiStepForm = ({
   const currentStepData = allStepsData?.find((item: any) => item.step === currentStep)
   const watchedValues = watch()
 
-  console.log('Current step:', currentStep)
-  console.log('Current step data:', currentStepData)
-  console.log('Watched values:', watchedValues)
-  console.log('Form errors:', errors)
-  console.log('Form is valid:', isValid)
-
   const onSubmit = async (data: FormData) => {
     try {
-      console.log('===== FORM SUBMISSION DEBUG =====')
-      console.log('Submitting form data:', data)
-      console.log('Form data keys:', Object.keys(data))
-      console.log('Form data values:', Object.values(data))
-      console.log('JSON stringified:', JSON.stringify(data, null, 2))
       const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL || window.location.origin
-      console.log('API URL:', `${apiUrl}/api/waiting-form-submissions`)
 
       const res = await fetch(`${apiUrl}/api/waiting-form-submissions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
-
-      console.log('Response status:', res.status)
 
       if (!res.ok) {
         const errorText = await res.text()
