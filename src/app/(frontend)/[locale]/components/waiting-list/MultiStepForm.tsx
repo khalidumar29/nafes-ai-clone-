@@ -197,20 +197,70 @@ const MultiStepForm = ({
                     currentStepData.fields.length > 1 && 'flex-row',
                   )}
                 >
-                  {items.inputs.map((input: any, j: number) => (
-                    <div
-                      key={j}
-                      onClick={() => handleSelect(input.name, input.label)}
-                      className={cn(
-                        'w-full text-lg h-[75px] flex items-center px-6 justify-start cursor-pointer border rounded-[10px]',
-                        watchedValues[input.name as keyof FormData] === input.label &&
-                          'bg-primary text-white',
-                        currentStepData.fields.length > 1 && 'justify-center',
-                      )}
-                    >
-                      <p>{input.label}</p>
-                    </div>
-                  ))}
+                  {items.inputs.map((input: any, j: number) => {
+                    // Determine the correct field name to check for selection state
+                    let fieldToCheck = input.name
+
+                    if (input.name === 'company_name') {
+                      // Step 1: business type values stored in company_name field
+                      const businessTypeValues = [
+                        'Car rental company',
+                        'Car dealership',
+                        'Transportation & logistics company',
+                        'Private fleet owner',
+                        'Other',
+                      ]
+
+                      if (businessTypeValues.includes(input.label)) {
+                        fieldToCheck = 'business_type'
+                      }
+                    } else if (input.name === 'objective') {
+                      // Map objective field based on value patterns
+                      if (
+                        ['Less than 20', '20 – 100', '100 – 500', 'More than 500'].includes(
+                          input.label,
+                        )
+                      ) {
+                        fieldToCheck = 'fleet'
+                      } else if (
+                        [
+                          'Manually (paper/excel)',
+                          'Local software solution',
+                          'No system in place',
+                          'Other',
+                        ].includes(input.label)
+                      ) {
+                        fieldToCheck = 'manage_operation'
+                      } else if (
+                        [
+                          'High operational costs',
+                          'Lack of visibility over vehicles',
+                          'Manual paperwork & errors',
+                          'Regulatory compliance',
+                          'Other',
+                        ].includes(input.label)
+                      ) {
+                        fieldToCheck = 'challenge'
+                      }
+                    }
+
+                    const isSelected = watchedValues[fieldToCheck as keyof FormData] === input.label
+
+                    return (
+                      <div
+                        key={j}
+                        onClick={() => handleSelect(input.name, input.label)}
+                        className={cn(
+                          'w-full text-lg h-[75px] flex items-center px-6 justify-start cursor-pointer border rounded-[10px] transition-all duration-200',
+                          isSelected && 'bg-primary text-white border-primary',
+                          !isSelected && 'border-gray-300 hover:border-primary hover:bg-primary/5',
+                          currentStepData.fields.length > 1 && 'justify-center',
+                        )}
+                      >
+                        <p>{input.label}</p>
+                      </div>
+                    )
+                  })}
                 </div>
               ) : currentStepData.formType === 'form' ? (
                 <div className="space-y-4 mt-4">
