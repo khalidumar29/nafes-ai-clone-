@@ -114,51 +114,40 @@ const MultiStepForm = ({
     console.log(`=== FIELD SELECTION DEBUG ===`)
     console.log(`Setting field "${name}" to value:`, value)
     console.log('Current step:', currentStep)
+    console.log('Current locale:', locale)
     console.log('All current form values before update:', getValues())
 
-    // Map field names based on current step and value to avoid conflicts
+    // Map field names based on current step and field name to handle different form configurations
     let mappedFieldName = name
 
-    if (name === 'company_name') {
-      // Step 1: business type values stored in company_name field
-      const businessTypeValues = [
-        'Car rental company',
-        'Car dealership',
-        'Transportation & logistics company',
-        'Private fleet owner',
-        'Other',
-      ]
-
-      if (businessTypeValues.includes(value)) {
-        mappedFieldName = 'business_type'
-      }
+    if (name === 'company_name' && currentStep === 1) {
+      // English form: Step 1 uses company_name field for business type
+      mappedFieldName = 'business_type'
+      console.log('English form: Mapping company_name to business_type')
     } else if (name === 'objective') {
-      // Map objective field based on value patterns and current step
-      if (['Less than 20', '20 – 100', '100 – 500', 'More than 500'].includes(value)) {
+      // Both English and Arabic forms use objective field, but for different steps
+      if (currentStep === 1) {
+        // Arabic form: Step 1 uses objective field for business type
+        mappedFieldName = 'business_type'
+        console.log('Arabic form: Step 1 - Mapping objective to business_type')
+      } else if (currentStep === 2) {
+        // Both forms: Step 2 uses objective field for fleet size
         mappedFieldName = 'fleet'
-      } else if (
-        [
-          'Manually (paper/excel)',
-          'Local software solution',
-          'No system in place',
-          'Other',
-        ].includes(value)
-      ) {
-        mappedFieldName = 'manage_operation'
-      } else if (
-        [
-          'High operational costs',
-          'Lack of visibility over vehicles',
-          'Manual paperwork & errors',
-          'Regulatory compliance',
-          'Other',
-        ].includes(value)
-      ) {
+        console.log('Step 2 - Mapping objective to fleet')
+      } else if (currentStep === 3) {
+        // Arabic form: Step 3 uses objective field for challenges
         mappedFieldName = 'challenge'
+        console.log('Arabic form: Step 3 - Mapping objective to challenge')
+      } else if (currentStep === 4) {
+        // Arabic form: Step 4 uses objective field for management operation
+        mappedFieldName = 'manage_operation'
+        console.log('Arabic form: Step 4 - Mapping objective to manage_operation')
       }
     }
 
-    console.log(`Mapping "${name}" → "${mappedFieldName}" with value: "${value}"`)
+    console.log(
+      `Mapping "${name}" → "${mappedFieldName}" (Step ${currentStep}, Locale: ${locale}) with value: "${value}"`,
+    )
     setValue(mappedFieldName as keyof FormData, value, { shouldValidate: true })
 
     // Log values after update
@@ -198,49 +187,26 @@ const MultiStepForm = ({
                   )}
                 >
                   {items.inputs.map((input: any, j: number) => {
-                    // Determine the correct field name to check for selection state
+                    // Determine the correct field name to check for selection state (same logic as handleSelect)
                     let fieldToCheck = input.name
 
-                    if (input.name === 'company_name') {
-                      // Step 1: business type values stored in company_name field
-                      const businessTypeValues = [
-                        'Car rental company',
-                        'Car dealership',
-                        'Transportation & logistics company',
-                        'Private fleet owner',
-                        'Other',
-                      ]
-
-                      if (businessTypeValues.includes(input.label)) {
-                        fieldToCheck = 'business_type'
-                      }
+                    if (input.name === 'company_name' && currentStep === 1) {
+                      // English form: Step 1 uses company_name field for business type
+                      fieldToCheck = 'business_type'
                     } else if (input.name === 'objective') {
-                      // Map objective field based on value patterns
-                      if (
-                        ['Less than 20', '20 – 100', '100 – 500', 'More than 500'].includes(
-                          input.label,
-                        )
-                      ) {
+                      // Both English and Arabic forms use objective field, but for different steps
+                      if (currentStep === 1) {
+                        // Arabic form: Step 1 uses objective field for business type
+                        fieldToCheck = 'business_type'
+                      } else if (currentStep === 2) {
+                        // Both forms: Step 2 uses objective field for fleet size
                         fieldToCheck = 'fleet'
-                      } else if (
-                        [
-                          'Manually (paper/excel)',
-                          'Local software solution',
-                          'No system in place',
-                          'Other',
-                        ].includes(input.label)
-                      ) {
-                        fieldToCheck = 'manage_operation'
-                      } else if (
-                        [
-                          'High operational costs',
-                          'Lack of visibility over vehicles',
-                          'Manual paperwork & errors',
-                          'Regulatory compliance',
-                          'Other',
-                        ].includes(input.label)
-                      ) {
+                      } else if (currentStep === 3) {
+                        // Arabic form: Step 3 uses objective field for challenges
                         fieldToCheck = 'challenge'
+                      } else if (currentStep === 4) {
+                        // Arabic form: Step 4 uses objective field for management operation
+                        fieldToCheck = 'manage_operation'
                       }
                     }
 
