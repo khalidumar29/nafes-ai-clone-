@@ -21,8 +21,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     >
       <head>
         {/* <InitTheme /> */}
-        <link href="/Favicon.png" rel="icon" sizes="32x32" />
-        <link href="/Favicon.svg" rel="icon" type="image/svg+xml" />
+        <link href="/favicon.ico" rel="icon" sizes="any" />
+        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+        <link href="/Favicon.png" rel="apple-touch-icon" />
       </head>
       <body className="bg-white text-black">
         {/* <AdminBar
@@ -41,6 +42,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 export const metadata: Metadata = {
   metadataBase: new URL(getServerSideURL()),
+  icons: {
+    icon: '/Favicon.png',
+    shortcut: '/Favicon.png',
+    apple: '/Favicon.png',
+    other: {
+      rel: 'apple-touch-icon-precomposed',
+      url: '/Favicon.png',
+    },
+  },
   openGraph: mergeOpenGraph(),
   twitter: {
     card: 'summary_large_image',
